@@ -1,0 +1,11 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Obsidian
+.obsidian/workspace.json
+.obsidian/workspace.jsonc
+
+# Agent skills (local caches)
+.agents/skills/**/scripts/
+.agents/skills/**/reference/
