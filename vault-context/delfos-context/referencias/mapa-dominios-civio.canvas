@@ -1,712 +1,83 @@
 {
-  "nodes": [
-    {
-      "id": "civio0000000001",
-      "type": "text",
-      "x": 820,
-      "y": 40,
-      "width": 320,
-      "height": 90,
-      "text": "# Civio\n\nOrganización de periodismo de datos y tecnología cívica",
-      "color": "6"
-    },
-    {
-      "id": "informe00000001",
-      "type": "file",
-      "x": 440,
-      "y": 40,
-      "width": 340,
-      "height": 55,
-      "file": "referencias/informe-repos-civio.md",
-      "color": "6"
-    },
-    {
-      "id": "archivo0000001",
-      "type": "file",
-      "x": 440,
-      "y": 105,
-      "width": 340,
-      "height": 55,
-      "file": "referencias/analisis-monorepo-civio.md",
-      "color": "6"
-    },
-    {
-      "id": "pimono00000001",
-      "type": "file",
-      "x": 1320,
-      "y": 40,
-      "width": 280,
-      "height": 60,
-      "file": "referencias/repos-civio/pi-mono.md",
-      "color": "6"
-    },
-    {
-      "id": "pimonoetiqueta",
-      "type": "text",
-      "x": 1320,
-      "y": 115,
-      "width": 280,
-      "height": 80,
-      "text": "*Outlier — IA / DevOps*\n\nNo relacionado con la misión Civio",
-      "color": "1"
-    },
-    {
-      "id": "0000000000000g1",
-      "type": "group",
-      "x": 20,
-      "y": 320,
-      "width": 620,
-      "height": 800,
-      "label": "❶  Transparencia presupuestaria",
-      "color": "4"
-    },
-    {
-      "id": "0000000000000g2",
-      "type": "group",
-      "x": 680,
-      "y": 320,
-      "width": 620,
-      "height": 800,
-      "label": "❷  Visualizaciones e investigación periodística",
-      "color": "5"
-    },
-    {
-      "id": "0000000000000g3",
-      "type": "group",
-      "x": 1340,
-      "y": 320,
-      "width": 620,
-      "height": 800,
-      "label": "❸  Scraping y pipelines de datos",
-      "color": "2"
-    },
-    {
-      "id": "presupuestocore",
-      "type": "file",
-      "x": 60,
-      "y": 380,
-      "width": 260,
-      "height": 70,
-      "file": "referencias/repos-civio/presupuesto.md",
-      "color": "4"
-    },
-    {
-      "id": "stackpresutext",
-      "type": "text",
-      "x": 360,
-      "y": 380,
-      "width": 240,
-      "height": 110,
-      "text": "**Stack legacy**\n\nDjango 3.2\nPostgreSQL\njQuery 2 · D3.js v5\nRollup",
-      "color": "3"
-    },
-    {
-      "id": "scraperpge00001",
-      "type": "file",
-      "x": 60,
-      "y": 530,
-      "width": 260,
-      "height": 70,
-      "file": "referencias/repos-civio/scraper-pge.md",
-      "color": "2"
-    },
-    {
-      "id": "scraperccaa0001",
-      "type": "file",
-      "x": 340,
-      "y": 530,
-      "width": 260,
-      "height": 70,
-      "file": "referencias/repos-civio/scraper-ccaa-budget-summaries.md",
-      "color": "2"
-    },
-    {
-      "id": "flujoetl000001",
-      "type": "text",
-      "x": 60,
-      "y": 640,
-      "width": 540,
-      "height": 80,
-      "text": "**Flujo ETL**\n\n`scraper-pge` / `scraper-ccaa` → CSV → `manage.py load_budget` → PostgreSQL → Django views → Jinja2 + D3.js",
-      "color": "4"
-    },
-    {
-      "id": "adaptaciones001",
-      "type": "text",
-      "x": 60,
-      "y": 750,
-      "width": 540,
-      "height": 130,
-      "text": "## Adaptaciones territoriales\n\n**Activas (10):** presupuesto-navarra, vitoriagasteiz, castillalamancha, elprat, pge, eibar, madrid, menorca, polinya, larioja\n\n**Archivadas:** 28 adaptaciones adicionales",
-      "color": "1"
-    },
-    {
-      "id": "presupuestonavar",
-      "type": "file",
-      "x": 60,
-      "y": 910,
-      "width": 170,
-      "height": 50,
-      "file": "referencias/repos-civio/presupuesto-navarra.md",
-      "color": "4"
-    },
-    {
-      "id": "presupuestomadri",
-      "type": "file",
-      "x": 245,
-      "y": 910,
-      "width": 170,
-      "height": 50,
-      "file": "referencias/repos-civio/presupuesto-madrid.md",
-      "color": "4"
-    },
-    {
-      "id": "presupuestopge01",
-      "type": "file",
-      "x": 430,
-      "y": 910,
-      "width": 170,
-      "height": 50,
-      "file": "referencias/repos-civio/presupuesto-pge.md",
-      "color": "4"
-    },
-    {
-      "id": "presupuestovitori",
-      "type": "file",
-      "x": 60,
-      "y": 970,
-      "width": 170,
-      "height": 50,
-      "file": "referencias/repos-civio/presupuesto-vitoriagasteiz.md",
-      "color": "4"
-    },
-    {
-      "id": "presupuestocastil",
-      "type": "file",
-      "x": 245,
-      "y": 970,
-      "width": 170,
-      "height": 50,
-      "file": "referencias/repos-civio/presupuesto-castillalamancha.md",
-      "color": "4"
-    },
-    {
-      "id": "presupuestoeibar0",
-      "type": "file",
-      "x": 430,
-      "y": 970,
-      "width": 170,
-      "height": 50,
-      "file": "referencias/repos-civio/presupuesto-eibar.md",
-      "color": "4"
-    },
-    {
-      "id": "presupuestomenorc",
-      "type": "file",
-      "x": 60,
-      "y": 1030,
-      "width": 170,
-      "height": 50,
-      "file": "referencias/repos-civio/presupuesto-menorca.md",
-      "color": "4"
-    },
-    {
-      "id": "presupuestolarioj",
-      "type": "file",
-      "x": 245,
-      "y": 1030,
-      "width": 170,
-      "height": 50,
-      "file": "referencias/repos-civio/presupuesto-larioja.md",
-      "color": "4"
-    },
-    {
-      "id": "presupuestopoliny",
-      "type": "file",
-      "x": 430,
-      "y": 1030,
-      "width": 170,
-      "height": 50,
-      "file": "referencias/repos-civio/presupuesto-polinya.md",
-      "color": "4"
-    },
-    {
-      "id": "civiographspub",
-      "type": "file",
-      "x": 720,
-      "y": 380,
-      "width": 260,
-      "height": 70,
-      "file": "referencias/repos-civio/civio-graphs-public.md",
-      "color": "5"
-    },
-    {
-      "id": "stackgraphstext",
-      "type": "text",
-      "x": 1020,
-      "y": 380,
-      "width": 260,
-      "height": 110,
-      "text": "**Stack moderno**\n\nSvelte 5 + Vite 7\nD3.js 7\nOxlint, Prettier, Knip\nPlaywright + Vitest",
-      "color": "3"
-    },
-    {
-      "id": "charts202600001",
-      "type": "text",
-      "x": 720,
-      "y": 510,
-      "width": 560,
-      "height": 130,
-      "text": "## Visualizaciones publicadas en 2026\n`justicia/aislamiento-prisiones/`\n\n• **motivos-sanciones** — Square packing con anillos concéntricos\n• **sanciones-administracion** — Barras apiladas por administración\n• **tiempos-limbo** — Waffle chart canvas-based (7.800 casos)",
-      "color": "5"
-    },
-    {
-      "id": "patrongraph0001",
-      "type": "text",
-      "x": 720,
-      "y": 660,
-      "width": 560,
-      "height": 130,
-      "text": "**Patrón de cada visualización**\n\nCada chart es un paquete independiente (`package.json`, `vite.config`, `svelte.config`)\nCSV remoto → `data.svelte.js` (`$state`/`$derived`) → `App.svelte` → SVG reactivo\nD3 solo para cálculos y escalas; renderizado con Svelte SVG",
-      "color": "3"
-    },
-    {
-      "id": "verba000000001",
-      "type": "file",
-      "x": 720,
-      "y": 820,
-      "width": 260,
-      "height": 70,
-      "file": "referencias/repos-civio/verba.md",
-      "color": "5"
-    },
-    {
-      "id": "stackverbatext",
-      "type": "text",
-      "x": 1020,
-      "y": 820,
-      "width": 260,
-      "height": 110,
-      "text": "**Stack verba**\n\nVue 2 + Express 4\nElasticSearch 7.4\nDocker compose (3 servicios)",
-      "color": "3"
-    },
-    {
-      "id": "civiographslib",
-      "type": "file",
-      "x": 720,
-      "y": 960,
-      "width": 260,
-      "height": 60,
-      "file": "referencias/repos-civio/civio-graphs-lib.md",
-      "color": "5"
-    },
-    {
-      "id": "civioboilerplate",
-      "type": "file",
-      "x": 1020,
-      "y": 960,
-      "width": 260,
-      "height": 60,
-      "file": "referencias/repos-civio/civio-graphs-boilerplate.md",
-      "color": "5"
-    },
-    {
-      "id": "scrapersubvenc01",
-      "type": "file",
-      "x": 1380,
-      "y": 380,
-      "width": 260,
-      "height": 70,
-      "file": "referencias/repos-civio/scraper-subvenciones-municipales-2015.md",
-      "color": "2"
-    },
-    {
-      "id": "scraperpartyreg",
-      "type": "file",
-      "x": 1660,
-      "y": 380,
-      "width": 260,
-      "height": 70,
-      "file": "referencias/repos-civio/scraper-party-register.md",
-      "color": "2"
-    },
-    {
-      "id": "scraperalcaldes",
-      "type": "file",
-      "x": 1380,
-      "y": 480,
-      "width": 260,
-      "height": 70,
-      "file": "referencias/repos-civio/scraper-alcaldes.md",
-      "color": "2"
-    },
-    {
-      "id": "scrapereleccion",
-      "type": "file",
-      "x": 1660,
-      "y": 480,
-      "width": 260,
-      "height": 70,
-      "file": "referencias/repos-civio/scraper-elecciones-generales-2015.md",
-      "color": "2"
-    },
-    {
-      "id": "patronscraper01",
-      "type": "text",
-      "x": 1380,
-      "y": 580,
-      "width": 540,
-      "height": 150,
-      "text": "## Patrón común\n\n```\nfetch.rb → parse.rb → CSV estructurado\n```\n\nRuby 2.6+ | `mechanize` + `nokogiri` | CLI: `optimist`\n\nSin BD, sin tests, sin CI, sin Docker\nMisma estructura de salida en todos los scrapers",
-      "color": "2"
-    },
-    {
-      "id": "scrapergeotext01",
-      "type": "text",
-      "x": 1380,
-      "y": 750,
-      "width": 540,
-      "height": 60,
-      "text": "## Mapas y datos geoespaciales",
-      "color": "2"
-    },
-    {
-      "id": "esatlas0000001",
-      "type": "file",
-      "x": 1380,
-      "y": 830,
-      "width": 260,
-      "height": 60,
-      "file": "referencias/repos-civio/es-atlas.md",
-      "color": "4"
-    },
-    {
-      "id": "worldatlas0001",
-      "type": "file",
-      "x": 1660,
-      "y": 830,
-      "width": 260,
-      "height": 60,
-      "file": "referencias/repos-civio/world-atlas.md",
-      "color": "4"
-    },
-    {
-      "id": "covidvacunacion",
-      "type": "file",
-      "x": 1380,
-      "y": 910,
-      "width": 260,
-      "height": 60,
-      "file": "referencias/repos-civio/covid-vaccination-spain.md",
-      "color": "1"
-    },
-    {
-      "id": "onodo000000001",
-      "type": "file",
-      "x": 1660,
-      "y": 910,
-      "width": 260,
-      "height": 60,
-      "file": "referencias/repos-civio/onodo.md",
-      "color": "1"
-    },
-    {
-      "id": "00000000000garc",
-      "type": "group",
-      "x": 20,
-      "y": 1180,
-      "width": 940,
-      "height": 240,
-      "label": "Proyectos archivados / históricos",
-      "color": "1"
-    },
-    {
-      "id": "etiquetaarchivad",
-      "type": "text",
-      "x": 60,
-      "y": 1230,
-      "width": 280,
-      "height": 160,
-      "text": "**Proyectos archivados**\n\nDistribuidos por dominio según su uso original. También:\n• onodo y covid-vaccination en ❸\n• 28 adaptaciones presupuestarias archivadas en ❶",
-      "color": "1"
-    },
-    {
-      "id": "quiencobralaobra",
-      "type": "file",
-      "x": 360,
-      "y": 1240,
-      "width": 180,
-      "height": 60,
-      "file": "referencias/repos-civio/quiencobralaobra.md",
-      "color": "1"
-    },
-    {
-      "id": "civioespanopoly0",
-      "type": "file",
-      "x": 560,
-      "y": 1240,
-      "width": 180,
-      "height": 60,
-      "file": "referencias/repos-civio/civio-espanopoly.md",
-      "color": "1"
-    },
-    {
-      "id": "civioinforme2016",
-      "type": "file",
-      "x": 760,
-      "y": 1240,
-      "width": 180,
-      "height": 60,
-      "file": "referencias/repos-civio/civio-informe-2016.md",
-      "color": "1"
-    },
-    {
-      "id": "quienmanda00001",
-      "type": "file",
-      "x": 360,
-      "y": 1320,
-      "width": 180,
-      "height": 60,
-      "file": "referencias/repos-civio/quienmanda.md",
-      "color": "1"
-    },
-    {
-      "id": "medicamentalia01",
-      "type": "file",
-      "x": 560,
-      "y": 1320,
-      "width": 180,
-      "height": 60,
-      "file": "referencias/repos-civio/medicamentalia.md",
-      "color": "1"
-    },
-    {
-      "id": "grupootrasherram",
-      "type": "group",
-      "x": 1000,
-      "y": 1180,
-      "width": 960,
-      "height": 240,
-      "label": "Herramientas de soporte y experimentales",
-      "color": "3"
-    },
-    {
-      "id": "datawrapper0001",
-      "type": "file",
-      "x": 1040,
-      "y": 1240,
-      "width": 270,
-      "height": 70,
-      "file": "referencias/repos-civio/datawrapper.md",
-      "color": "3"
-    },
-    {
-      "id": "litaslack00001",
-      "type": "file",
-      "x": 1340,
-      "y": 1240,
-      "width": 270,
-      "height": 70,
-      "file": "referencias/repos-civio/lita-slack.md",
-      "color": "3"
-    },
-    {
-      "id": "gulpboilerplate1",
-      "type": "file",
-      "x": 1640,
-      "y": 1240,
-      "width": 270,
-      "height": 70,
-      "file": "referencias/repos-civio/gulp-boilerplate.md",
-      "color": "3"
-    }
-  ],
-  "edges": [
-    {
-      "id": "e00000000000001",
-      "fromNode": "civio0000000001",
-      "fromSide": "bottom",
-      "toNode": "0000000000000g1",
-      "toSide": "top",
-      "color": "4"
-    },
-    {
-      "id": "e00000000000002",
-      "fromNode": "civio0000000001",
-      "fromSide": "bottom",
-      "toNode": "0000000000000g2",
-      "toSide": "top",
-      "color": "5"
-    },
-    {
-      "id": "e00000000000003",
-      "fromNode": "civio0000000001",
-      "fromSide": "right",
-      "toNode": "0000000000000g3",
-      "toSide": "top",
-      "color": "2"
-    },
-    {
-      "id": "e00000000000004",
-      "fromNode": "civio0000000001",
-      "fromSide": "right",
-      "toNode": "pimono00000001",
-      "toSide": "left",
-      "label": "Outlier (fundador)",
-      "color": "6"
-    },
-    {
-      "id": "e00000000000005",
-      "fromNode": "civio0000000001",
-      "fromSide": "left",
-      "toNode": "informe00000001",
-      "toSide": "right"
-    },
-    {
-      "id": "e00000000000006",
-      "fromNode": "civio0000000001",
-      "fromSide": "left",
-      "toNode": "archivo0000001",
-      "toSide": "right"
-    },
-    {
-      "id": "e00000000000010",
-      "fromNode": "presupuestocore",
-      "fromSide": "bottom",
-      "toNode": "scraperpge00001",
-      "toSide": "top",
-      "label": "se alimenta de",
-      "color": "2"
-    },
-    {
-      "id": "e00000000000011",
-      "fromNode": "presupuestocore",
-      "fromSide": "bottom",
-      "toNode": "scraperccaa0001",
-      "toSide": "top",
-      "label": "se alimenta de",
-      "color": "2"
-    },
-    {
-      "id": "e00000000000012",
-      "fromNode": "scraperpge00001",
-      "fromSide": "bottom",
-      "toNode": "flujoetl000001",
-      "toSide": "top"
-    },
-    {
-      "id": "e00000000000013",
-      "fromNode": "flujoetl000001",
-      "fromSide": "bottom",
-      "toNode": "adaptaciones001",
-      "toSide": "top"
-    },
-    {
-      "id": "e00000000000014",
-      "fromNode": "adaptaciones001",
-      "fromSide": "bottom",
-      "toNode": "presupuestonavar",
-      "toSide": "top"
-    },
-    {
-      "id": "e00000000000015",
-      "fromNode": "adaptaciones001",
-      "fromSide": "bottom",
-      "toNode": "presupuestomadri",
-      "toSide": "top"
-    },
-    {
-      "id": "e00000000000016",
-      "fromNode": "adaptaciones001",
-      "fromSide": "bottom",
-      "toNode": "presupuestopge01",
-      "toSide": "top"
-    },
-    {
-      "id": "e00000000000030",
-      "fromNode": "civiographspub",
-      "fromSide": "bottom",
-      "toNode": "charts202600001",
-      "toSide": "top"
-    },
-    {
-      "id": "e00000000000031",
-      "fromNode": "charts202600001",
-      "fromSide": "bottom",
-      "toNode": "patrongraph0001",
-      "toSide": "top"
-    },
-    {
-      "id": "e00000000000032",
-      "fromNode": "patrongraph0001",
-      "fromSide": "bottom",
-      "toNode": "civiographslib",
-      "toSide": "top"
-    },
-    {
-      "id": "e00000000000033",
-      "fromNode": "patrongraph0001",
-      "fromSide": "bottom",
-      "toNode": "civioboilerplate",
-      "toSide": "top"
-    },
-    {
-      "id": "e00000000000034",
-      "fromNode": "civiographspub",
-      "fromSide": "right",
-      "toNode": "stackgraphstext",
-      "toSide": "left",
-      "label": "nuevo estándar",
-      "color": "5"
-    },
-    {
-      "id": "e00000000000035",
-      "fromNode": "verba000000001",
-      "fromSide": "right",
-      "toNode": "stackverbatext",
-      "toSide": "left"
-    },
-    {
-      "id": "e00000000000036",
-      "fromNode": "presupuestocore",
-      "fromSide": "right",
-      "toNode": "stackpresutext",
-      "toSide": "left"
-    },
-    {
-      "id": "e00000000000040",
-      "fromNode": "scrapersubvenc01",
-      "fromSide": "bottom",
-      "toNode": "scraperalcaldes",
-      "toSide": "top"
-    },
-    {
-      "id": "e00000000000041",
-      "fromNode": "scraperpartyreg",
-      "fromSide": "bottom",
-      "toNode": "scrapereleccion",
-      "toSide": "top"
-    },
-    {
-      "id": "e00000000000042",
-      "fromNode": "patronscraper01",
-      "fromSide": "bottom",
-      "toNode": "scrapergeotext01",
-      "toSide": "top"
-    },
-    {
-      "id": "e00000000000050",
-      "fromNode": "scrapergeotext01",
-      "fromSide": "bottom",
-      "toNode": "esatlas0000001",
-      "toSide": "top"
-    },
-    {
-      "id": "e00000000000051",
-      "fromNode": "scrapergeotext01",
-      "fromSide": "bottom",
-      "toNode": "worldatlas0001",
-      "toSide": "top"
-    }
-  ]
+	"nodes":[
+		{"id":"civio0000000001","type":"text","x":820,"y":40,"width":320,"height":90,"text":"# Civio\n\nOrganización de periodismo de datos y tecnología cívica","color":"6"},
+		{"id":"informe00000001","type":"file","x":440,"y":40,"width":340,"height":55,"file":"referencias/informe-repos-civio.md","color":"6"},
+		{"id":"archivo0000001","type":"file","x":440,"y":105,"width":340,"height":55,"file":"referencias/analisis-monorepo-civio.md","color":"6"},
+		{"id":"pimono00000001","type":"file","x":1320,"y":40,"width":280,"height":60,"file":"referencias/repos-civio/pi-mono.md","color":"6"},
+		{"id":"pimonoetiqueta","type":"text","x":1320,"y":115,"width":280,"height":80,"text":"*Outlier — IA / DevOps*\n\nNo relacionado con la misión Civio","color":"1"},
+		{"id":"0000000000000g1","type":"group","x":20,"y":320,"width":620,"height":800,"label":"❶  Transparencia presupuestaria","color":"4"},
+		{"id":"0000000000000g2","type":"group","x":680,"y":320,"width":620,"height":800,"label":"❷  Visualizaciones e investigación periodística","color":"5"},
+		{"id":"0000000000000g3","type":"group","x":1340,"y":320,"width":620,"height":800,"label":"❸  Scraping y pipelines de datos","color":"2"},
+		{"id":"presupuestocore","type":"file","x":60,"y":380,"width":260,"height":70,"file":"referencias/repos-civio/presupuesto.md","color":"4"},
+		{"id":"stackpresutext","type":"text","x":360,"y":380,"width":240,"height":110,"text":"**Stack legacy**\n\nDjango 3.2\nPostgreSQL\njQuery 2 · D3.js v5\nRollup","color":"3"},
+		{"id":"scraperpge00001","type":"file","x":60,"y":530,"width":260,"height":70,"file":"referencias/repos-civio/scraper-pge.md","color":"2"},
+		{"id":"scraperccaa0001","type":"file","x":340,"y":530,"width":260,"height":70,"file":"referencias/repos-civio/scraper-ccaa-budget-summaries.md","color":"2"},
+		{"id":"flujoetl000001","type":"text","x":60,"y":640,"width":540,"height":80,"text":"**Flujo ETL**\n\n`scraper-pge` / `scraper-ccaa` → CSV → `manage.py load_budget` → PostgreSQL → Django views → Jinja2 + D3.js","color":"4"},
+		{"id":"adaptaciones001","type":"text","x":60,"y":750,"width":540,"height":130,"text":"## Adaptaciones territoriales\n\n**Activas (10):** presupuesto-navarra, vitoriagasteiz, castillalamancha, elprat, pge, eibar, madrid, menorca, polinya, larioja\n\n**Archivadas:** 28 adaptaciones adicionales","color":"1"},
+		{"id":"presupuestonavar","type":"file","x":60,"y":910,"width":170,"height":50,"file":"referencias/repos-civio/presupuesto-navarra.md","color":"4"},
+		{"id":"presupuestomadri","type":"file","x":245,"y":910,"width":170,"height":50,"file":"referencias/repos-civio/presupuesto-madrid.md","color":"4"},
+		{"id":"presupuestopge01","type":"file","x":430,"y":910,"width":170,"height":50,"file":"referencias/repos-civio/presupuesto-pge.md","color":"4"},
+		{"id":"presupuestovitori","type":"file","x":60,"y":970,"width":170,"height":50,"file":"referencias/repos-civio/presupuesto-vitoriagasteiz.md","color":"4"},
+		{"id":"presupuestocastil","type":"file","x":245,"y":970,"width":170,"height":50,"file":"referencias/repos-civio/presupuesto-castillalamancha.md","color":"4"},
+		{"id":"presupuestoeibar0","type":"file","x":430,"y":970,"width":170,"height":50,"file":"referencias/repos-civio/presupuesto-eibar.md","color":"4"},
+		{"id":"presupuestomenorc","type":"file","x":60,"y":1030,"width":170,"height":50,"file":"referencias/repos-civio/presupuesto-menorca.md","color":"4"},
+		{"id":"presupuestolarioj","type":"file","x":245,"y":1030,"width":170,"height":50,"file":"referencias/repos-civio/presupuesto-larioja.md","color":"4"},
+		{"id":"presupuestopoliny","type":"file","x":430,"y":1030,"width":170,"height":50,"file":"referencias/repos-civio/presupuesto-polinya.md","color":"4"},
+		{"id":"civiographspub","type":"file","x":720,"y":380,"width":260,"height":70,"file":"referencias/repos-civio/civio-graphs-public.md","color":"5"},
+		{"id":"stackgraphstext","type":"text","x":1020,"y":380,"width":260,"height":110,"text":"**Stack moderno**\n\nSvelte 5 + Vite 7\nD3.js 7\nOxlint, Prettier, Knip\nPlaywright + Vitest","color":"3"},
+		{"id":"charts202600001","type":"text","x":720,"y":510,"width":560,"height":130,"text":"## Visualizaciones publicadas en 2026\n`justicia/aislamiento-prisiones/`\n\n• **motivos-sanciones** — Square packing con anillos concéntricos\n• **sanciones-administracion** — Barras apiladas por administración\n• **tiempos-limbo** — Waffle chart canvas-based (7.800 casos)","color":"5"},
+		{"id":"patrongraph0001","type":"text","x":720,"y":660,"width":560,"height":130,"text":"**Patrón de cada visualización**\n\nCada chart es un paquete independiente (`package.json`, `vite.config`, `svelte.config`)\nCSV remoto → `data.svelte.js` (`$state`/`$derived`) → `App.svelte` → SVG reactivo\nD3 solo para cálculos y escalas; renderizado con Svelte SVG","color":"3"},
+		{"id":"verba000000001","type":"file","x":720,"y":820,"width":260,"height":70,"file":"referencias/repos-civio/verba.md","color":"5"},
+		{"id":"stackverbatext","type":"text","x":1020,"y":820,"width":260,"height":110,"text":"**Stack verba**\n\nVue 2 + Express 4\nElasticSearch 7.4\nDocker compose (3 servicios)","color":"3"},
+		{"id":"civiographslib","type":"file","x":720,"y":960,"width":260,"height":60,"file":"referencias/repos-civio/civio-graphs-lib.md","color":"5"},
+		{"id":"civioboilerplate","type":"file","x":1020,"y":960,"width":260,"height":60,"file":"referencias/repos-civio/civio-graphs-boilerplate.md","color":"5"},
+		{"id":"scrapersubvenc01","type":"file","x":1380,"y":380,"width":260,"height":70,"file":"referencias/repos-civio/scraper-subvenciones-municipales-2015.md","color":"2"},
+		{"id":"scraperpartyreg","type":"file","x":1660,"y":380,"width":260,"height":70,"file":"referencias/repos-civio/scraper-party-register.md","color":"2"},
+		{"id":"scraperalcaldes","type":"file","x":1380,"y":480,"width":260,"height":70,"file":"referencias/repos-civio/scraper-alcaldes.md","color":"2"},
+		{"id":"scrapereleccion","type":"file","x":1660,"y":480,"width":260,"height":70,"file":"referencias/repos-civio/scraper-elecciones-generales-2015.md","color":"2"},
+		{"id":"patronscraper01","type":"text","x":1380,"y":580,"width":540,"height":150,"text":"## Patrón común\n\n```\nfetch.rb → parse.rb → CSV estructurado\n```\n\nRuby 2.6+ | `mechanize` + `nokogiri` | CLI: `optimist`\n\nSin BD, sin tests, sin CI, sin Docker\nMisma estructura de salida en todos los scrapers","color":"2"},
+		{"id":"scrapergeotext01","type":"text","x":1380,"y":750,"width":540,"height":60,"text":"## Mapas y datos geoespaciales","color":"2"},
+		{"id":"esatlas0000001","type":"file","x":1380,"y":830,"width":260,"height":60,"file":"referencias/repos-civio/es-atlas.md","color":"4"},
+		{"id":"worldatlas0001","type":"file","x":1660,"y":830,"width":260,"height":60,"file":"referencias/repos-civio/world-atlas.md","color":"4"},
+		{"id":"covidvacunacion","type":"file","x":1380,"y":910,"width":260,"height":60,"file":"referencias/repos-civio/covid-vaccination-spain.md","color":"1"},
+		{"id":"onodo000000001","type":"file","x":1660,"y":910,"width":260,"height":60,"file":"referencias/repos-civio/onodo.md","color":"1"},
+		{"id":"00000000000garc","type":"group","x":20,"y":1180,"width":940,"height":240,"label":"Proyectos archivados / históricos","color":"1"},
+		{"id":"etiquetaarchivad","type":"text","x":60,"y":1230,"width":280,"height":160,"text":"**Proyectos archivados**\n\nDistribuidos por dominio según su uso original. También:\n• onodo y covid-vaccination en ❸\n• 28 adaptaciones presupuestarias archivadas en ❶","color":"1"},
+		{"id":"quiencobralaobra","type":"file","x":360,"y":1240,"width":180,"height":60,"file":"referencias/repos-civio/quiencobralaobra.md","color":"1"},
+		{"id":"civioespanopoly0","type":"file","x":560,"y":1240,"width":180,"height":60,"file":"referencias/repos-civio/civio-espanopoly.md","color":"1"},
+		{"id":"civioinforme2016","type":"file","x":760,"y":1240,"width":180,"height":60,"file":"referencias/repos-civio/civio-informe-2016.md","color":"1"},
+		{"id":"quienmanda00001","type":"file","x":360,"y":1320,"width":180,"height":60,"file":"referencias/repos-civio/quienmanda.md","color":"1"},
+		{"id":"medicamentalia01","type":"file","x":560,"y":1320,"width":180,"height":60,"file":"referencias/repos-civio/medicamentalia.md","color":"1"},
+		{"id":"grupootrasherram","type":"group","x":1000,"y":1180,"width":960,"height":240,"label":"Herramientas de soporte y experimentales","color":"3"},
+		{"id":"datawrapper0001","type":"file","x":1040,"y":1240,"width":270,"height":70,"file":"referencias/repos-civio/datawrapper.md","color":"3"},
+		{"id":"litaslack00001","type":"file","x":1340,"y":1240,"width":270,"height":70,"file":"referencias/repos-civio/lita-slack.md","color":"3"},
+		{"id":"gulpboilerplate1","type":"file","x":1640,"y":1240,"width":270,"height":70,"file":"referencias/repos-civio/gulp-boilerplate.md","color":"3"}
+	],
+	"edges":[
+		{"id":"e00000000000001","fromNode":"civio0000000001","fromSide":"bottom","toNode":"0000000000000g1","toSide":"top","color":"4"},
+		{"id":"e00000000000002","fromNode":"civio0000000001","fromSide":"bottom","toNode":"0000000000000g2","toSide":"top","color":"5"},
+		{"id":"e00000000000003","fromNode":"civio0000000001","fromSide":"right","toNode":"0000000000000g3","toSide":"top","color":"2"},
+		{"id":"e00000000000004","fromNode":"civio0000000001","fromSide":"right","toNode":"pimono00000001","toSide":"left","label":"Outlier (fundador)","color":"6"},
+		{"id":"e00000000000005","fromNode":"civio0000000001","fromSide":"left","toNode":"informe00000001","toSide":"right"},
+		{"id":"e00000000000006","fromNode":"civio0000000001","fromSide":"left","toNode":"archivo0000001","toSide":"right"},
+		{"id":"e00000000000010","fromNode":"presupuestocore","fromSide":"bottom","toNode":"scraperpge00001","toSide":"top","label":"se alimenta de","color":"2"},
+		{"id":"e00000000000011","fromNode":"presupuestocore","fromSide":"bottom","toNode":"scraperccaa0001","toSide":"top","label":"se alimenta de","color":"2"},
+		{"id":"e00000000000012","fromNode":"scraperpge00001","fromSide":"bottom","toNode":"flujoetl000001","toSide":"top"},
+		{"id":"e00000000000013","fromNode":"flujoetl000001","fromSide":"bottom","toNode":"adaptaciones001","toSide":"top"},
+		{"id":"e00000000000014","fromNode":"adaptaciones001","fromSide":"bottom","toNode":"presupuestonavar","toSide":"top"},
+		{"id":"e00000000000015","fromNode":"adaptaciones001","fromSide":"bottom","toNode":"presupuestomadri","toSide":"top"},
+		{"id":"e00000000000016","fromNode":"adaptaciones001","fromSide":"bottom","toNode":"presupuestopge01","toSide":"top"},
+		{"id":"e00000000000030","fromNode":"civiographspub","fromSide":"bottom","toNode":"charts202600001","toSide":"top"},
+		{"id":"e00000000000031","fromNode":"charts202600001","fromSide":"bottom","toNode":"patrongraph0001","toSide":"top"},
+		{"id":"e00000000000032","fromNode":"patrongraph0001","fromSide":"bottom","toNode":"civiographslib","toSide":"top"},
+		{"id":"e00000000000033","fromNode":"patrongraph0001","fromSide":"bottom","toNode":"civioboilerplate","toSide":"top"},
+		{"id":"e00000000000034","fromNode":"civiographspub","fromSide":"right","toNode":"stackgraphstext","toSide":"left","label":"nuevo estándar","color":"5"},
+		{"id":"e00000000000035","fromNode":"verba000000001","fromSide":"right","toNode":"stackverbatext","toSide":"left"},
+		{"id":"e00000000000036","fromNode":"presupuestocore","fromSide":"right","toNode":"stackpresutext","toSide":"left"},
+		{"id":"e00000000000040","fromNode":"scrapersubvenc01","fromSide":"bottom","toNode":"scraperalcaldes","toSide":"top"},
+		{"id":"e00000000000041","fromNode":"scraperpartyreg","fromSide":"bottom","toNode":"scrapereleccion","toSide":"top"},
+		{"id":"e00000000000042","fromNode":"patronscraper01","fromSide":"bottom","toNode":"scrapergeotext01","toSide":"top"},
+		{"id":"e00000000000050","fromNode":"scrapergeotext01","fromSide":"bottom","toNode":"esatlas0000001","toSide":"top"},
+		{"id":"e00000000000051","fromNode":"scrapergeotext01","fromSide":"bottom","toNode":"worldatlas0001","toSide":"top"}
+	]
 }
