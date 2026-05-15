@@ -18,6 +18,7 @@ vault-context/delfos-context/
 ├── referencias/
 │   ├── informe-repos-civio.md          ← Informe general con stack 2026
 │   ├── analisis-monorepo-civio.md      ← Blueprint de monorepo por temas
+│   ├── Resumen-Operativa-Civio.md      ← Síntesis operativa diaria (scraping, limpieza, visualización, litigios, stack)
 │   ├── mapa-dominios-civio.canvas      ← Mapa visual (JSON Canvas)
 │   └── repos-civio/                    ← Una nota por cada repositorio de Civio
 │       ├── presupuesto.md              ← DVMI core (Django + jQuery + D3)
@@ -35,6 +36,7 @@ vault-context/delfos-context/
 |---|---|
 | `referencias/informe-repos-civio.md` | Visión general del ecosistema y stack recomendado |
 | `referencias/analisis-monorepo-civio.md` | Arquitectura interna de cada dominio y blueprint de monorepo |
+| `referencias/Resumen-Operativa-Civio.md` | Síntesis operativa diaria (scraping, limpieza, visualización, litigios, stack) |
 | `referencias/mapa-dominios-civio.canvas` | Mapa visual de dominios (abrir en Obsidian) |
 | `referencias/repos-civio/*.md` | Nota individual por repositorio con README, stack y contexto |
 

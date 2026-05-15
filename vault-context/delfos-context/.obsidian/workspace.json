@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "referencias/entorno-dockerizado.md",
+                "file": "referencias/Resumen-Operativa-Civio.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "entorno-dockerizado"
+              "title": "Resumen-Operativa-Civio"
             }
           }
         ]
@@ -181,10 +181,12 @@
       "bases:Crear nueva base": false
     }
   },
-  "active": "ad07d9171cab77b0",
+  "active": "bd0db2624adc0773",
   "lastOpenFiles": [
-    "referencias/informe-repos-civio.md",
+    "referencias/repos-civio/Preparación Hackathon Civio_ Contexto Técnico.md",
+    "referencias/Resumen-Operativa-Civio.md",
     "referencias/entorno-dockerizado.md",
+    "referencias/informe-repos-civio.md",
     "referencias/analisis-monorepo-civio.md",
     "referencias/mapa-dominios-civio.canvas",
     "referencias/repos-civio/civio-espanopoly.md",
@@ -208,8 +210,6 @@
     "referencias/repos-civio/presupuesto-mostoles.md",
     "referencias/repos-civio/presupuesto-valdemorillo.md",
     "referencias/repos-civio/presupuesto-adeje.md",
-    "referencias/repos-civio/presupuesto-silla.md",
-    "referencias/repos-civio/presupuesto-moralzarzal.md",
     "referencias/repos-civio",
     "referencias"
   ]
