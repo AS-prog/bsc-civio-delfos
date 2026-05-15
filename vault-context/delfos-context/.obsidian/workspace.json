@@ -11,17 +11,14 @@
             "id": "ad07d9171cab77b0",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "referencias/mapa-dominios-civio.canvas",
-                "viewState": {
-                  "x": 791.6617140338,
-                  "y": 432.2291111822858,
-                  "zoom": -1.2078716483758614
-                }
+                "file": "referencias/entorno-dockerizado.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-layout-dashboard",
-              "title": "mapa-dominios-civio"
+              "icon": "lucide-file",
+              "title": "entorno-dockerizado"
             }
           }
         ]
@@ -81,8 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 204.5,
-    "collapsed": true
+    "width": 204.5
   },
   "right": {
     "id": "82119f8e8d0a1f16",
@@ -187,9 +183,10 @@
   },
   "active": "ad07d9171cab77b0",
   "lastOpenFiles": [
+    "referencias/informe-repos-civio.md",
+    "referencias/entorno-dockerizado.md",
     "referencias/analisis-monorepo-civio.md",
     "referencias/mapa-dominios-civio.canvas",
-    "referencias/informe-repos-civio.md",
     "referencias/repos-civio/civio-espanopoly.md",
     "referencias/repos-civio/scraper-party-register.md",
     "referencias/repos-civio/scraper-subvenciones-municipales-2015.md",
