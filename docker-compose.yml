@@ -1,0 +1,51 @@
+# Docker + PostgreSQL environment for data work
+#
+# This is a minimal scaffold for local development. The repository is
+# docs-first (Obsidian vault); the Docker Compose setup provides a
+# verifiable execution path for data experiments.
+#
+# Full blueprint: vault-context/delfos-context/referencias/entorno-dockerizado.md
+
+name: bsc-civio-delfos
+
+services:
+  postgres:
+    image: postgres:16
+    env_file: .env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-civio}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change-me-locally}
+      POSTGRES_DB: ${POSTGRES_DB:-civio}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-civio} -d ${POSTGRES_DB:-civio}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - civic-net
+
+  data:
+    build:
+      context: ./packages/data
+      dockerfile: Dockerfile
+    env_file: .env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./packages/data:/app
+    networks:
+      - civic-net
+
+volumes:
+  postgres_data:
+
+networks:
+  civic-net:
+    driver: bridge
