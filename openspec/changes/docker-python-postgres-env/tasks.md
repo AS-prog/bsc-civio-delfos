@@ -32,7 +32,7 @@ Chain strategy: pending
 
 ## Phase 2: Core Implementation
 
-- [x] 2.1 Create `packages/data/pyproject.toml` — build-system `hatchling`, deps `psycopg[binary]`, `polars`, `duckdb`, python `^3.12`
+- [x] 2.1 Create `packages/data/pyproject.toml` — build-system `hatchling`, deps `psycopg[binary]`, `polars`, `duckdb`, python `>=3.12`
 - [x] 2.2 Create `packages/data/Dockerfile` — `python:3.12-slim` base, WORKDIR `/app`, copy `pyproject.toml` + `pip install .`, copy remaining files, CMD runs smoke test via `python -m pytest tests/smoke/`
 - [x] 2.3 Create `packages/data/tests/smoke/test_connection.py` — `test_postgres_connection()` that reads `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_DB`, `POSTGRES_PORT` from `os.environ`, connects to `host="postgres"` via `psycopg.connect()`, asserts `conn.is_closed is False`, closes connection
 
@@ -43,8 +43,8 @@ Chain strategy: pending
 ## Phase 4: Verification
 
 - [x] 4.1 Run `docker compose config` to validate compose file syntax
-- [ ] 4.2 Run `docker compose up -d` and verify both services start clean — pending: Docker daemon unavailable
-- [ ] 4.3 Run `docker compose exec data python -m pytest tests/smoke/` and confirm smoke test passes — pending: Docker daemon unavailable
+- [x] 4.2 Run `docker compose up -d` and verify both services start clean
+- [x] 4.3 Run `docker compose exec data python -m pytest tests/smoke/` and confirm smoke test passes
 - [x] 4.4 Run `git status` after `cp .env.example .env` and confirm `.env` is not tracked
 
 ## Work-Unit Commit Plan

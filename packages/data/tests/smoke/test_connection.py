@@ -20,7 +20,8 @@ def test_postgres_connection():
         password=password,
     )
     try:
-        assert conn.is_closed is False, "Connection should be open"
+        cursor = conn.cursor()
+        cursor.execute("SELECT 1")
+        assert cursor.fetchone() == (1,), "Expected SELECT 1 to return (1,)"
     finally:
         conn.close()
-        assert conn.is_closed is True, "Connection should be closed"
