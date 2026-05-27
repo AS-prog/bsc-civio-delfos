@@ -1,0 +1,51 @@
+# openspec/config.yaml
+schema: spec-driven
+
+context: |
+  Project: bsc-civio-delfos
+  Type: Documentation & analysis vault (Obsidian)
+  Purpose: Analyze 60+ Civio public repos, map tech stack (Svelte 5 + Vite 7 + D3.js,
+    Vue + Express + ElasticSearch, Ruby scrapers), prepare hackathon-aligned blueprint.
+  Structure: vault-context/delfos-context/ with Obsidian notes, JSON Canvas, references.
+  Architecture: No application code — pure knowledge base with markdown, canvas files.
+  Style: Obsidian Flavored Markdown, Spanish language, Conventional Commits in Spanish.
+  Convention files: AGENTS.md (root), .agents/ (skills), .atl/ (skill registry).
+
+strict_tdd: false
+
+testing:
+  runner: null
+  framework: null
+  layers:
+    unit: false
+    integration: false
+    e2e: false
+  coverage: false
+  coverage_command: null
+  linter: null
+  type_checker: null
+  formatter: null
+  note: "No test infrastructure detected — docs-only project with no application code."
+
+rules:
+  proposal:
+    - Include rollback plan for risky changes
+  specs:
+    - Use Given/When/Then for scenarios
+    - Use RFC 2119 keywords (MUST, SHALL, SHOULD, MAY)
+  design:
+    - Include sequence diagrams for complex flows
+    - Document architecture decisions with rationale
+  tasks:
+    - Group by phase, use hierarchical numbering
+    - Keep tasks completable in one session
+  apply:
+    - Follow existing code patterns
+    tdd: false
+    test_command: ""
+  verify:
+    test_command: ""
+    build_command: ""
+    coverage_threshold: 0
+  archive:
+    - Warn before merging destructive deltas
