@@ -12,3 +12,19 @@ Thumbs.db
 
 # Local Engram notes / secrets
 vault-context/delfos-context/engram.md
+
+# Local environment and secrets
+.env
+.env.local
+
+# Data directories
+data/raw/
+data/warehouse/
+
+# Python caches
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+.pytest_cache/
+.hypothesis/
