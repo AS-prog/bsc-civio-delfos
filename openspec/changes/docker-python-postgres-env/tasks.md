@@ -25,27 +25,27 @@ Chain strategy: pending
 
 ## Phase 1: Foundation / Infrastructure
 
-- [ ] 1.1 Create `packages/data/` directory structure (`packages/data/tests/smoke/`)
-- [ ] 1.2 Update `.gitignore` — append `.env`, `data/raw/`, `data/warehouse/`, `__pycache__/`, `.pytest_cache/`, `*.egg-info/`
-- [ ] 1.3 Create `.env.example` with `POSTGRES_USER=civio`, `POSTGRES_PASSWORD=change-me-locally`, `POSTGRES_DB=civio`, `POSTGRES_PORT=5432`
-- [ ] 1.4 Create root `docker-compose.yml` — services `postgres` (postgres:16, named volume `postgres_data`, port 5432, healthcheck) and `data` (build `./packages/data`, depends_on postgres, env_file `.env`, port 8000 placeholder, volume `./packages/data:/app`), network `civic-net`
+- [x] 1.1 Create `packages/data/` directory structure (`packages/data/tests/smoke/`)
+- [x] 1.2 Update `.gitignore` — append `.env`, `data/raw/`, `data/warehouse/`, `__pycache__/`, `.pytest_cache/`, `*.egg-info/`
+- [x] 1.3 Create `.env.example` with `POSTGRES_USER=civio`, `POSTGRES_PASSWORD=change-me-locally`, `POSTGRES_DB=civio`, `POSTGRES_PORT=5432`
+- [x] 1.4 Create root `docker-compose.yml` — services `postgres` (postgres:16, named volume `postgres_data`, port 5432, healthcheck) and `data` (build `./packages/data`, depends_on postgres, env_file `.env`, port 8000 placeholder, volume `./packages/data:/app`), network `civic-net`
 
 ## Phase 2: Core Implementation
 
-- [ ] 2.1 Create `packages/data/pyproject.toml` — build-system `hatchling`, deps `psycopg[binary]`, `polars`, `duckdb`, python `^3.12`
-- [ ] 2.2 Create `packages/data/Dockerfile` — `python:3.12-slim` base, WORKDIR `/app`, copy `pyproject.toml` + `pip install .`, copy remaining files, CMD runs smoke test via `python -m pytest tests/smoke/`
-- [ ] 2.3 Create `packages/data/tests/smoke/test_connection.py` — `test_postgres_connection()` that reads `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_DB`, `POSTGRES_PORT` from `os.environ`, connects to `host="postgres"` via `psycopg.connect()`, asserts `conn.is_closed is False`, closes connection
+- [x] 2.1 Create `packages/data/pyproject.toml` — build-system `hatchling`, deps `psycopg[binary]`, `polars`, `duckdb`, python `^3.12`
+- [x] 2.2 Create `packages/data/Dockerfile` — `python:3.12-slim` base, WORKDIR `/app`, copy `pyproject.toml` + `pip install .`, copy remaining files, CMD runs smoke test via `python -m pytest tests/smoke/`
+- [x] 2.3 Create `packages/data/tests/smoke/test_connection.py` — `test_postgres_connection()` that reads `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_DB`, `POSTGRES_PORT` from `os.environ`, connects to `host="postgres"` via `psycopg.connect()`, asserts `conn.is_closed is False`, closes connection
 
 ## Phase 3: Documentation
 
-- [ ] 3.1 Create root `README.md` — header stating vault-first/scaffold-secondary, quick-start section (cp .env.example .env, docker compose up -d, smoke test command), scope boundary table (in scope vs out of scope), link to `vault-context/delfos-context/referencias/entorno-dockerizado.md`
+- [x] 3.1 Create root `README.md` — header stating vault-first/scaffold-secondary, quick-start section (cp .env.example .env, docker compose up -d, smoke test command), scope boundary table (in scope vs out of scope), link to `vault-context/delfos-context/referencias/entorno-dockerizado.md`
 
 ## Phase 4: Verification
 
-- [ ] 4.1 Run `docker compose config` to validate compose file syntax
-- [ ] 4.2 Run `docker compose up -d` and verify both services start clean
-- [ ] 4.3 Run `docker compose exec data python -m pytest tests/smoke/` and confirm smoke test passes
-- [ ] 4.4 Run `git status` after `cp .env.example .env` and confirm `.env` is not tracked
+- [x] 4.1 Run `docker compose config` to validate compose file syntax
+- [ ] 4.2 Run `docker compose up -d` and verify both services start clean — pending: Docker daemon unavailable
+- [ ] 4.3 Run `docker compose exec data python -m pytest tests/smoke/` and confirm smoke test passes — pending: Docker daemon unavailable
+- [x] 4.4 Run `git status` after `cp .env.example .env` and confirm `.env` is not tracked
 
 ## Work-Unit Commit Plan
 
