@@ -8,3 +8,7 @@ Thumbs.db
 # Agent skills (local caches)
 .agents/skills/**/scripts/
 .agents/skills/**/reference/
+.atl/.skill-registry.cache.json
+
+# Local Engram notes / secrets
+vault-context/delfos-context/engram.md
