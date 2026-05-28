@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="es" data-palette="default">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Flujo SDD Ejecutado — docker-python-postgres-env</title>
+<style>
+/* ── PALETTE TOKENS ─────────────────────────────────────── */
+:root,
+html[data-palette="default"] {
+  --ivory: #faf9f5; --slate: #141413; --clay: #d97757;
+  --oat: #e3dacc; --olive: #788c5d; --blue: #5c7ca3; --danger: #b04a4a;
+  --gray-150: #f0eee6; --gray-300: #d1cfc5; --gray-500: #87867f;
+  --gray-700: #3d3d3a; --white: #ffffff;
+  --serif: ui-serif, Georgia, "Times New Roman", serif;
+  --sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+}
+html[data-palette="aurora"] {
+  --ivory: #f7f3ea; --slate: #15211d; --clay: #c15f3c;
+  --oat: #d8eadf; --olive: #2f8f7f; --blue: #3f72a8; --danger: #a84848;
+  --gray-150: #ede8dc; --gray-300: #cfc7b8; --gray-500: #756f66;
+  --gray-700: #332f2a; --white: #fffdf8;
+}
+html[data-palette="ink"] {
+  --ivory: #f4f2ef; --slate: #101820; --clay: #375c7a;
+  --oat: #d9e1e8; --olive: #5f7f65; --blue: #375c7a; --danger: #a14d4d;
+  --gray-150: #e9e7e2; --gray-300: #c8c4bc; --gray-500: #74706a;
+  --gray-700: #34302b; --white: #fffefa;
+}
+html[data-palette="merkle"] {
+  --ivory: #f4f4f8; --slate: #061247; --clay: #f23a1e;
+  --oat: #d6d6df; --olive: #00b050; --blue: #0657d3; --danger: #ce382c;
+  --gray-150: #e5e5e9; --gray-300: #d6d6df; --gray-500: #8888a1;
+  --gray-700: #4d4e50; --white: #ffffff;
+}
+html[data-palette="merkle"] body {
+  background:
+    radial-gradient(circle at 16% 8%, rgba(90,203,240,.18), transparent 28rem),
+    radial-gradient(circle at 88% 18%, rgba(6,87,211,.13), transparent 26rem),
+    var(--ivory);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(217,119,87,.12), transparent 28rem),
+    radial-gradient(circle at 86% 18%, rgba(120,140,93,.12), transparent 26rem),
+    var(--ivory);
+  color: var(--gray-700);
+  font-family: var(--sans);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+.page { width: min(1120px, calc(100% - 40px)); margin: 0 auto; padding: 56px 0 120px; }
+
+h1, h2, h3 { color: var(--slate); font-family: var(--serif); font-weight: 500; letter-spacing: -0.015em; }
+h1 { max-width: 850px; margin: 0 0 18px; font-size: clamp(42px,7vw,82px); line-height: .98; }
+h2 { margin: 0; font-size: clamp(26px,3vw,38px); line-height: 1.1; }
+h3 { margin: 0 0 6px; font-size: 22px; line-height: 1.15; }
+p { margin: 0 0 12px; }
+.eyebrow { margin-bottom: 12px; color: var(--gray-500); font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+.lede { max-width: 760px; margin: 0 0 34px; color: var(--gray-500); font-size: 18px; }
+
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; margin-bottom: 48px; color: var(--gray-500);
+  font-family: var(--mono); font-size: 12px;
+}
+.topbar .tb-meta { display: flex; flex-wrap: wrap; gap: 10px; }
+.topbar .tb-meta span {
+  border: 1px solid var(--gray-300); border-radius: 999px;
+  padding: 5px 11px; background: rgba(255,255,255,.72); color: var(--gray-700);
+}
+
+.summary { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; margin: 42px 0 64px; }
+.metric { border: 1.5px solid var(--gray-300); border-radius: 14px; background: var(--white); padding: 18px 20px; }
+.metric .k { margin-bottom: 6px; color: var(--gray-500); font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; }
+.metric .v { color: var(--slate); font-size: 24px; font-weight: 700; }
+.metric .v.accent { color: var(--clay); }
+.metric .v.ok { color: var(--olive); }
+.metric .v small { font-size: 13px; font-weight: 400; color: var(--gray-500); margin-left: 4px; }
+
+.section { margin-top: 72px; }
+.section-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 14px; }
+.num { border-radius: 8px; background: var(--oat); color: var(--slate); padding: 3px 9px; font-family: var(--mono); font-size: 12px; }
+.section .intro { color: var(--gray-500); font-size: 15px; max-width: 820px; margin: 0 0 18px; }
+
+.grid { display: grid; gap: 18px; grid-template-columns: repeat(3,minmax(0,1fr)); }
+.grid.two { grid-template-columns: repeat(2,minmax(0,1fr)); }
+
+.card {
+  position: relative; overflow: hidden;
+  border: 1.5px solid var(--gray-300); border-radius: 18px;
+  background: rgba(255,255,255,.82); padding: 22px;
+  box-shadow: 0 10px 30px rgba(20,20,19,.04);
+}
+.card::after {
+  content: ""; position: absolute; inset: auto -30px -42px auto;
+  width: 110px; height: 110px; border-radius: 50%;
+  background: rgba(217,119,87,.12); pointer-events: none;
+}
+.card p { margin: 0; color: var(--gray-500); font-size: 14px; }
+
+.tag, .sev, .chip {
+  display: inline-flex; align-items: center; width: fit-content;
+  border: 1px solid var(--gray-300); border-radius: 999px;
+  background: var(--white); padding: 4px 9px;
+  color: var(--gray-700); font-family: var(--mono);
+  font-size: 11.5px; font-weight: 600;
+}
+.tag.accent, .chip.accent { border-color: rgba(217,119,87,.38); background: rgba(217,119,87,.14); color: #8a3b1e; }
+.tag.ok, .chip.ok { border-color: rgba(120,140,93,.38); background: rgba(120,140,93,.16); color: #4b5c39; }
+.sev.high { border-color: rgba(176,74,74,.35); background: #f3d9cc; color: #8a3b1e; }
+.sev.med { background: var(--oat); color: var(--slate); }
+.sev.low { border-color: rgba(120,140,93,.35); background: #e4e9dc; color: #4b5c39; }
+
+.panel { border: 1.5px solid var(--gray-300); border-radius: 16px; background: var(--white); padding: 22px 24px; margin-bottom: 18px; }
+.panel p { margin: 0 0 12px; font-size: 14.5px; }
+.panel p:last-child { margin: 0; }
+.panel.accent-bar { border-left: 4px solid var(--clay); }
+.panel .why-label { display: inline-block; margin-bottom: 10px; padding: 3px 9px; border-radius: 8px; background: var(--oat); color: var(--slate); font-family: var(--mono); font-size: 11px; letter-spacing: .05em; text-transform: uppercase; }
+
+.bullets { margin: 8px 0 0; padding-left: 18px; font-size: 14.5px; color: var(--gray-700); }
+.bullets li { margin-bottom: 6px; }
+.bullets li:last-child { margin-bottom: 0; }
+.bullets code { font-family: var(--mono); font-size: 12.5px; background: var(--gray-150); padding: 1px 6px; border-radius: 4px; color: var(--slate); }
+
+.table-wrap { border: 1.5px solid var(--gray-300); border-radius: 14px; overflow: hidden; background: var(--white); margin: 0 0 18px; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.data-table th { background: var(--gray-150); color: var(--slate); font-family: var(--mono); font-size: 11px; letter-spacing: .05em; text-transform: uppercase; padding: 10px 14px; text-align: left; border-bottom: 1.5px solid var(--gray-300); }
+.data-table td { padding: 12px 14px; border-bottom: 1px solid var(--gray-150); vertical-align: top; }
+.data-table tr:last-child td { border-bottom: 0; }
+.data-table code { font-family: var(--mono); font-size: 12px; background: var(--gray-150); padding: 1px 6px; border-radius: 4px; color: var(--slate); }
+
+.timeline-block { display: grid; gap: 0; margin-top: 14px; }
+.milestone-row { display: grid; grid-template-columns: 140px 28px 1fr; gap: 18px; }
+.milestone-row .when { padding-top: 3px; color: var(--gray-500); font-family: var(--mono); font-size: 12px; text-align: right; }
+.dot-col { display: flex; align-items: center; flex-direction: column; }
+.dot { width: 14px; height: 14px; margin-top: 4px; border: 3px solid var(--clay); border-radius: 50%; background: var(--ivory); flex-shrink: 0; }
+.dot.done { background: var(--olive); border-color: var(--olive); }
+.line { width: 2px; flex: 1; margin: 4px 0; background: var(--gray-300); }
+.milestone-row:last-child .line { display: none; }
+.milestone-row .body { padding-bottom: 32px; }
+.milestone-row .body h3 { margin: 0 0 4px; font-size: 19px; }
+.milestone-row .body .sub-why { margin: 8px 0 10px; padding: 12px 14px; background: var(--gray-150); border-left: 3px solid var(--clay); border-radius: 6px; font-size: 13.5px; color: var(--gray-700); }
+.milestone-row .body code { font-family: var(--mono); font-size: 12.5px; background: var(--gray-150); padding: 1px 6px; border-radius: 4px; color: var(--slate); }
+
+.decision-banner {
+  border: 1.5px solid rgba(120,140,93,.35); border-left: 4px solid var(--olive);
+  border-radius: 14px; background: #f1f5ec;
+  padding: 16px 20px; margin: 18px 0; font-size: 14.5px;
+}
+.decision-banner strong { color: #4b5c39; }
+.risk-banner {
+  border: 1.5px solid rgba(176,74,74,.35); border-left: 4px solid #b04a4a;
+  border-radius: 14px; background: #fdf4f0;
+  padding: 16px 20px; margin: 14px 0; font-size: 14px;
+}
+.risk-banner strong { color: #8a3b1e; }
+
+pre.code-block {
+  margin: 0 0 18px; padding: 18px 20px;
+  background: var(--slate); color: #e8e6df;
+  border-radius: 12px; overflow-x: auto;
+  font-family: var(--mono); font-size: 12.5px; line-height: 1.55;
+}
+pre.code-block code { font-family: inherit; }
+
+.actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 28px 0 0; }
+button { cursor: pointer; border: 0; border-radius: 10px; background: var(--clay); color: var(--white); padding: 10px 14px; font: 700 13px var(--sans); }
+button.secondary { border: 1px solid var(--gray-300); background: var(--white); color: var(--slate); }
+.toast { display: none; color: var(--olive); font-family: var(--mono); font-size: 12px; }
+.toast.show { display: inline; }
+
+.palette-switcher {
+  position: fixed; right: 18px; bottom: 18px; z-index: 20;
+  display: flex; align-items: center; gap: 6px;
+  border: 1px solid var(--gray-300); border-radius: 18px;
+  background: color-mix(in srgb, var(--white) 88%, transparent);
+  padding: 8px; box-shadow: 0 14px 34px rgba(20,20,19,.12);
+  backdrop-filter: blur(16px);
+}
+.palette-switcher label { padding: 0 4px 0 2px; color: var(--gray-500); font-family: var(--mono); font-size: 11px; letter-spacing: .05em; text-transform: uppercase; }
+.palette-button { border: 1px solid transparent; border-radius: 999px; background: transparent; color: var(--gray-700); padding: 6px 9px; font: 700 12px var(--sans); cursor: pointer; }
+.palette-button:hover { border-color: var(--gray-300); background: var(--gray-150); }
+.palette-button.active { background: var(--slate); color: var(--white); }
+
+/* ── FLOW DIAGRAM ──────────────────────────────────────── */
+.flow-diagram-wrap { margin: 0 0 56px; padding: 24px 22px; background: var(--white); border: 1.5px solid var(--gray-300); border-radius: 18px; box-shadow: 0 10px 30px rgba(20,20,19,.04); }
+.flow-diagram-wrap .flow-eyebrow { margin: 0 0 16px; color: var(--gray-500); font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+.flow-diagram-wrap svg { width: 100%; height: auto; display: block; overflow: visible; }
+.flow-box { fill: var(--ivory); stroke: var(--gray-300); stroke-width: 1.5; }
+.flow-box-main { fill: var(--white); stroke: var(--slate); stroke-width: 1.5; }
+.flow-box-sub { fill: var(--white); stroke: var(--clay); stroke-width: 1.5; }
+.flow-num-bg { fill: var(--oat); }
+.flow-num-text { fill: var(--slate); font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 10px; font-weight: 700; }
+.flow-label { fill: var(--slate); font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 600; }
+.flow-sub-label { fill: var(--slate); font-family: system-ui, -apple-system, sans-serif; font-size: 11.5px; font-weight: 600; }
+.flow-meta { fill: var(--gray-500); font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 9.5px; }
+.flow-line { stroke: var(--gray-500); stroke-width: 1.5; fill: none; }
+.flow-line-accent { stroke: var(--clay); stroke-width: 1.5; fill: none; }
+.flow-arrow-head { fill: var(--gray-500); }
+.flow-arrow-head-accent { fill: var(--clay); }
+
+@media (max-width: 760px) {
+  .flow-diagram-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; padding: 20px 16px; }
+  .flow-diagram-wrap svg { width: 1100px; min-width: 1100px; }
+}
+
+@media (max-width: 900px) {
+  .summary { grid-template-columns: 1fr 1fr; }
+  .grid, .grid.two { grid-template-columns: 1fr; }
+  .milestone-row { grid-template-columns: 1fr; gap: 6px; }
+  .milestone-row .when { text-align: left; }
+  .dot-col { display: none; }
+  .topbar { flex-direction: column; align-items: flex-start; gap: 10px; }
+}
+</style>
+</head>
+<body>
+
+<main class="page">
+
+  <div class="topbar">
+    <span>Spec-Driven Development · Retrospectiva</span>
+    <div class="tb-meta">
+      <span>2026-05-27</span>
+      <span>feat/docker-python-postgres-env</span>
+      <span>PASS WITH WARNINGS</span>
+    </div>
+  </div>
+
+  <div class="eyebrow">Flujo SDD · Ciclo completo</div>
+  <h1>Flujo SDD Ejecutado</h1>
+  <p class="lede">Recorrido paso a paso del cambio <code>docker-python-postgres-env</code>: por qué cada fase se delega a su agente especializado, qué produce y cómo encajan los artefactos OpenSpec en el ciclo completo.</p>
+
+  <section class="flow-diagram-wrap" aria-label="Pipeline SDD — flujo de fases">
+    <div class="flow-eyebrow">Pipeline SDD · 10 fases del ciclo</div>
+    <svg viewBox="0 0 1180 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="flow-title flow-desc">
+      <title id="flow-title">Flujo del ciclo SDD</title>
+      <desc id="flow-desc">Siete fases principales en horizontal (preflight, init, new, git, apply, verify, archive) con cinco sub-fases ramificadas bajo new: explore, propose, spec, design, tasks.</desc>
+
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" class="flow-arrow-head" />
+        </marker>
+        <marker id="arr-accent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" class="flow-arrow-head-accent" />
+        </marker>
+      </defs>
+
+      <!-- ── HORIZONTAL FLOW ARROWS (drawn first, behind boxes) ── -->
+      <path class="flow-line" d="M 175 75 L 215 75" marker-end="url(#arr)" />
+      <path class="flow-line" d="M 335 75 L 375 75" marker-end="url(#arr)" />
+      <path class="flow-line" d="M 495 75 L 535 75" marker-end="url(#arr)" />
+      <path class="flow-line" d="M 655 75 L 695 75" marker-end="url(#arr)" />
+      <path class="flow-line" d="M 815 75 L 855 75" marker-end="url(#arr)" />
+      <path class="flow-line" d="M 975 75 L 1015 75" marker-end="url(#arr)" />
+
+      <!-- ── MAIN BOXES ─────────────────────────────────────── -->
+      <!-- 00 Preflight -->
+      <g>
+        <rect class="flow-box-main" x="45" y="40" width="130" height="70" rx="12" />
+        <rect class="flow-num-bg" x="55" y="50" width="30" height="18" rx="5" />
+        <text class="flow-num-text" x="70" y="63" text-anchor="middle">00</text>
+        <text class="flow-label" x="110" y="92" text-anchor="middle">Preflight</text>
+      </g>
+      <!-- 01 sdd-init -->
+      <g>
+        <rect class="flow-box-main" x="215" y="40" width="120" height="70" rx="12" />
+        <rect class="flow-num-bg" x="225" y="50" width="30" height="18" rx="5" />
+        <text class="flow-num-text" x="240" y="63" text-anchor="middle">01</text>
+        <text class="flow-label" x="275" y="92" text-anchor="middle">sdd-init</text>
+      </g>
+      <!-- 02 sdd-new -->
+      <g>
+        <rect class="flow-box-main" x="375" y="40" width="120" height="70" rx="12" stroke="var(--clay)" stroke-width="2" />
+        <rect class="flow-num-bg" x="385" y="50" width="30" height="18" rx="5" />
+        <text class="flow-num-text" x="400" y="63" text-anchor="middle">02</text>
+        <text class="flow-label" x="435" y="92" text-anchor="middle">sdd-new</text>
+      </g>
+      <!-- 03 Git -->
+      <g>
+        <rect class="flow-box-main" x="535" y="40" width="120" height="70" rx="12" />
+        <rect class="flow-num-bg" x="545" y="50" width="30" height="18" rx="5" />
+        <text class="flow-num-text" x="560" y="63" text-anchor="middle">03</text>
+        <text class="flow-label" x="595" y="92" text-anchor="middle">Git</text>
+      </g>
+      <!-- 04 sdd-apply -->
+      <g>
+        <rect class="flow-box-main" x="695" y="40" width="120" height="70" rx="12" />
+        <rect class="flow-num-bg" x="705" y="50" width="30" height="18" rx="5" />
+        <text class="flow-num-text" x="720" y="63" text-anchor="middle">04</text>
+        <text class="flow-label" x="755" y="92" text-anchor="middle">sdd-apply</text>
+      </g>
+      <!-- 05 sdd-verify -->
+      <g>
+        <rect class="flow-box-main" x="855" y="40" width="120" height="70" rx="12" />
+        <rect class="flow-num-bg" x="865" y="50" width="30" height="18" rx="5" />
+        <text class="flow-num-text" x="880" y="63" text-anchor="middle">05</text>
+        <text class="flow-label" x="915" y="92" text-anchor="middle">sdd-verify</text>
+      </g>
+      <!-- 06 sdd-archive -->
+      <g>
+        <rect class="flow-box-main" x="1015" y="40" width="120" height="70" rx="12" />
+        <rect class="flow-num-bg" x="1025" y="50" width="30" height="18" rx="5" />
+        <text class="flow-num-text" x="1040" y="63" text-anchor="middle">06</text>
+        <text class="flow-label" x="1075" y="92" text-anchor="middle">sdd-archive</text>
+      </g>
+
+      <!-- ── TREE CONNECTOR (from 02 sdd-new down to sub-phases) ── -->
+      <path class="flow-line-accent" d="M 435 110 L 435 175" />
+      <path class="flow-line-accent" d="M 175 175 L 695 175" />
+      <path class="flow-line-accent" d="M 175 175 L 175 215" marker-end="url(#arr-accent)" />
+      <path class="flow-line-accent" d="M 305 175 L 305 215" marker-end="url(#arr-accent)" />
+      <path class="flow-line-accent" d="M 435 175 L 435 215" marker-end="url(#arr-accent)" />
+      <path class="flow-line-accent" d="M 565 175 L 565 215" marker-end="url(#arr-accent)" />
+      <path class="flow-line-accent" d="M 695 175 L 695 215" marker-end="url(#arr-accent)" />
+
+      <!-- ── SUB BOXES ──────────────────────────────────────── -->
+      <!-- 2a explore -->
+      <g>
+        <rect class="flow-box-sub" x="125" y="225" width="100" height="56" rx="10" />
+        <text class="flow-meta" x="175" y="244" text-anchor="middle">2a</text>
+        <text class="flow-sub-label" x="175" y="263" text-anchor="middle">explore</text>
+      </g>
+      <!-- 2b propose -->
+      <g>
+        <rect class="flow-box-sub" x="255" y="225" width="100" height="56" rx="10" />
+        <text class="flow-meta" x="305" y="244" text-anchor="middle">2b</text>
+        <text class="flow-sub-label" x="305" y="263" text-anchor="middle">propose</text>
+      </g>
+      <!-- 2c spec -->
+      <g>
+        <rect class="flow-box-sub" x="385" y="225" width="100" height="56" rx="10" />
+        <text class="flow-meta" x="435" y="244" text-anchor="middle">2c</text>
+        <text class="flow-sub-label" x="435" y="263" text-anchor="middle">spec</text>
+      </g>
+      <!-- 2d design -->
+      <g>
+        <rect class="flow-box-sub" x="515" y="225" width="100" height="56" rx="10" />
+        <text class="flow-meta" x="565" y="244" text-anchor="middle">2d</text>
+        <text class="flow-sub-label" x="565" y="263" text-anchor="middle">design</text>
+      </g>
+      <!-- 2e tasks -->
+      <g>
+        <rect class="flow-box-sub" x="645" y="225" width="100" height="56" rx="10" />
+        <text class="flow-meta" x="695" y="244" text-anchor="middle">2e</text>
+        <text class="flow-sub-label" x="695" y="263" text-anchor="middle">tasks</text>
+      </g>
+
+      <!-- ── ARTIFACTS ANNOTATION ──────────────────────────── -->
+      <text class="flow-meta" x="175" y="300" text-anchor="middle">exploration.md</text>
+      <text class="flow-meta" x="305" y="300" text-anchor="middle">proposal.md</text>
+      <text class="flow-meta" x="435" y="300" text-anchor="middle">spec.md</text>
+      <text class="flow-meta" x="565" y="300" text-anchor="middle">design.md</text>
+      <text class="flow-meta" x="695" y="300" text-anchor="middle">tasks.md</text>
+
+      <!-- ── LEGEND ────────────────────────────────────────── -->
+      <g transform="translate(820, 240)">
+        <rect class="flow-box-main" x="0" y="0" width="14" height="14" rx="3" />
+        <text class="flow-meta" x="22" y="11">Fase principal</text>
+        <rect class="flow-box-sub" x="0" y="22" width="14" height="14" rx="3" />
+        <text class="flow-meta" x="22" y="33">Sub-fase (sdd-new)</text>
+        <line class="flow-line" x1="0" y1="52" x2="14" y2="52" marker-end="url(#arr)" />
+        <text class="flow-meta" x="22" y="55">Flujo secuencial</text>
+        <line class="flow-line-accent" x1="0" y1="74" x2="14" y2="74" marker-end="url(#arr-accent)" />
+        <text class="flow-meta" x="22" y="77">Expansión interna</text>
+      </g>
+    </svg>
+  </section>
+
+  <section class="summary">
+    <div class="metric"><div class="k">Fases SDD</div><div class="v">10 <small>init → archive</small></div></div>
+    <div class="metric"><div class="k">Archivos creados</div><div class="v accent">7</div></div>
+    <div class="metric"><div class="k">Commits</div><div class="v">13 <small>work units</small></div></div>
+    <div class="metric"><div class="k">Veredicto</div><div class="v ok">PASS</div></div>
+  </section>
+
+  <!-- ── 00 ─────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="section-head"><span class="num">00</span><h2>Session Preflight</h2></div>
+    <div class="panel accent-bar">
+      <span class="why-label">¿Por qué?</span>
+      <p>Toda la sesión SDD necesita guardrails consistentes. El orchestrator pregunta 4 opciones al inicio para que cada sub-agente herede las mismas reglas sin tener que repetir la configuración. Si no se fijan antes de arrancar, cada fase podría operar con supuestos distintos.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>Opción</th><th>Elección</th></tr></thead>
+        <tbody>
+          <tr><td>Ritmo</td><td>Interactivo <span class="chip">A1</span></td></tr>
+          <tr><td>Artefactos</td><td>OpenSpec <span class="chip">B1</span></td></tr>
+          <tr><td>PRs</td><td>Preguntar siempre <span class="chip">C1</span></td></tr>
+          <tr><td>Revisión</td><td>400 líneas <span class="chip">D1</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── 01 ─────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="section-head"><span class="num">01</span><h2>sdd-init</h2></div>
+    <div class="panel accent-bar">
+      <span class="why-label">¿Por qué este agente?</span>
+      <p>Antes de cualquier cambio necesitamos saber qué estamos pisando. <code>sdd-init</code> está especializado en detectar el stack real del proyecto, las convenciones, herramientas de testing y configurar el backend de persistencia. El orchestrator delega porque leer 4+ archivos de configuración inflaría su contexto sin necesidad. El skill registry y <code>strict_tdd</code> se deciden una vez y quedan para toda la sesión.</p>
+    </div>
+    <ul class="bullets">
+      <li>Detectó el proyecto como vault de documentación Obsidian</li>
+      <li>Stack: Markdown, JSON Canvas, sin código de aplicación</li>
+      <li><code>strict_tdd: false</code></li>
+      <li>Creó <code>openspec/config.yaml</code> y <code>.atl/skill-registry.md</code></li>
+    </ul>
+  </section>
+
+  <!-- ── 02 ─────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="section-head"><span class="num">02</span><h2>sdd-new docker-python-postgres-env</h2></div>
+    <p class="intro">Cinco sub-fases encadenadas: exploración, propuesta, especificación, diseño y desglose en tareas. Cada una con su agente dedicado.</p>
+
+    <div class="timeline-block">
+
+      <div class="milestone-row">
+        <div class="when">2a · explore</div>
+        <div class="dot-col"><div class="dot done"></div><div class="line"></div></div>
+        <div class="body">
+          <h3>sdd-explore</h3>
+          <div class="sub-why">Proponer un cambio sin entender lo que existe es ciego. <code>sdd-explore</code> investiga codebases sin modificarlos. El orchestrator no lo hace inline porque leer 4+ archivos para entender el contexto lo inflaría innecesariamente.</div>
+          <ul class="bullets">
+            <li>Investigó qué existe en el repo (Docker, Python, apps)</li>
+            <li>Descubrió <code>entorno-dockerizado.md</code> existente</li>
+            <li>Recomendó scope mínimo en <code>packages/data/</code></li>
+            <li>Forecast: ~120–220 líneas</li>
+            <li>Artefacto: <code>exploration.md</code></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="milestone-row">
+        <div class="when">2b · propose</div>
+        <div class="dot-col"><div class="dot done"></div><div class="line"></div></div>
+        <div class="body">
+          <h3>sdd-propose</h3>
+          <div class="sub-why">Una vez que sabemos qué existe, necesitamos un artefacto formal que defina QUÉ se va a hacer y QUÉ NO. <code>sdd-propose</code> crea propuestas con alcance, enfoque, riesgos y plan de rollback. Hacerlo inline mezclaría la coordinación con la definición del cambio.</div>
+          <ul class="bullets">
+            <li>Alcance exacto: 7 archivos, Python + PostgreSQL</li>
+            <li>Excluyó: frontend, Jupyter, API, CI/CD, Makefile</li>
+            <li>Imágenes: <code>python:3.12-slim</code> + <code>postgres:16</code></li>
+            <li>Forecast: ~128–197 líneas · riesgo <span class="sev low">Low</span></li>
+            <li>Artefacto: <code>proposal.md</code></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="milestone-row">
+        <div class="when">2c · spec</div>
+        <div class="dot-col"><div class="dot done"></div><div class="line"></div></div>
+        <div class="body">
+          <h3>sdd-spec</h3>
+          <div class="sub-why">Antes de diseñar o implementar, necesitamos requisitos precisos y escenarios testables. <code>sdd-spec</code> escribe delta specs con formato Given/When/Then y palabras clave RFC 2119 (MUST, SHOULD, MAY). Mezclarlo con otras fases dejaría escenarios pobres.</div>
+          <ul class="bullets">
+            <li>6 requisitos funcionales con 11 escenarios Given/When/Then</li>
+            <li>Artefacto: <code>specs/docker-runtime-env/spec.md</code></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="milestone-row">
+        <div class="when">2d · design</div>
+        <div class="dot-col"><div class="dot done"></div><div class="line"></div></div>
+        <div class="body">
+          <h3>sdd-design</h3>
+          <div class="sub-why">Con los requisitos claros, alguien tiene que decidir cómo se construye la solución: qué imágenes, cómo se conectan los servicios, cómo se manejan los secretos, cómo se persisten los datos. <code>sdd-design</code> documenta decisiones con tablas de alternativas y diagramas de secuencia.</div>
+          <ul class="bullets">
+            <li>7 decisiones de arquitectura documentadas en tablas</li>
+            <li>Diseño de red, volúmenes, env vars</li>
+            <li>Artefacto: <code>design.md</code></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="milestone-row">
+        <div class="when">2e · tasks</div>
+        <div class="dot-col"><div class="dot done"></div><div class="line"></div></div>
+        <div class="body">
+          <h3>sdd-tasks</h3>
+          <div class="sub-why">Antes de implementar necesitamos un plan de batalla: tareas concretas, ordenadas por dependencia, con estimación de líneas y decisión sobre PRs encadenados. <code>sdd-tasks</code> desglosa propuesta + spec + design en un plan cohesivo.</div>
+          <ul class="bullets">
+            <li>4 fases, 12 tareas</li>
+            <li>3 work units (Foundation → Core → Docs)</li>
+            <li>Forecast: ~130–200 líneas · riesgo <span class="sev low">Low</span></li>
+            <li>Chained PRs: no recomendado</li>
+            <li>Artefacto: <code>tasks.md</code></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── 03 ─────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="section-head"><span class="num">03</span><h2>Git — Rama y commits</h2></div>
+    <div class="panel accent-bar">
+      <span class="why-label">¿Por qué inline?</span>
+      <p>La creación de ramas y commits es estado de git, no trabajo de análisis. El orchestrator puede ejecutar <code>git switch</code>, <code>git add</code> y <code>git commit</code> sin inflar su contexto porque son comandos mecánicos y acotados. La skill <code>work-unit-commits</code> se cargó para guiar cómo dividir los cambios.</p>
+    </div>
+    <ul class="bullets">
+      <li>Rama: <code>feat/docker-python-postgres-env</code></li>
+      <li>Commits independientes por work unit (7 commits total)</li>
+      <li><code>PLAN-CONFIG-AGENTES.md</code> excluido del cambio por ser ajeno</li>
+    </ul>
+  </section>
+
+  <!-- ── 04 ─────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="section-head"><span class="num">04</span><h2>sdd-apply</h2></div>
+    <div class="panel accent-bar">
+      <span class="why-label">¿Por qué este agente?</span>
+      <p>Escribir código en múltiples archivos con lógica nueva es el caso arquetípico de delegación. <code>sdd-apply</code> lee tasks, proposal, spec y design, y produce los archivos reales. El orchestrator nunca implementa inline porque escribir código nuevo en 7 archivos inflaría su contexto y perdería la visión de coordinación.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>Archivo</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td><code>.gitignore</code></td><td>Ignora <code>.env</code>, <code>data/</code>, caches Python</td></tr>
+          <tr><td><code>.env.example</code></td><td>Template con placeholders</td></tr>
+          <tr><td><code>docker-compose.yml</code></td><td>2 servicios (postgres + data)</td></tr>
+          <tr><td><code>packages/data/Dockerfile</code></td><td>Multi-stage con <code>python:3.12-slim</code></td></tr>
+          <tr><td><code>packages/data/pyproject.toml</code></td><td>hatchling, psycopg, polars, duckdb</td></tr>
+          <tr><td><code>packages/data/tests/smoke/test_connection.py</code></td><td>Smoke test básico</td></tr>
+          <tr><td><code>README.md</code></td><td>Quick-start y scope boundary</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="risk-banner"><strong>Verificación parcial:</strong> <code>docker compose config</code> ✅ — Docker no estaba disponible en ese momento, la validación completa quedó para <code>sdd-verify</code>.</div>
+  </section>
+
+  <!-- ── 05 ─────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="section-head"><span class="num">05</span><h2>sdd-verify</h2></div>
+    <div class="panel accent-bar">
+      <span class="why-label">¿Por qué este agente?</span>
+      <p>Implementar y verificar son dos preocupaciones distintas. <code>sdd-verify</code> es la puerta de calidad: lee proposal, spec, design y tasks, y ejecuta pruebas reales contra el código implementado. Si el orchestrator verificara inline, mezclaría la coordinación con la validación y errores como los 4 bugs descubiertos podrían pasarse por alto.</p>
+    </div>
+    <ul class="bullets">
+      <li>Docker disponible ✅</li>
+      <li>Comandos ejecutados: <code>config</code>, <code>up -d</code>, smoke test, <code>git check-ignore</code></li>
+      <li>Postgres healthy, data corre smoke test y sale</li>
+    </ul>
+    <h3 style="margin: 24px 0 12px; font-size: 18px;">Bugs reales encontrados y corregidos durante verify</h3>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>Bug</th><th>Fix</th></tr></thead>
+        <tbody>
+          <tr><td><code>^3.12</code> no es PEP 508 válido</td><td>→ <code>&gt;=3.12</code></td></tr>
+          <tr><td>pytest no instalado en contenedor</td><td>→ <code>[project.optional-dependencies] test</code> + <code>".[test]"</code></td></tr>
+          <tr><td><code>conn.is_closed</code> no existe en psycopg v3</td><td>→ <code>cursor.execute("SELECT 1")</code></td></tr>
+          <tr><td>hatchling no encuentra directorios</td><td>→ <code>[tool.hatch.build.targets.wheel] packages = ["."]</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="decision-banner"><strong>Veredicto:</strong> PASS WITH WARNINGS — implementación validada contra spec, con bugs reales detectados y corregidos antes de archivar.</div>
+  </section>
+
+  <!-- ── 06 ─────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="section-head"><span class="num">06</span><h2>sdd-archive</h2></div>
+    <div class="panel accent-bar">
+      <span class="why-label">¿Por qué este agente?</span>
+      <p>Cerrar un ciclo requiere cuidado: hay que sincronizar los delta specs con la fuente de verdad, mover la carpeta del cambio al archivo y verificar que nada se pierda. <code>sdd-archive</code> finaliza cambios SDD sin destruir artefactos de auditoría.</p>
+    </div>
+    <ul class="bullets">
+      <li>Spec promovido a source of truth: <code>openspec/specs/docker-runtime-env/spec.md</code></li>
+      <li>Cambio movido a: <code>openspec/changes/archive/2026-05-27-docker-python-postgres-env/</code></li>
+      <li>Ciclo SDD cerrado</li>
+    </ul>
+  </section>
+
+  <!-- ── CONFIG MODELOS ─────────────────────────────────── -->
+  <section class="section">
+    <div class="section-head"><span class="num">M</span><h2>Configuración de modelos</h2></div>
+    <p class="intro">Asignación en <code>~/.config/opencode/opencode.json</code>. Modelos base y mapeo por agente.</p>
+
+    <h3 style="margin: 16px 0 10px; font-size: 17px;">Modelos base</h3>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>Variable</th><th>Modelo</th></tr></thead>
+        <tbody>
+          <tr><td><code>model</code> (default)</td><td><code>opencode-go/deepseek-v4-flash</code></td></tr>
+          <tr><td><code>small_model</code></td><td><code>nan/gemma4</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin: 24px 0 10px; font-size: 17px;">Asignación por agente</h3>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>Agente</th><th>Rol</th><th>Modelo</th><th>reasoning_effort</th></tr></thead>
+        <tbody>
+          <tr><td><code>gentle-orchestrator</code></td><td>Coordina todo el flujo SDD</td><td><code>openai/gpt-5.5</code></td><td><span class="tag accent">high</span></td></tr>
+          <tr><td><code>sdd-init</code></td><td>Bootstrap SDD</td><td><code>openai/gpt-5.5</code></td><td>medium</td></tr>
+          <tr><td><code>sdd-explore</code></td><td>Investiga codebase</td><td><code>openai/gpt-5.5</code></td><td>medium</td></tr>
+          <tr><td><code>sdd-propose</code></td><td>Crea propuestas</td><td><code>nan/qwen3.6</code></td><td>—</td></tr>
+          <tr><td><code>sdd-spec</code></td><td>Escribe specs</td><td><code>bailian-coding-plan/glm-5</code></td><td>thinking nativo</td></tr>
+          <tr><td><code>sdd-design</code></td><td>Diseño técnico</td><td><code>nan/qwen3.6</code></td><td>—</td></tr>
+          <tr><td><code>sdd-tasks</code></td><td>Desglose en tareas</td><td><code>nan/qwen3.6</code></td><td>—</td></tr>
+          <tr><td><code>sdd-apply</code></td><td>Implementa código</td><td><code>nan/qwen3.6</code></td><td>—</td></tr>
+          <tr><td><code>sdd-verify</code></td><td>Valida contra specs</td><td><code>nan/qwen3.6</code></td><td>—</td></tr>
+          <tr><td><code>sdd-archive</code></td><td>Archiva cambios</td><td><code>small_model</code> (<code>nan/gemma4</code>)</td><td>—</td></tr>
+          <tr><td><code>sdd-onboard</code></td><td>Guía al usuario</td><td><code>nan/qwen3.6</code></td><td>—</td></tr>
+          <tr><td><code>general</code> (built-in)</td><td>Chat por defecto</td><td>usa <code>model</code> global</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── COMMITS ────────────────────────────────────────── -->
+  <section class="section">
+    <div class="section-head"><span class="num">C</span><h2>Resumen de commits</h2></div>
+    <pre class="code-block"><code>9ed431b docs: archivar cambio Docker Python PostgreSQL
+e108b57 fix: corregir verificación Docker Python PostgreSQL
+d911e08 docs: actualizar progreso de tareas Docker
+58ab322 docs: agregar README con quick-start y límite de alcance
+e72ba5a feat: crear scaffold packages/data con pyproject, Dockerfile y smoke test
+c172edf feat: agregar docker-compose.yml con servicios postgres y data
+5dad6ae feat: agregar plantilla .env.example para PostgreSQL local
+00a585f chore: agregar entradas de .gitignore para env local y caches
+d386270 docs: planificar tareas del entorno Docker
+3009722 docs: diseñar entorno Docker Python PostgreSQL
+d8883bc docs: proponer entorno Docker Python PostgreSQL
+eb6a1ed docs: inicializar contexto SDD del proyecto
+17eb283 chore: ignorar cachés y secretos locales</code></pre>
+  </section>
+
+  <!-- ── ARTEFACTOS ─────────────────────────────────────── -->
+  <section class="section">
+    <div class="section-head"><span class="num">A</span><h2>Artefactos OpenSpec generados</h2></div>
+    <pre class="code-block"><code>openspec/
+├── config.yaml
+├── specs/
+│   └── docker-runtime-env/
+│       └── spec.md
+└── changes/
+    └── archive/
+        └── 2026-05-27-docker-python-postgres-env/
+            ├── archive-report.md
+            ├── design.md
+            ├── exploration.md
+            ├── proposal.md
+            ├── specs/
+            │   └── docker-runtime-env/
+            │       └── spec.md
+            ├── tasks.md
+            └── verify-report.md</code></pre>
+  </section>
+
+  <!-- ── ROLES ──────────────────────────────────────────── -->
+  <section class="section">
+    <div class="section-head"><span class="num">R</span><h2>Roles en el flujo</h2></div>
+    <p class="intro">Resumen consolidado: por qué cada agente recibe su tarea.</p>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>Agente</th><th>¿Por qué se le asigna esta tarea?</th></tr></thead>
+        <tbody>
+          <tr><td><code>gentle-orchestrator</code></td><td>Coordina fases y delega toda ejecución. Nunca hace trabajo de análisis o implementación inline. Solo opera directamente sobre comandos mecánicos (git, state) o lecturas de 1-3 archivos para decidir.</td></tr>
+          <tr><td><code>sdd-init</code></td><td>Detecta stack, convenciones y herramientas. Se delega porque leer 4+ archivos de configuración infla el contexto del orchestrator innecesariamente.</td></tr>
+          <tr><td><code>sdd-explore</code></td><td>Investiga el codebase sin modificarlo. Entender un ecosistema requiere leer múltiples archivos.</td></tr>
+          <tr><td><code>sdd-propose</code></td><td>Define alcance, enfoque y riesgos. Escribir una propuesta con análisis es trabajo complejo que necesita su propio contexto.</td></tr>
+          <tr><td><code>sdd-spec</code></td><td>Escribe requisitos y escenarios Given/When/Then. La especificación requiere atención exclusiva.</td></tr>
+          <tr><td><code>sdd-design</code></td><td>Diseña arquitectura y documenta decisiones técnicas. Preocupación separada que se beneficia de su propio contexto.</td></tr>
+          <tr><td><code>sdd-tasks</code></td><td>Desglosa propuesta + spec + design en tareas. Requiere leer todos los artefactos anteriores y producir un plan cohesivo.</td></tr>
+          <tr><td><code>sdd-apply</code></td><td>Implementa el código a partir de las tareas. Escribir código nuevo en múltiples archivos es el caso arquetípico de delegación.</td></tr>
+          <tr><td><code>sdd-verify</code></td><td>Ejecuta pruebas reales contra spec y runtime. Ejecutar herramientas externas y analizar resultados requiere un contexto limpio.</td></tr>
+          <tr><td><code>sdd-archive</code></td><td>Sincroniza specs con la fuente de verdad y mueve el cambio al archivo. Operaciones mecánicas que requieren cuidado para no perder artefactos.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="actions">
+    <button id="copyBtn" type="button">Copy as Markdown</button>
+    <span id="toast" class="toast">Copiado ✓</span>
+  </div>
+
+</main>
+
+<div class="palette-switcher" role="group" aria-label="Cambiar paleta">
+  <label>Paleta</label>
+  <button class="palette-button active" data-pal="default" type="button">default</button>
+  <button class="palette-button" data-pal="aurora" type="button">aurora</button>
+  <button class="palette-button" data-pal="ink" type="button">ink</button>
+  <button class="palette-button" data-pal="merkle" type="button">merkle</button>
+</div>
+
+<template id="md-source">
+# Flujo SDD Ejecutado — docker-python-postgres-env
+
+Ciclo completo del cambio `docker-python-postgres-env`, paso a paso.
+
+---
+
+## 0. Session Preflight
+
+**¿Por qué el gentle-orchestrator hace esto?** Porque toda la sesión SDD necesita guardrails consistentes. El orchestrator pregunta estas 4 opciones al inicio para que cada sub-agente herede las mismas reglas sin tener que repetir la configuración. Si no se fijan antes de arrancar, cada fase podría operar con supuestos distintos.
+
+Se configuraron 4 opciones:
+
+| Opción | Elección |
+|--------|----------|
+| Ritmo | Interactivo (A1) |
+| Artefactos | OpenSpec (B1) |
+| PRs | Preguntar siempre (C1) |
+| Revisión | 400 líneas (D1) |
+
+## 1. sdd-init
+
+**¿Por qué `sdd-init` para esto?** Antes de cualquier cambio necesitamos saber qué estamos pisando. `sdd-init` está especializado en detectar el stack real del proyecto, las convenciones, herramientas de testing y configurar el backend de persistencia (OpenSpec). El orchestrator delega porque leer 4+ archivos de configuración y estructuras de directorio inflaría su contexto sin necesidad. Además, el skill registry y `strict_tdd` se deciden una vez y quedan para toda la sesión.
+
+- Detectó el proyecto como vault de documentación Obsidian
+- Stack: Markdown, JSON Canvas, sin código de aplicación
+- `strict_tdd: false`
+- Creó `openspec/config.yaml` y `.atl/skill-registry.md`
+
+## 2. sdd-new docker-python-postgres-env
+
+### 2a. sdd-explore
+- Investigó qué existe en el repo (Docker, Python, apps)
+- Descubrió `entorno-dockerizado.md` existente
+- Recomendó scope mínimo en `packages/data/`
+- Forecast: ~120–220 líneas
+- Artefacto: `exploration.md`
+
+### 2b. sdd-propose
+- Definió alcance exacto: 7 archivos, Python + PostgreSQL
+- Excluyó: frontend, Jupyter, API, CI/CD, Makefile
+- Imágenes: `python:3.12-slim` + `postgres:16`
+- Forecast: ~128–197 líneas, riesgo Low
+- Artefacto: `proposal.md`
+
+### 2c. sdd-spec
+- 6 requisitos funcionales con 11 escenarios Given/When/Then
+- Artefacto: `specs/docker-runtime-env/spec.md`
+
+### 2d. sdd-design
+- 7 decisiones de arquitectura documentadas en tablas
+- Diseño de red, volúmenes, env vars
+- Artefacto: `design.md`
+
+### 2e. sdd-tasks
+- 4 fases, 12 tareas
+- 3 work units (Foundation → Core → Docs)
+- Forecast: ~130–200 líneas, riesgo Low
+- Chained PRs: no recomendado
+- Artefacto: `tasks.md`
+
+## 3. Git — Rama y Commits
+
+- Rama: `feat/docker-python-postgres-env`
+- Commits independientes por work unit (7 commits total)
+- `PLAN-CONFIG-AGENTES.md` excluido del cambio por ser ajeno
+
+## 4. sdd-apply
+
+| Archivo | Descripción |
+|---------|-------------|
+| `.gitignore` | Ignora `.env`, `data/`, caches Python |
+| `.env.example` | Template con placeholders |
+| `docker-compose.yml` | 2 servicios (postgres + data) |
+| `packages/data/Dockerfile` | Multi-stage con python:3.12-slim |
+| `packages/data/pyproject.toml` | hatchling, psycopg, polars, duckdb |
+| `packages/data/tests/smoke/test_connection.py` | Smoke test básico |
+| `README.md` | Quick-start y scope boundary |
+
+**Verificación parcial**: `docker compose config` ✅ (Docker no disponible en ese momento)
+
+## 5. sdd-verify
+
+- Docker disponible ✅
+- Comandos ejecutados: config, up -d, smoke test, git check-ignore
+- Postgres healthy, data corre smoke test y sale
+
+**Bugs reales encontrados y corregidos durante verify:**
+
+| Bug | Fix |
+|-----|-----|
+| `^3.12` no es PEP 508 válido | → `>=3.12` |
+| pytest no instalado en contenedor | → `[project.optional-dependencies] test` + `".[test]"` |
+| `conn.is_closed` no existe en psycopg v3 | → `cursor.execute("SELECT 1")` |
+| hatchling no encuentra directorios | → `[tool.hatch.build.targets.wheel] packages = ["."]` |
+
+**Veredicto**: `PASS WITH WARNINGS`
+
+## 6. sdd-archive
+
+- Spec promovido a source of truth: `openspec/specs/docker-runtime-env/spec.md`
+- Cambio movido a: `openspec/changes/archive/2026-05-27-docker-python-postgres-env/`
+- Ciclo SDD cerrado
+</template>
+
+<script>
+(function () {
+  // Palette switcher
+  var STORAGE_KEY = 'he-palette';
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll('.palette-button');
+
+  function setPalette(name, persist) {
+    root.setAttribute('data-palette', name);
+    buttons.forEach(function (b) {
+      b.classList.toggle('active', b.dataset.pal === name);
+    });
+    if (persist) {
+      try { localStorage.setItem(STORAGE_KEY, name); } catch (e) {}
+    }
+  }
+
+  try {
+    var stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) setPalette(stored, false);
+  } catch (e) {}
+
+  buttons.forEach(function (b) {
+    b.addEventListener('click', function () { setPalette(b.dataset.pal, true); });
+  });
+
+  // Copy as Markdown
+  var copyBtn = document.getElementById('copyBtn');
+  var toast = document.getElementById('toast');
+  var tpl = document.getElementById('md-source');
+
+  copyBtn.addEventListener('click', function () {
+    var md = tpl.innerHTML
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&amp;/g, '&');
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(md).then(showToast).catch(fallbackCopy);
+    } else {
+      fallbackCopy();
+    }
+    function fallbackCopy() {
+      var ta = document.createElement('textarea');
+      ta.value = md;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      showToast();
+    }
+    function showToast() {
+      toast.classList.add('show');
+      setTimeout(function () { toast.classList.remove('show'); }, 1800);
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
