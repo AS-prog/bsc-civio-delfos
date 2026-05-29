@@ -1,0 +1,403 @@
+Un poco hoy aparte de flickear ese ayudar en los retos que tienen tibio vale? Esto poco nace también por explicarlo de una quedada decimos tenlogicamente hacemos mucho en las empresas, pero cómo podemos ayudar a fundaciones y otras organizaciones que a lo mejor no tienen una capacidad como cualquier otra empresa a nivel tecnológico y salió este no?
+
+Entonces una de esas fundaciones escipio vale es una fundación independiente que trabaja y lucha contra la opacidad institucional. A través del periodismo de la tecnología y de los datos vale con el objetivo un poco de ayudar a toda la ciudadanía a poder consultar o hacer público todos los datos importantes de las instituciones.
+
+Y hablamos con ellas. Justamente pues para ver qué problemas tenían o qué circunstancias que es lo que más les comía en el día a día y que puede salir de ahí. No tenéis en el repo que os he compartido. Quiero que si no habéis entrado si no lo tenéis y no, pues me lo decís y luego lo vemos.
+
+Tenéis un briefing de un par de charlas tres que hemos tenido con ellas. Vale es un poco análisis de las tres charlas, pero ahora lo que haremos es se conectará María, vale, tenemos una videollamada. Tenemos a María y a Carmen María está en Madrid y Carmen aquí entonces haremos una llamada María os explicará de primera mano mucho mejor que el briefing sin contexto vale lo explicará, todo mucho mejor y después lo que haremos tendremos una ronda de preguntas poder hacerle.
+
+Bueno dudas que tengáis cosas que han salido, vale que surjan para luego poder ponerlas en marcha o tener ideas para ver qué podéis hacer para ayudarles. Cómo lo vamos a hacer esas preguntas? Tenéis un canal que es cibio en el slat vale? Lo creo que lo mejor será después de la charla.
+
+Durante la charla preguntáis se quedarán ahí todas las preguntas vale y lo que podamos seguir hoy respondiendo lo vamos respondiendo con María aquí y Carmen aquí lo que no se surgen dentro de un rato o mañana Carmen estará por aquí también nos lo podrá responder. Vale tenemos el canal para que no sea una locura tener que buscar a Carmen, sino que por ahí siempre va a estar vale.
+
+A lo mejor no es al segundo que respondan, pero bueno estará ahí siempre y os podrá responder cualquier duda que tengáis. Rápidamente, creo que tenéis en el repo también un poco la idea de cómo entregar y cómo trabajar la idea. Si hay alguna mejor, pero bueno, ahora mismo creo que es la que nos ha surgido.
+
+Es que creéis una rama de ese repositorio y allí podáis hacer lo que queráis necesitáis más retos. Creo que podéis hacer otra rama con yo que sé el repo de back en el front, pues si lo queréis separar lo que sea, pues hacéis el nombre, vuestro equipo y una rama y el nombre del equipo con frontend y otra rama y otra y otra rama y si tenéis varios repos vale, pero la idea es que esté todo allí para que podamos verlo y que luego la idea también es que eso quede público y quede abierto vale?
+
+El cierre entre comillas es a las siete de mañana que se haremos la presentaciones. La presentación será prestáis un poco, lo que lo que habéis sacado funcional os podremos dar algo de feedback, pero como no hay premio no hay nada. Es un poco pues que veáis si acibió lo bien interesante o no, y luego pues alguien más.
+
+Parte tecnológica pues podemos dar algo de firma técnico pero poco más, por eso se cierra a las 7, pero como es abierto podréis seguir trabajando y ayudando a cibio siempre que queráis en esos retos. Y creo que no me queda nada. Cualquier duda también tenéis los canales o nos preguntáis a la gente de verde y respondemos vale.
+
+No sé si por aquí voy a ver si conecto la llamada. Nada solo saludar a brevemente, soy Carmen, soy parte del equipo técnico y la que va a hacer la presentación es muy Pope María que es periodista y ella es la que más se pelea con temas de portal de transparencia y la que mejor le puede explicar pero que yo voy a estar aquí de apoyo técnico mañana todo el día y que cualquier cosa pues que veníais que por mi novia.
+
+Nada para María cuando cuando quieras. Y lo he dicho apuntar todo lo que tengáis vale que explique María todo y después vamos respondiendo si vais añadiendo preguntas en el slack genial si lo queréis hacer después, pues también bien vale y luego iremos respondiendo. María no yo te lo ha comentado Carmen ya no que tenemos el canal slack, así que después podremos ir una a una y respondiendo las dudas que puedan tener.
+
+No sé si me escucháis bien, supongo que todo. Vale, os voy a compartir una presentación. Yo creo que ya han hecho la introducción de por qué estoy yo conectado desde Madrid y Carmen está ahí, pero bueno, no queríamos empezar la jornada sin que sin que tuvieseis un poco de contexto, no un poco de cómo hemos llegado hasta aquí nosotros porque hemos visto ciertas dificultades.
+
+Obviamente es parte por nuestro trabajo no, pero hay una parte de contexto que creo que es necesario que tengáis para mañana. Ver qué mejoras se pueden hacer como tener todo como de dónde sale esto del portal de transparencia del derecho de acceso, no ir directamente, sino un poco que sepáis por qué.
+
+Nosotros nos parece tan importante esto porque le damos mucha importancia que esto funcione que esto sea claro, no sea una barrera burocrática y no solo para nosotros como periodistas, sino para todo para vosotros incluidos como ciudadanos, porque esto es un poco bueno. El color es un derecho de todo en la ceder, información pública que acede está publicada y a veces no está publicada.
+
+Entonces os voy a hacer una pequeña introducción de por qué esto es importante y que hemos visto nosotros en estos años que podría estar mejor. No voy a intentar compartir pantalla. Lo voy a hacer lo más rápido que puedas y tenemos un turno de preguntas y no quiero meterme mucho en profundidad, pero bueno.
+
+O compacto?
+
+Creo que veis la presentación.
+
+Eso creo que ya os han hecho una presentación. Voy a pasar rápidamente porque vivió, pero creo que ya han hecho, así que nada cuña publicitaria para nada. Como veis somos muy poquitos, somos como mix de gente que hace periodismo de datos, periodismo de investigación y equipo desarrolladores, gente de administración, comunicación, redes sociales, o sea, es un poco, pero bueno poquito todo queda en casa.
+
+Todos hacemos un poco de todo y todos conocemos un poco de todo. Y bueno, nuestra nuestra principal labor siempre es como auditarlo público, no para cuidarlo para para que funcione bien. Por eso creemos que tiene mucho sentido este tipo de jornadas por para aunar puertas y que de verdad lo público sea transparente y que lo publico se entienda bien y no solo para los periodistas para todas las personas que quiera saber qué pasa dentro de la meditación pública.
+
+Paso otra vez, como he comentado hay una parte que aquí no nos viene mucho. A no os voy a contar mucho de esto no pero hay una parte que es importante anfibio y que no solo se queda en el periodismo que es también que hacemos de un poco de activistas.
+
+No hacemos lobby para que mejoren las cosas y de ahí viene también nuestra nuestra función de luchar que las cosas cambien a mejor y creo que aquí viene genial que nos unamos para esto. Nosotros lo hacemos normalmente a través de reuniones con la administración pública a través de recomendaciones a través de intentar cambiar leyes etcétera, pero todo lo que se ha intentar cambiar lo que funciona mal, especialmente en transparencia en nuestro foco.
+
+Sigo y ya dentro de lleno llenísimo y vosotros? Diréis por qué me va a explicar esta chica? Una ley un viernes por la tarde la ley 19/2013 básicamente lo que estructura todo esto que vamos a ver todo esto del portal de transferencia del derecho de acceso y lo que viene a decir la ley 19/2013 que entró en vigor en 2014.
+
+Hace ya tienes un añitos. Es básicamente sentar la fase de que nosotros tenemos todos los ciudadanos. Tenemos un derecho de conocer cierta información que tiene la administración pública sobre su funcionamiento para control para auditoría. Toda la información que nosotros queramos conocer con límites que después si queréis en las preguntas o explico un poco más de estos límites.
+
+Pero toda la información que nosotros queramos tener que obre el poder de la meditación sobre cómo funciona la administración tenemos el derecho a preguntarnos. Y esto es lo que recoge esta ley. Obviamente podría ser mucho mejor. Sí puede ser mucho mejor, pero vamos a trabajar con lo que tenemos que es suficiente.
+
+Mañana creo que también o vais a tener en dos partes muy muy concretas de esta ley que es la parte de publicidad activa publicidad activa. Es lo que esta ley dice que las administraciones tienen que publicar de forma proactiva, sin que ningún ciudadano se lo pregunte. Se lo solicite de forma obesa como información que debería estar pública y que todos deberíamos poder acceder de forma fácil, incluso en la propia ley dice formatos reutilizable que ya ahora cuando vayamos un poco el puerto de transferencia, ves que esto se queda un poco ahí como diluido y la segunda parte de la que hablaremos hoy es el derecho de acceso.
+
+No cuando esa información que nosotros queremos no entra en esta publicidad proactiva que ya que ya deberían publicar sino que queremos. Pues básicamente conocer un documento más concreto, conocer un informe que conoce unos datos más concretos. Como nosotros tenemos ese derecho de preguntar a la administración pública y que la Administración Pública nos conducten.
+
+Lo metemos en publicidad activa porque creo que es lo que una de las primeras partes que vais a ver mañana en el portal de transferencia. La publicidad activa. Bueno esa ley en general a quien le dice tú debes publicar esta información se lo dice a todos los organismos públicos.
+
+Esto significa que son ministerios comunidades autónomas, Ayuntamiento, universidades, Casa Real, Congreso, Senado, Tribunal de Cuentas, todo lo que crea y que público entra en especialmente. Entra en que tiene que publicar ciertos documentos de forma proactiva. Hay un pequeño artículo que habla también de partidos políticos, sindicatos y entidades privadas que reciban más del 40% de ayudas públicas u otro serie de condiciones.
+
+Aunque este grupito solo tiene que publicar unas cosas más concretas, no es como el resto de órganos públicos, no. Pero bueno que sepáis que también. Hay cierta información que sindicato del partido político y algunas organizaciones y algunas entidades privadas tienen que publicar según esta Ley. Qué tienen que publicar de forma periódica y actualizada información cuyo conocimiento sea relevante para garantizar la transparencia de su actividad relacionada con el funcionamiento y contra la estación pública.
+
+Básicamente que expongan documentos sobre cómo funciona, qué hacen y dónde va el dinero público? Esto obviamente tendría muchas capas, no podríamos profundizar un montón, pero bueno, es como que la ley se queda con vamos a publicar lo mínimo para que sepamos para que la gente sepa que hacemos con esto no qué hacemos dentro?
+
+Esto se materializa en una serie de documentos. De lo que de lo que habla directamente la ley que son por ejemplo los contratos que tienen la administración pública con empresas. Las subvenciones las retribuciones de altos cargos los convenios que tienen con las empresas. Las cuentas anuales quemamos con contar el organigrama, los presupuestos, algunas veces en la ejecución presupuestaria toda esta información.
+
+Debería estar recogida en publicidad y por tanto, los organismos deberían tenerlos en un portal en algún sitio que pudiese ser de fácil de fácil acceso. Como la ley dice que la Administración General del Estado desarrollará un portal de transparencia que esto es donde hoy mañana entraremos en profundidad, solo para que lo sepáis nosotros.
+
+Lo que lo que vamos a ver el hakatone es el portal de transparencia, el portal de transparencia de la Administración General del Estado. Que este que muestra aquí nos incluye nada de ambientación local de comunidades au. Eso va en su portal de transparencia. Estoy diciendo que básicamente cada comunidad autónoma tiene.
+
+De preferencia Ayuntamiento grande tiene su fuerza de transparencia. El Congreso de Senado tiene su tiene su portada de transferencia, o sea no hay nada unificado. Lo que vamos a ver aquí es el portal de transparencia principal que es el de donde vierte la información. Todos los ministurias, por ejemplo.
+
+Y presidencia eso es lo que vamos a tratar estos días el principal puesto de esta fracción, pero que sepáis que si en algún momento entra la curiosidad de saber que publica la Generalitat, podéis entrar porque tiene su propio portal de transparencia, la ciudad de Barcelona ahora mismo, etcétera. Justo hablaba hablábamos con los organizadores y también con Carmen hace un tiempo de que me había llegado por los cuentos como chascarrillo no de que me había llegado un aviso porque había había una parte deportes.
+
+La sede del portal de transferencia no funcionaba de forma correcta. Y no me llegaron los documentos, me tenían que llegar. Entonces me enviaron un email diciéndome que es que estaban cambiando el portal de transpar. Mi compañera Carmen aquí intentó indagar preguntó obviamente nadie le contestó y le dijeron que eso no es información que tenían que compartir con ella casualmente.
+
+Cambiaron el portal de transparencia la semana pasada. Que no tienen súper bien para el timing como podáis imaginar. De todas formas, en lo que hemos podido ver en esta semana, el portal de transferencia sigue siendo los problemas de fondo que tenía y que habíamos localizado siguen estando lo que ha cambiado es el lenguaje.
+
+Es ahora bastante más claro. Como podéis? Como podéis ver ahí os pongo si tenéis curiosidad de meteros en webcam y tenéis como era el 30 de enero precioso. Si lo veis, es una página que te llama que dice cualquier o aquí estar media hora inhalando la nueva el nuevo curso de transparencia de primeras así parece más bonito y además, o sea tiene como las secciones arriba.
+
+Son más claros sobre todo lo que han hecho, lo dicen ellos mismos. Lo que han hecho es intentar que se entienda mejor que haya en el portal de transparencia. Nosotros aplaudimos totalmente que esto sea más claro, pero como he comentado, por lo poco que hemos visto en esta semana que lleva el resto de transparencia, no ha habido cambios de fondo que hayamos dicho wow.
+
+Increíble lo han hecho genial. Yo creo que esto también puede estar bastante bien para vosotros saber que han cambiado ellos, incluso qué podrían mejorar si tenéis curiosidad, pues ya sabéis que ha habido un cambio súper reciente. Y seguimos con publicidad activa. Ahora lo que voy a hacer es irme al propio portal para hacer un poco como de guía.
+
+De qué cosas? Nosotros vemos que no están del todo y no o que podrían mejorar al menos. Me veis el portal de transparencia.
+
+Si estáis, si podéis entrar en transparencia punto gob.es. No sé si hay alguien con portátil, pero. Es un portal súper sencillo. Tiene aquí un buscador. Ahora estamos creo que en la portada de publicidad activa. Pero ahora estamos qué es lo que nos interesa. Aquí están las dos, estas dos partes como comentaba, lo que vamos a tratar sobre todo.
+
+Aquí es el derecho a saber que es publicidad, activa y derecho de acceso. La primera parte esta información que se supone que las administraciones tienen que publicar de forma fácil. Y nos vamos a por materia eso que hablamos de convenios subvenciones etcétera. Cómo está aquí? No que debería estar como de forma clara formato reutilizables recordad Vamos a ver.
+
+Por ejemplo, no sé si alguno de vosotros habéis entrado aquí por curiosidad en algún momento de vuestra vida sabíais que existía esta página sabíais que podéis ver cuánto cobran el presidente, los ministros, etcétera. Pues está aquí toda la información. Si tenéis si tenéis ratos libres, pues mira nueva información que vamos a ir por ejemplo.
+
+Y aquí nos vamos a retribuciones. Presidencia del Gobierno cuánto cobra el presidente de gobierno hasta aquí en una tablita que se puede encargar ni tan mal. No vamos a quejar. Ya sabemos cuánto cobra el presidente, el director de Gabinete, etcétera. Nos volvemos a ir a vamos a ver ahora por ejemplo.
+
+Esto es una de las únicas cosas que hemos visto que ha cambiado de primeras en el portal. Otra vez volvemos a información clasificada por ministerio que les costaría ponerlos todos y después ya cumplirlos es tan complicado. Pero bueno han decidido que así bien residencia. No voy a explicar porque no tiene ningún contrato superior.
+
+Cultura. Muy bien, pues oye esto no estaba antes lo aplaudimos. El único problema es que la única información que han puesto aquí es información. Como la básica o que para qué? Voy a hacer que pongo aquí un listado y ya te vas tú venga un suministro de su humidificadores.
+
+Pues aquí pongo el goma que jamás te lo compre quién contrata. No sé si vosotros hay mucho de contratación, pero bueno, lo normal es que en el portal de contratación o aquí se abre una administración pública. Abre un contrato, hay limitado? Hay empresas que visitan para llegarse el contrato y hay una serie de documentos que tiene que ser público por otra ley, que es la ley de contratación entre estos documentos, que es muy interesante como ciudadanos.
+
+Si alguna vez tenéis curiosidad, es súper interesante. Leerse los pliegos de ciertos contratos es donde se ve realmente que se van contratando. Ahora digo dónde lo podéis encontrar, no tiene nada que ver con transparencia, pero bueno, si alguna vez en el curiosidad vosotros a nivel personal. La cuestión es que aquí esto no lo tenía, pero bueno muy bien el listan quien ha ganado duración del contrato, el Estado etcétera todo bien.
+
+Pero qué pasa si quiero acceder a esos documentos que os contaba que es donde está toda la chicha y dónde está? Interesante, obviamente todo está en otro portal. Esto pasa si os dais una vuelta por el portal de transparencia. Cada cinco links que hay aquí cuatro van a otra.
+
+Es increíble como tanto cortada que yo entiendo que a ver que al final son el portal de contratación, tiene su idiosincrasia otra y bueno, a lo mejor es complicadísimo hacerlo, no lo sé. Vamos por ejemplo, ahora subvenciones no ya os he dicho que aquí la chicha, pues en subvenciones directamente.
+
+Tú puedes ir, vamos a ir otra vez al entendido de Cultura o directamente a esta página tan bonita que vais a ver que es increíble de bonita. Y mira qué bien carga es que todo lo que no se puede pedir más eso esta es la página de subvenciones, si no la conocíamos no la conocía y era ex en la plataforma donde se ponen todas las atenciones que recibe cualquier persona y cualquier empresa de la administración pública es enorme y es preciosa y súper fácil de.
+
+De buscar funciona genial! Pues eso según yo queréis ver pues ahí tenéis todo. Estos son cositas seguro que seguís en contra son cosas. Que en cuanto que te metes un poco te dices uy qué bonito está todo, pero después te das cuenta que es como un agregado de links a otra página.
+
+Otro otro de los casos que hablábamos por ejemplo era de altos cargos de por ley. Los altos carbonos tienen que hacer una declaración de bienes que básicamente decir cuántos pisos tienen a su nombre? Cuántos coches tienen? Si tienen hipoteca y etcétera? Un poco cada uno lo rellenamos. Le da la gana, pero bueno tiene que publicarlo y una vez más tú dices uy.
+
+Qué bien puede haber una declaración de los bienes patrimonios de las dos cartas? Otro link. Yo de verdad que es que digo no es tan difícil pero bueno. Eso es mi opinión personal. Que estos son como unos ejemplos de transferencia en este momento. Estos patios son lo mismo que encontrábamos antes de que eran el cambio de página web.
+
+Y estos son yo creo que algunos de los ejemplos que podéis echar un vistazo para posibles mejoras y que a nosotros. Por ejemplo, si queremos hacer un seguimiento es básicamente lo contarán. Yo supongo que a lo habéis leído en el documento. No nosotros el portal de transparencia pocas veces lo para nuestro trabajo.
+
+Periodístico pocas veces lo utilizamos. Vamos a la fuente principal, es porque no voy a estar viniendo aquí para ver el BOE. Ahora voy a estar viendo aquí para buscar un contrato cuando la documentación va a estar en el portal de contratación, no veo bien aquí para ver las subvenciones del Ministerio de Cultura.
+
+Si lo que me va a hacer es relacionarme al portal de sujeciones. Entonces nosotros nuestro trabajo el portal de transferencia como que lo tenemos en cuenta no podría ser mucho más bonito, podría ser mucho más bonito. Podría sernos de verdad para ver cambio para ver actualizaciones para 40.000 cosas, pero una.
+
+Que sí, que me gustaría que mañana tuvieseis en mente no solo que no puede servir a nosotros. Sino también que tengáis un poco en mente. Cómo puede servir esto a vosotros como ciudadanos si nunca habías dado en este portal? Porque creo que realmente a mí me interesaría conocer esta información que forma personal como ciudadana, o sea como que también tengáis un poco la visión de cómo puede servir la mejora para una persona que no tiene ni idea del portón de contratación y que a cada o sea de puesta de transparencia.
+
+Perdón y que acaba de entrar aquí. Vuelvo a la presentación y seguimos sigo contando.
+
+Vamos a ir ahora. No sé muy bien cómo va el tiempo. Vamos ahora a la segunda parte que es derecho a tesoro. Como os he explicado antes toda esta información que se han exportado de transparencia, pues genial que vamos antes de tiempo, así que puedes explicar tranquilamente, no te bloquear más interesante que leer, muchas mejor escucharte y entenderlo, así que no te preocupes si no después en las preguntas, pues sigo profundizando lo que queráis.
+
+Como comentábamos antes esta parte hay ese derecho que tenemos todo absolutamente de preguntar a la administración, cosa que queramos hacer. Esto a mí me resulta súper interesante para cualquier ciudadano, o sea cualquier cosa que tengáis que digais esta obra de del parque de mi casa. Quiero saber qué no está haciendo por cuánta pasta que se va a hacer todas esas cosas.
+
+Las podéis preguntar a la meditación, o sea no es como una cosa, incluso imaginaos no. Ahora lo que nosotros estamos tratando es con ministerios porque lo que vamos a hacer es ver el derecho de acceso a la inserción General del Estado que son casas reales, ministerios, etcétera como algo más como de alto.
+
+De alta esfera, pero podéis preguntar que ni tantas cosas imaginaos que hay mucha gente pregunta a RENFE. Pregunta Renfe la frecuencia de retrasos que Renfe se lo de o no se lo dé? Es una cosa ya que hablamos en otra reunión si queréis tranquilamente pero como quisiste ese derecho vosotros tenéis derecho y yo tengo derecho y todas las personas tenemos derecho a hacer preguntas a la administración que la gente nos convencidos.
+
+Partiendo de este punto como nosotros el cefidio y yo especialmente porque trabajo como periodista utilizo el derecho de acceso para. Sacar información que a mí me viene bien para un artículo para compartir los datos para compartir la información.
+
+Volvemos a lo que antes que todo el organismos públicos, pero aquí salen del juego salen los partidos políticos, los sindicatos y estas empresas privadas que hablábamos antes con el 40% de su función. Entonces aquí nos quedamos única y exclusivamente con todos los organismos públicos. Si le podemos preguntar todo bien, yo os digo el derecho, lo tenéis de preguntar que os responda.
+
+Hay varias vías no ahora les explico los días pero lo que tienes que hacer uno de los problemas enormes que de Cecilio creemos que es bastante grande. Es que? No se pueden hacer solicitudes de información de forma anónima. Tienes que identificarte? Identificarte además no bueno depende, no vamos a hablar un poco de vamos a hablar del portal de transparencia que la identificación tiene que ser a través de certificado electrónico clave, o sea como heavy no puede ser.
+
+Te doy mi nombre y mi número de teléfono no funciona, pero por ejemplo yo digo hay ciertos portales de transparencia o cierta. Autonomías que sí permiten, por ejemplo, creo que en la ciudad de Madrid no recuerdo muy bien, pero creo que la ciudad de Madrid se puede preguntar solo poniendo límites.
+
+No hace falta que tengan un certificado electrónico tal. Lo importante de transparencia se necesita certificado electrónico o plano. Que tiene que incluir en tu solicitud de información tu identidad, obviamente una dirección normalmente de correo, pero también puede decir que te lo envíe en la casa de forma física, la información que solicitas, la modalidad que te respondan que prefieres con la enfoque, temblr físico y la motivación que en realidad esto os lo podéis olvidar porque no tenéis.
+
+De hecho yo digo que no se tienen que motivar la solicitud de información. Pregunto porque mi derecho y chico. Donde la presentamos? Qué tal lo que os comentaba antes? Lo podéis presentar de forma presencial? Lo que la que utilizamos en principio es la vía formularios. Web que depende de cada organismo que aquí hablábamos de la gincana, porque porque como os he comentado antes y también se recogen los documentos.
+
+Nosotros si queremos hacer una solicitud de información al Ministerio de Agricultura, rectas y llames, pero bueno. Como cambia tanto el nombre pero en la agricultura pues yo voy al portal este que vamos a ver al portal de transparencia de las AJE y la hago ahí tipo de información. Pero qué pasa si yo le quiero hacer una pregunta a Madrid a la Comunidad de Madrid?
+
+Tengo que ir al portal de transparencia? La Comunidad de Madrid está solo ahí? Quiero hacerle una la Generalitat, tengo que ir al portal de transparencia y hacérsela? O podéis imaginar cuando no sé hasta qué punto si supongo que no sabéis no, pero hay ciertas materias en España como son educación, por ejemplo y sanidad que no lo lleva que él o bien concentrar lo llevan en Administración p***.
+
+Eso que pasa que cada vez que te queremos cierta información en cibio de algo relacionado con salud o con educación, tenemos que hacer 17 solicitudes de información. Cada uno en su portal de transparencia de cada comunidad autón. Esto es como lo decimos nosotros la de encana de venga a ver a ver este portal que me solicita a ver este que barrera me pone y a ver este cuándo me contesta.
+
+Esto para nosotros una carga de trabajo enorme. Intentamos evitarlo lo máximo posible. Entonces lo que hacemos es quedarnos la mayoría de veces en el portal de transferencia de. Que es la que vamos a hacer? También hay la forma de por email, pero esto esto es un poco más concreto que es un poco.
+
+Hay otras leyes que por ejemplo es una ley que hace toda la información medioambiental que sí que te permite hacer solicitudes, simplemente enviando un email. Imagínate bueno. Lo mejor que nos ha pasado en la vida. Qué pena que sea solo para información mediante Sigo os voy a enseñar estas cosas tan bonitas que son unas pantallas para que me encontré una presentación antigua de cómo era antes el portal de transparencia para hacer una solicitud y he dicho vamos a hacer una vuelta por la antigüedad.
+
+Como podéis ver súper fácil de ver? Un pedacesible. Ahora ahora voy como hacer la realidad de actuar. Pero precioso. Me voy a ir un poco para que también sepáis un poco cómo actualmente se hace esta solicitud de transparencia. Volvemos al portal de transparencia. Y estamos en Derecho acceso. Solicita información.
+
+Por favor quiero que contéis cuántos clips hay que hacer para empezar a hacer una solicitud, porque es que esto de verdad es como y me parece que lo hacen a.
+
+Ya estoy en la sede del portal 3. A qué quiero derecho? Haces otra vez sí? Que quiero ahora el ejercicio de Derecho acceso. Sí, exacto. Venga, ahora ya hemos empezado a hacerle. Ya no sé cuánto que les llevamos. Creo que 45. Quiero hacer una solicitud a casa real.
+
+Si quiero acceder a un papel ahora ahora voy a lograr. Como os contaba que son las formas de lo que antes no puedes hacer una solicitud sin lograr tener. No sé si para muchos vosotros, sino tenéis certificado. Es una caca porque no vais a poder pasar de este paso.
+
+Pero bueno que sepáis un poco que esta es la barrera principal. Si no tiene muy certificado clave y no nos puede pasar. Utilizar las claves de. Y ya estoy dentro. Ahora por fin entraba a hacer mi solicitud. Los datos y ahora tengo que poner con el que de contacto.
+
+Aquí es donde tengo que poner el asunto y la información que solicita y desde aquí ya todo bien el siguiente.
+
+Si tarda mucho me salgo porque Es un poco y ya solo queda un paso, o sea que ya sabéis más o menos. Después de haber contado los 500 clics que he tenido que dar, ya sabéis más o menos cómo se llega a hacer la solicitud. Como podéis ver lo que os comentaba al principio, los pasos son más o menos exactamente los mismos, o sea, habrá cambiado muy bonito, pero está más o menos igual.
+
+Si no te digo que ahora está incluso peor. La segunda parte que es un problema para nosotros. Cuándo te va a resolver la solicitud de información, pues tienen un mes la realización pública para contemplar la información que ha solicitado. Pero se puede si te decides según ellos demasiado grande o no pueden atenderla en ese mes porque desde gorda pueden ampliarla a dos meses.
+
+Pueden haber pasado ese mes y que no tenían contestado. Sí perfectamente el silencio administrativo negativo, que es decir que te las denegado por silencio. Esto pasa un montón de veces que simplemente no te contestan. Ha pasado veces que han ampliado el plazo y no han contestar tanto, ya que toda la causística es.
+
+O cuánto después? Qué parte es la del recurso de consofantasmas? Para que os hagáis una idea de esto de los tiempos y porque para nosotros es un problema tanto a nivel periodístico que lo es como a nivel también de gestión de tiempo dentro del equipo. Pongo un ejemplo de una solicitud que yo hice.
+
+Creo que en el documento tenéis otro caso que es completamente diferente a este, pero en el que se narra cómo tardamos más de un año en conseguir la información que queríamos sobre personal eventual de la prensa pública. Esto se trataba de denuncias de acoso sexual dentro de administración pública.
+
+Una solicitud que comencé allá por el 2023. El 21 del libro vale la disolución me la dieron casi dos meses después. Porque tenés en cuenta que hay un pequeño problemita que no entra ahí en la Ley de Transparencia que no se habla. Que es que cuando yo hago la solicitud no empieza la tramitación.
+
+No empieza a contar el naide que yo hago la solicitud. Empieza a correr en vez de este que el organismo al que yo solamente se lo he mandado, empieza a tramitar la solicitud. Eso puede ser cuando yo quiera y eso puede ser fuego. Puede ser después, o sea que esto lo del mes sobre papel, pues muy bien, pero después en la realidad puede convertirse en más tiempo.
+
+Como podéis ver? Qué pasó en esa resolución? Esa resolución me dijeron que la información que yo estaba pidiendo no estaban manos del Ministerio de función pública que era quien le había solicitado la información y que le pidiera la información que estaba solicitando a cada uno de los ministerios si la quería si no es que ellos no lo reconocen.
+
+Yo puse una reclamación hasta el Consejo de transparente ante el Consejo de transparente con gobierno, que ahora os contaré un poco más sobre ello, diciendo que que no me parecía bien. Y qué función pública debería tener esa información? O al menos? Si no la tenía, debería direccionarme? A qué persona la tenía?
+
+La resolución de consejo de transparencia me dio la razón, no quiero adapta anfibios. Y dijo que tenía que el ministerio de función pública tenía que hacer una acción retroactiva y comenzar la solicitud desde el principio. Y lo que hizo el Ministerio fue abrir 21. Procedimientos de solicitud de información, una por cada ministerio os podéis imaginar cuando vi los 22 expedientes creados La carrera de trabajo que es seguir los documentos, las notificaciones, las resoluciones, la reclamaciones y después no te dan información de coincidió expedientes o sea.
+
+La respuesta de los ministerios los conseguí. Pues eso casi alguna casi un año después de haber comenzado en la primera solicitud. Para que nos hagáis una idea de los tiempos con los que trabajamos. Esta parte es lo que os contaba de qué hacemos cuando uno no nos contestan, ni bien ni mal a la reclamaciones o lo que nos contestan.
+
+No nos parece que bien ni es suficiente y han contestado una cosa que nos estamos preguntando que pasa algunas veces. No lo que hacemos es recurrir al Consejo de transparencia donde el gobierno. Esto es importante para vosotros porque se trata de otra página web totalmente diferente. Ya nos estamos en el puerto de transparencia.
+
+No estamos en la sede del portal de transparente. Ahora estamos en el Consejo de transparencia y la sed del Consejo de transferencia que es a través de donde se hacen los recursos. Así que ya hemos complicado, no ya hemos terminado. Bueno, hemos terminado, siempre se termine porque le pendiente lo sigue teniendo como abierto en el puerto de transparencia, pero ahora tenemos otro procedimiento nuevo en el Consejo.
+
+Aquí os pongo un poco otra vez. Como hay que hacer? Le echas un vistazo si queréis pero es un proceso relativamente parecido al de solicitud, simplemente tienes que exponer por qué no te han contestado porque si te han contestado no te han contestado y que contestación tendrá y por qué crees que deberían darte la información que has pedido porque no está completa.
+
+Como aquí podéis ver si he recibido respuesta. Entonces imaginaos con todo este percal, no de hacemos solicitudes en el puerto de transparencia, tardan meses hay 500 notificaciones entre que se comienzan. Se termina el procedimiento entre ellas notificación de comienzo de tramitación. Notificación de ampliación del plazo de respuesta. Notificación de resolución.
+
+Ese sería solo en el portal de transparente, si llega bien más o menos en un tiempo por de dos meses tres meses y en muchos casos en muchísimos casos. Como no estamos de acuerdo con la contestación, nos tenemos que ir al portal del Consejo de transparencia y aquí los tiempos del Consejo de transparencia son bastante más grandes.
+
+El Consejo de transparencia tiene. Tres meses para contestar y últimamente están como un poco atascados y no contestan. Tres meses se puede demorar un poco entonces poneros que si entra el Consejo de transparencia y se nos vaya a cuatro meses cinco meses y tenés otra cosa en cuenta que es que la resolución que haga el Consejo de transparencia imaginaos que hemos hecho una reclamación y el Consejo de transparencia de insomnio tiene razón Silvio tiene razón en reclamar y la meditación no la da la información que solicitada.
+
+Entonces le dice a la meditación te damos 15 días para darle la información a fingida y la administración dice que bueno no dice nada. Si la administración no tuviera de acuerdo con el sobre la ley, la administración no estuviera de acuerdo con esa resolución y consejo de transparencia. Lo que tendría que hacer es llevar al Consejo de transparencia esa resolución a.
+
+A un Contencioso Administrativo. La realidad es que la administración se ha dado cuenta de que no le pasa nada porque el Consejo de transparencia no tiene poder sancionador. Entonces si no respondes ni llega ni llega esa resolución a juicio, simplemente pues ahí se queda en un limbo en el que no da la información y en el que nadie le dice nada porque no hay ninguna sanción por no contestar la resolución por no hacer lo que las resolucion.
+
+Topeando así imaginado no después de el año y pico aún así. Por eso que no consigas nada y magnífico María perdóname si lo digo por dejar luego tiempo para preguntas. Si no se lo damos cinco minutos, no sé cómo que te quedará o vale ya está, pues listo, era solo por eso por dejar luego tiempo porque a las 8 tenemos el pica pica y demás y puedo dejar al menos.
+
+Medio de dieta larga para hacer preguntas. Vale y como os comentaba, cómo hacemos todo este seguimiento de anfibio que a veces es un poco caótico. Con un artista nada nada fancy nada súper guay Que es un state porque para nosotros funciona muy bien. Que tiene ciertos campos que tenemos que rellenar a la mano y por ejemplo, las fechas límites las va creando automáticamente.
+
+Esto además está conectado con todo, pero manda todos los días una a las 8 mía o un email con ciertas cosas como con ciertos avisos, no. Fechas que se van acercando. Hay fechas que tienen que tener en cuenta etcétera. A que este es nuestro registro y como podéis ver aquí arriba es de la pantalla en el extremo tenemos una pestaña para solicitudes y otra pestaña para reclamación que están unidas, pero también tener en cuenta que el número de estudiantes de las reclamaciones es diferente al de las solicitudes, pero lo que hacemos es conectar esas dos.
+
+Expedientes para que sepamos siempre donde hacer el acompañamiento completo. Y como os decía este nuestro email de todos los días donde nos dice que solicitudes tenemos que reclamar por silencio administrativo cuando ya ha pasado x tiempo desde que se debería haber cumplido desde que deberían habernos dado una respuesta.
+
+La solicitud es que tenemos que reclamar las alegaciones que tenemos que presentar. Y esto ha sido una última incorporación, o sea que bien a lo de las alegaciones y las declamaciones ganadas por un testar que esta es la parte última que os comentaba que aquí hacemos con un contador famoso ya de un poco de cachondeo porque tampoco sirve para nada, pero estas son las reclamaciones.
+
+Estas que se han quedado ahí en el limbo y que la meditación no va a dar y nadie les va a decir que lo están. Vale, ya he terminado, no sé si os ha aclarado mucho. Gracias a ti María por toda la explicación. La idea ahora es recibimos la idea.
+
+Ahora es eso que podáis preguntarle a María dudas que os hayan entrado cosas que queráis profundizar un poco más sobre los básicamente. Los dos problemas que ha comentado resolverlas vale también tendremos mañana para que María solo estará solo estará hoy y mañana sí que estará también Carmen preguntando respondiendo nada.
+
+Aprovechemos este rato y después tenemos a las 8. El pica pica que tendremos para cenar que estará fuera y podéis aprovecharlo por algo en el equipo, pues empezar a idear cosas, pensar cosas, si alguno se quiere flipar, pues ya empezar esta noche en vuestra casa donde queráis juntos y mañana tenemos todo el día para empezar a trabajar juntos vale, pero creo que aprovechamos este rato para idear un poco el Discovery.
+
+Sé que es poco rato y es mucha cantidad de información, pero bueno intentemos hacer lo que queramos. Hay una pregunta ya que creo que está respondida, pero bueno por. Asegurar vale pregunta Carlos precioso. Cuál es el porcentaje de solicitudes de derecho de acceso respondidas pero sus ignoradas o denegadas y tiene como decides si se responde o no?
+
+La primera creo que lo sacamos para el en el documento de Discovery. Creo que está la cifra concreta que se sacó del ertele que tenemos actualmente. Este table tampoco tiene muchos años con los que tiene tres años. No no tenemos el histórico ahí de todas las reclamaciones y es verdad que no sé que no hacemos como un seguimiento concreto de respondidas ignoradas.
+
+Denegadas explícitamente nosotros en sitios por qué porque hay veces pongo un ejemplo. No hay veces que la administración dice que dan la resolución, te dice respondida. Pero tú ves la información y dices esto. Yo no le he preguntado y lo que me ha respondido en absoluto ha respondido a lo que yo te he preguntado.
+
+Pero bueno si tú dices que respondidas pues che. La propia clasificación que hace la administración no coincide muchas veces con la nuestra. Entonces sería como una doble clasificación, no? De no haber respondido si ellos dicen acceso total dan acceso total a la información. Dan acceso parcial o es denegatorio?
+
+Son esas posibilidades que tienen de resolver una reclamación por si la equidad periodista te digo que simplemente no reponerla no? Pero como que nuestra categorización no es la misma que la del Ministerio y aún así, nosotros dentro no hacemos una categorización de ninguna clasificación. Cuál es el sentido de la de la resolución?
+
+Aprovecho mientras dudas ahí o sería útil tener una recopilación de que preguntas que se han respondido? Cuál es ignorado? No lo hacéis, pero a lo mejor os podría ser útil y podemos y alguien puede ser útil, quizás incluso para. Estoy pensando quizás un poco para ver, pero es que hay muchas depende.
+
+Quería decir un poco para verlo. Cómo ver receptivo está la administración un poco desde nuestra perspectiva, no, pero también depende mucho de que preguntes nosotros hay. Muchísimas preguntas que sabemos que con un 90% de probabilidades no nos van a responder, o sea como como que más o menos conocen los límites y sabes también que estás preguntando demasiado que no, entonces como que tampoco veo que unos números así amplios nos dijeron desde fuera.
+
+Nos dijeran como mucha información sobre quizás más sobre la carga de trabajo para nosotros. Sí hemos hecho una reclamación consejo de transparencia, pero no siempre lo hacemos. Vamos un poco caso. Acaso nos hace que punto una visión general de todo el proceso sería como útil. Más allá de un poco saber qué está pasando.
+
+En nuestro caso del Livio concreto, no sé si he respondido. Javi rubio nos dice si puedes compartir las slides si las que puedes compartirlas podéis ponerla por algún canal que tengamos o aquí mismo y si las comparto pero si las tiene todo el mundo. Aprovecho y me vas a matar, pero si no habrá mucha pregunta lo aquí.
+
+Si luego, puedes comentar cada pregunta y crea un hilo respondiendo brevemente para que quede un poco la respuesta de cada pregunta. Aquí me mandas te mato un poco porque te voy a hacer estar un rato escribiendo, pero bueno, si no intentaremos intentaremos responder. Carmen que también más o menos se conoce esto.
+
+O sea que mañana también le podéis la podéis a la pobre. Preguntar vaya Carmen la que te. Vale Jorge, nos pregunta en qué sección o parte del portal accedéis más frecuentemente? Sección ninguna parte del portal la sede electrónica para ver los expedientes y para solicitar información es básicamente que nosotros nos pasamos, nos saltamos el portal y vamos a la sede, de ahí que preguntaba Carmen porque la última estas últimas semanas nos habíamos dado cuenta de que había cambiado la sed del portal de transparencia, pero no el puerto de transparencia porque habíamos dicho café que es la otra parte porque en el portal de transparencia solo aterrizamos si es para como medio para ir a.
+
+Si queréis hacer preguntas en directo más que next likes levantando la mano y esta es mi mirada. De dominadas tenemos una pregunta por aquí. Vale, gracias. Hola María, gracias por la información. Quería hacerte tres preguntas respecto de un poco de flujo de trabajo que tienen con el tema de la solicitudes o las reclamaciones que hacen en primero.
+
+Primero se me ocurría medio follow up de la pregunta anterior. Esa solicitud es que llegan denegadas o respondidas por ellos pero no para ustedes como con mal clasificados vendría a ser ustedes hacen retomar? Quiero decir insiste en preguntar o no o no hacer ese seguimiento eso por un lado.
+
+Después me gustaría preguntarte si hay algún proceso que ustedes ya tengan automatizado en relación a ese erte. En relación a la actualización de la información, quiero decir algún alguna conexión que yo tengan hecha en el arte. No sé que les levante información del email y les actualice alguna respuesta.
+
+Alguna clasificación algún etiqueta o es todo registro manual? Y lo último te quería preguntar y me olvidé. Ya me voy a cortar. Si querés que voy te voy contestando las preguntas vale a la primera no solemos retomar porque si nos parece suficientemente interesante. La que hacemos? Hacemos una reclamación al Consejo de transparencia.
+
+O sea que no volvemos a empezar es raro, o sea, no sé que diga muy bien. Esta pregunta la hice súper mal, pero normalmente las preguntas las solemos como o sea, ya son muchos años no? Entonces sabemos más o menos cómo tenemos que formular la arquetips. Qué tal? Entonces normalmente si nos contestan lo que queremos nos vamos al Consejo de transparente, vale?
+
+Mi pregunta era solo por saber si ustedes le hacen seguimiento, porque por ahí les interesa tener la información de cuáles están rechazadas o no sé para poder saber cuáles tienen que hacer seguimiento a eso me refería. De mi listado de 100 solicitudes tengo 20 que te han rechazadas, entonces poder clasificar a cuáles voy a ir a otro lugar o a lo que sea a seguir consultando y cuál es por ahí no.
+
+O sea, por ejemplo, eso está en el table. Tenemos cuando nosotros despegamos no está. Nosotros tenemos el desplegable de estar respondida está respondida y tenemos otro en el desplegable que es en reclamación en reclamación. Se abre porque ya hemos reclamado el Consejo transparencia. Hay algunas que si nos vemos que no tienen interés para nosotros como Fundación, pues simplemente las dejamos ahí como nos han contestado, pero no nos ha gustado o nos han denegado la información y no la hacemos seguimiento.
+
+Eso está en el tablet, por ejemplo. Y la segunda parte que me decías del table es como te conté, o sea, no sé si hay una parte que es manual del lertable de poner yo que sé no me lo expediente el inicio de tramitación. Por ejemplo, lo que tenemos automatizado es que por ejemplo, como claro, es un mes, nosotros tenemos empiezo de tramitación y ponemos la fecha a mano y no nos calcula pues este día tienen que haberte dado la información.
+
+Por ejemplo, tenemos otra columnita que es que aplica el artículo 21 el artículo 21 de este que os comentaba de un mes más. Si nosotros ponemos aplica el artículo 21 el día tal no nos vuelve a automatizar la fecha en la que tenemos que estar pendiente para si no reclamar, o sea como hay ciertas fechas que las haces de forma automática y otras que las tenemos que hacer.
+
+Hola María, me gustaría preguntarte si cualquier ciudadano o cualquier sociedad con un CIF que haga una solicitud tiene un máximo de solicitudes. Yo entiendo que vosotros estáis continuamente haciendo solicitudes y no sé si está ocupado por nombre o por CIF y si tenéis que cambiar de CIF o de personas para aliviar.
+
+De esa manera. No sé qué me puedes contar sobre este punto. Lo que te puedo contar sobre este punto es que no es lo que podemos hacer. 500 solicitudes nos tienen que responder siempre que sean solicitudes y ahora os cuento la segunda parte. No nosotros hacemos muchas solicitudes, pero son solicitudes de varios ministerios sobre varios temas.
+
+No hacemos 15 solicitudes más o menos del mismo tema como una solicitud para un tema. Un auto solidido a otro ministerio etcétera, pero hay que. En cuenta que en la Ley de Transparencia hay una parte de inadmisión de solicitudes que es por ser repetitiva, pero esto sólo se aplica.
+
+Si imaginaos esto se aplica algunas veces que es cuando tú de verdad pones a una a una persona hacer 15 veces la misma o también se dan casos en los que la persona un poco ansia no no espera el mes y vuelve a hacer la misma solicitud y es como haberte la enanito porque pérate un poquito que te contestemos.
+
+Sí que hay esos casos lo que te pueden admitir. Si eres un poco pesado, te digo que como sociedad no hay ningún límite que te diga como persona, no hay ningún límite de.
+
+Hola María, qué tal? No sé si me ves. Me levanto que nada un par de preguntas. La reclamación es a estos portales ningún ciudadano. Puede ver qué reclamaciones hay en curso? Entiendo. No, pero sí que puedes ver qué reclamaciones en el Consejo de transparencia y buen gobierno. Hay un listado de reclamaciones resueltas sobre las de las del segundo nivel de reclamación, las del Consejo.
+
+También podéis acceder a también un listado en el portal de transparencia a solicitudes afectadas denegadas etcétera, así que hay un Excel sobre de hecho, sacamos de ahí un tema en el que sacamos la información de que el límite que más se utilizaba hay una serie de límites para no darte la información dentro de la Ley de Transparencia, no el límite que más utilizaba.
+
+Según analizando. Estos datos que están en el portal de transparencia era el límite de intereses económicos. Esto por ejemplo utiliza mucho imagínate Renfe cuando le pides había una pregunta, me acuerdo no que es qué algoritmo utiliza Renfe para sacar el precio de los billetes. Cambia mucho y entonces te dijo que lo desinformación porque por competencia por interés económico, sino la competencia.
+
+Iba a saber cómo ponía el precio de los billetes. Ese límite se lo sacamos toda esa información de un eje que hay en el puerto de tratamientos. Puedes echar un vistazo antes de montos iban dirigidas hacia execte y lo que tenéis interno eso. Es muy privado salvo que podría ser público.
+
+Es privado porque están los temas de los que de los que preguntamos. Entonces! Básicamente, yo creo que a lo mejor si no, si filtráramos y no pusiéramos los temas sobre qué se trata, pero es como algo súper interno y al final, al ser un medio de comunicación, obviamente tenemos nuestros temas, no en cartera que no que no queremos que se conozca de liderazgo.
+
+Cuando toque de la manera que toque, no hay varias preguntas sobre esto, vale sobre el table, justamente esto es público o no? Qué campos tenéis en vuestro table? Si podéis volver a enseñarlo y dar un listado de estos campos, pregunto también cómo pueden acceder a esto, si existe alguna API o pueden usar una API o algo.
+
+Eso, aunque sea privado, puedes compartir el modelo de datos? Creo que me pasasteis si no recuerdo mal una tabla nonitizada de esto. Como ejemplo esto lo puedo compartir, no lo he compartido. Quería comprobarlo con vosotras pero lo puedo poner. Es anonizado y es un poco que podéis hacer a la idea.
+
+Tengo un airtable con estos datos y a partir de ahí creo que podéis jugar y luego ellos que conecten a la API que consideren, pero podéis jugar con esto. Yo creo que esto sí que se lo podemos, podemos compartir? Las cabeceras que tenemos simplemente en las columnas que tenemos os lo puedo yo pasar por aquí por el de aquí y lo tenéis.
+
+Vale, pues sigo, sigo por aquí que había algunas más que han saltado. Qué es lo que más os duele? Lo que es la? Como se dice somitir el envío no la apertura el seguimiento. Otra cosa que es lo que tú dirías. Dónde podemos ayudar más? Para mí para mí personalmente, pero esto probablemente Carmen.
+
+Tenga una perspectiva, pero a mí me molesta un montón. Que no sea como accesible para la ciudadanía en general ya no tanto como a mí el cielo y por eso decía al principio de porque esto no porque una persona que no tenga ni idea de esto no puede encontrar información que es interesante para para ella.
+
+Y la otra parte que a mí personalmente me mata es la fragmentación no? O sea esto que comentaba de las 17 solicitudes de información? Que entiendo que tiene que ser así, pero es una cosa que a mí me da un trabajo. En las otras cosas que os decía es que el portal de transferencia podría ser muchísimo más útil de lo que es.
+
+O sea, ahora mismo es un agregado de información que ahora está un poco más clara al menos no, pero como que podría ser un sitio donde yo como periodista y encontrar información útil y simplemente me parece que es un poco. Agrego aquí links y ya está entonces. Si estés entendiendo bien, podríamos aportar tanto de cara al ciudadano.
+
+Porque yo tenía algunas expectativas y ahora ha sabido un montón de melones. Entonces tengo confusión como dónde enfocar no ayudamos a algo muy interno de cilios exclusivamente, pero ahora me hablas de esa fragmentación que es más hacia el ciudadano no? Entonces, ambas dos están bien para vosotros. Cuál es vuestra expectativa?
+
+Cuál sería un éxito? Para cuál sería un éxito para ti de este jacanto? Un poco personal y yo creo que sobre todo Carmen no ha trabajado mucho con el equipo para para enfocar muy bien el jaquetón y os decía. No es eso ejemplo que os he enseñado de subvenciones contratos, etcétera que el portal de transparencia sea útil de verdad y no sea un agregador, es como una de las prioridades que nosotros estábamos y que creo y por eso lo elegimos que es el doble combo no de que nos sirva a nosotros y que no tengamos que ir a la sirva para buscar información y que anfilando también le sirva porque como he enseñado imagínatelo de las subvenciones, o sea, todo un ciudadano le da un link y se va a esa página web horrible que no funciona y lo has perdido, simplemente es acto de esa información.
+
+Podrían ser mucho más clara ser útil de verdad y no ser simplemente para hacerlo, Chester la ley y yo creo que esa es una parte o sea como que todo esto lo hemos pensado, por eso te decía que era como mi opinión personal, pero todo esto está pensado y el.
+
+Enfocado bien para que los dos los dos objetivos, el de el de que os sirva como ciudadanos y también que nos sirva a nosotros como equipo tenéis las listas de todas esas portales fragmentados tenéis un recopilado o tendríamos que extraerlo a nosotros de alguna manera? Si hay trabajo ya avanzado en ese respecto?
+
+Por vuestra parte creo que puede ser que por un Excel por ahí perdido, pero es que no es muy difícil. Lo difícil es lo de después como el agregador no porque tú pones portal de transparencia de Andalucía y te sale el primer rinco o sea como que no es como súper complicado es más como el proceso de gestionar todo eso, pero yo creo que para eso tres o cuatro hackettones más.
+
+Tienes por ahí gente o de momento un velvente es la mano. Si queréis preguntas por aquí vale tengo por aquí cuatro para hacerte cinco preguntas. Pregunta Jorge se crean reclamaciones en caso de que el portal de transparencia no sea transparente, entendiendo transparente como define el BOE? Y en caso de que sí como?
+
+Si el portal de transparencia no es transparente, que en lo que lo mira es el Consejo de transparencia y el Consejo de transparencia tiene su portal de transparencia o sea? No digo nada. Yo digo pero sí si la publicidad activa no se cumple. Puedes hacer una reclamación de transferencia diciendo que debería haber algún documento publicado en nuestro publicado.
+
+No sé si era esa la pregunta, pero si no está publicado si hay ese proceso de reclamación. Y alguno más? Si quieres baloncesto trabajo una más es el portal de transparencia. Con qué público objetivo se crea? Sabéis si ciudadanía entra y con qué motivo suele meterse un ciudadano y eso y el público objetivo no de con qué objetivo.
+
+Hacía aquí lo han creado si lo sabemos o lo intuís. O sea, yo creo que esta mejora que han hecho el cambio muy bueno porque es como está mucho más centrado en un ciudadano que no tiene ni idea de esto y entonces entra y puede leer y de hecho está como toqueteando y como que te cuenta mucho no te cuenta mucho del portal de transferencia, lo cual ya pues nos pasó genial porque si veías la anterior el portal de transparencia anterior era como esto es que hacer para cafeteros aquí solo va a entrar una persona que sea periodista muy probablemente.
+
+Los proyectos tenemos esa sensación no que del derecho acceso solo lo conocemos y lo hacemos los periodistas. Y en realidad no o sea el derecho acceso e para toda la gente y para toda ciudadanía. No sé qué tiene en mente el gobierno, pero el público objetivo debería ser toda la ciudadanía y el de hacer la solicitud de información exactamente igual sin distinción.
+
+Por eso no nos cabrea mucho la parte de que se tenga que identificar, así que más te da quien sea porque tú tienes que saber quién te está preguntando. Es un ciudadano un tuyo término. Entiendo que necesitan un email para contestarle, pero es toda la información que debería ser obligatorio.
+
+Yo no entiendo por qué tienes que saber que yo estoy haciendo esa pregunta. O sea que vives aparte de porque la identificación que es una barrera para mí principal para mí y yo creo que para toda ciudadanía, o sea como que un certificado electrónico para hacer una pregunta. Eso ya te está quitando una cantidad de gente enorme.
+
+Entonces eso no sé si he contestado, pero el público objetivo debería de ser todos y en realidad lo poco que llegamos de los conceptos. Quizás sí, eso sí, preguntamos aquí en la sala, quien conocía el portal de transparencia y que es conocida que podría solicitar información a la Administración Pública, pues tenemos ahí un poco la prueba de cómo funciona esto?
+
+Hola María, bueno los chicos ya despejaron varias las dudas que tenía, pero tengo claridad del antes el durante y ahora tengo una pregunta muy sencilla sobre el después, que es que lo que sucede cuando pensemos en un caso de éxito, o sea, te llega esa información? Finalmente, cómo viene empaqueta esa información?
+
+Hay control algún problema? En esa información podría ser? Se podría mejorar en un desastre? Me gustaría como abrir esa caja negra que yo personalmente desconozco. Primero si me responde lo que quiero lloro de alegría de emoción increíble y segundo después de el charco porque te ha mandado un pdf el escaneado en periodista.
+
+Nosotros la solicitud en todas las solicitudes. Ponemos que por favor nos envíen la información en formato reutilizables súper importante, esto hay veces que dicen tengo el pelo, te lo voy a escanear y ha pasado muchas veces, o sea, no estoy hablando de una vez que. Una pasión detrás meta para algunos funcionarios.
+
+No hablamos de todo. Y después otras veces imaginaos genial. Un tsv increíble. Eso ya increíble, es decir, un tesor de con toda la información que he pedido casos de éxito. Qué pasa si la información que te dan no está completa? Eso es lo que os comentaba de ellos. Pueden decir que me han respondido y que me han dado acceso total a la información que yo solicitaba y yo hablo ese CSV y digo pues aquí solo está una de las tres cosas que preguntaba.
+
+Entonces me toca ir a hacer una reclamación. Horrible porque hay un pequeño problema y es que no no hay comunicación directa. Eso tú no puedes volver a decir. Oye que me falta aquí información no no olvídate y de hecho lo hemos intentado algunas veces no de intentar contactar con el ministerio de oye que ha funcionado y algunas veces imaginaos se les ha olvidado adjuntar un documento y ahí he dado con la persona que lo llevaba.
+
+Quien lleva esto se llaman en la oit que son las unidades de transparencia de lo que misterios. Y si he conseguido hablar con esa auditel. He dicho oye que haga falta un documento. Me la han mandado no, pero de normal no hay esa comunicación. Ese debate con la meditación en absoluto te han dado información.
+
+Si no te gusta pues te vas al Consejo tu Ten en cuenta también otra pequeña es horrible que es que el consejo que no hay que meter este hack. Esto ya lo estoy contando por porque estoy aquí dándome contando mi libro, pero el Consejo de transparencia que habéis visto solo sirve para la AG y para actualmente creo que son cuatro o cinco comunidades autónomas.
+
+El resto de comunidades autónomas tienen sus propios consejos de transpar. Así os lo dejo ahí, pues eso ya os vais creando vosotros ideas para la siguiente sesiones. Si tenéis alguna 15 minutos vale entonces la digo. Algunas preguntas más que espero responder todas las que hay ahora mismo. Si intentaremos responderlas que hay ahora mismo más las que están ahí.
+
+Que está ahí en persona y cerramos, pero si no nos a las 8 traerán todo bien aquí. Hola María, sí, justo creo que abriste el tema de las mamuchicas del Consejo de transparencia. Te voy a preguntar quién es quién conforma el Consejo de transparencia y quién lo controla. El Consejo de transparencia me has dicho el portal de transparencia el Consejo de transparencia.
+
+El Consejo de transparencia ahora mismo acaba de entrar una nueva directora. El poquito que no que lo lleva lo eligen desde el Congreso. La verdad es que no sé muy bien. No te puedo contar como lo eligen pero acaba de terminar su mandato el último director. Y lo conforman poquita gente es sorprendente.
+
+Por ejemplo, las reclamaciones creo que son como unas 30 personas, las que lo llevan que muchísimo trabajo para poca gente y también que os digo que los tiempos no siempre se cumplen, pero para los autores no es como una dejadez, sino que ya lo pobreza un poco hasta arriba.
+
+Y la parte jurisdicción activa la lleva otra otro equipo no y todos los años hacen su informe de cómo ven ellos la publicidad activa, o sea que sí que hacen una serie de recomendaciones a las administraciones para que ellos vayan mejorando las cosas que vienen y todo esto es el Consejo de transparencia es lo que lo que decíamos tiene su virtudes y tiene sus limitaciones que son que no tienen poder dar muchas recomendaciones pero la administración puede.
+
+Vale, voy a juntar dos preguntas que creo que es un lado, una que ya creo que lo hemos hablado alguna vez. Nosotros se pueden hacer solicitudes en nombre de otra persona y la uno? Con otra pregunta, que hace flor de sería útil tener un portal para recibir ustedes de manera simple de personas que no sepan cómo gestionar estas solicitudes y gestionarlas vosotras ha pedido de esta gente?
+
+Empiezo por la última porque quizás Carmen podemos encontrar más esto, pero hay que portal ya existió y se murió y lo hizo Silvio. Hace 500.000 años el de hacer solicitudes por otra persona se llama. Se llamaba el pobre tu derecho a saber. Si lo buscáis creo que está que está capado.
+
+Ya está que ya funciona, pero durante muchos años estuvo funcionando y la gente enviaba a Silvio sus preguntas y titulancia en el nombre. De esa persona creo que al final se fue un poco de madre y era muchísimo lo que tenía que gestionar como poco ves. Ya así murió el 10 de diciembre de 2015.
+
+Hay un rico una página. Por si lo podéis pero murió solo por eso porque No luchó muy bien. Sí que soy sincera, no sé si Carmen. Lo sabes mejor. Sí, por lo justo por el último cambio con lo del certificado por la obligación a identificarse con certificado digital. O sea antes, sí que se podían hacer a nivel de administración pública por email y por eso hicimos como ese intento de ponerlo.
+
+Unificarlo y tal y en el momento en que metieron esa traba, pues ya se fue todo. Al garete que es una de las complicaciones del certificado. Es como una barrera de acceso muy grande para mucha gente. Es una manera muy difícil para nosotros de hacer seguimiento de todas las solicitudes, porque todo es a través de un único certificado.
+
+Cada vez que nos mandan una actualización de cada solicitud, hay que acceder para ver el contenido de qué ha pasado? Sabes como una traba grande para muchas cosas para seguimiento para acceso. Vale, vamos rápido. Quedan 13 minutos siguiente. Es la forma de comunicación con los distintos organismos y para actualizarse sobre las solicitudes.
+
+Es siempre por mail. No es por la sede del portal de transparencia. Ahí es donde recibimos todo. Normalmente te llega cada vez que suben una notificación. Te llega una notificación, te llega un email y eso es lo que comentamos en parte del documento de Discovery que es que tuve en el email.
+
+No sabes muy insol que pone el número de expediente y no sabe de qué documento sea que te tienes que lograr utilizar tu certificado y entrar en la sede electrónica para ver en el título del documento. Si es una resolución una notificación de comienzo de trámite, un tal o cual la resolución solo se visitan toda la información o no.
+
+Cuando descargas el documento tienes fecha de caducidad los documentos, o sea que si no entras en x tiempo caducan la notificaciones y sí creo que. No por email, solo es con esto que os decía que es una ley concreta que sobre medio ambiente, pero es súper pequeñita y apenas hacen solicitudes por esa ley ante los datos de España en llamas de un proyecto que tenemos y que la solicitamos vía email con esta ley, pero el resto de información se solicita a través de la sede electrónica del puerto de.
+
+Vale, sigo flor. También pregunta qué información creen que puede ser más relevante para la ciudadanía en general, en caso de poder tener un portal público que recopile todo lo que hoy exista de manera fragmentada. Si existirá que cuál es la información que queréis más que fuera más relevante. Yo creo que ya para empezar y ya esto imagínate pidiendo la carta de los reales de los Reyes Magos no yo como ciudadana y no como trabajadora de cibio.
+
+Me encantaría que en un solo portal estuviesen todos los portales de contratación, o sea que yo pudiese buscar mi localidad y estuviese la información de esa localidad no me tuviera que ir al portal de la localidad después el portal de la Comunidad Autónoma porque no? O sea como que hubiese un portal de transparencia donde tuviese?
+
+Toda la información de la meditación pública de España estaría genial. Si no estuviese esa fragmentación no, pero ya digo que esto es un poco. Yo como ciudadana me gustaría buscar mi municipio y decir. Voy a ver las cuentas de ningún sitio. Voy a ver los presupuestos. Voy a ver la ejecución presupuestaria y de haberlo contratos.
+
+Voy a ver el del pueblo al lado, no sé, pero eso es. Mi opinión está Carmen tenga otra diferente. Pregunta Sergio, la metodología de las solicitudes está la plantilladas, es decir, tenéis una forma específica en la que hay que pedir cada cosa para que no te lo echen para atrás que lo tengáis ya detectado.
+
+No hacemos investigación concreta de cada solicitud. Hacemos investigación de dónde creemos que pueden estar esos datos a quién tenemos que pedírselo. Imagínate si en una memoria xD el año del Ministerio tal me dicen que hay estos datos y a mí me interesa, pues les pido concretamente los datos que están recogidos que están citados en la memoria x ficheros estadísticos, o sea como que siempre es un poco investigación previa de dónde creo que puede estar los datos y quien puede tener que tener un poco como una pregunta abierta, no, pero eso lo hacemos anfibio al estar muy especializados.
+
+Hay otra parte que es que deberían orientarse sobre dónde está la información que estás buscando esto no siempre se cumple, pero tú como ciudadano puedes hacer también. Una pregunta mucho más abierta. En principio, vamos como. A lo que queremos, soy Sergio, soy el que te hizo la pregunta. Más bien iba enfocada a lo que decías de que cuando te echaban para atrás una solicitud que a lo mejor te los llevaban porque no lo habías pedido de una manera, no lo había indicado.
+
+Una cosa, eso es lo que me refería si tenéis detectadas esas formas específicas de pedirlo para que no te no echen para atrás por tonterías por no salir nada porque también depende mucho de lo que esté imagínate. Cada ministerio tendrá un funcionario al cargo y uno son más más que otros o otros unos están más en línea con compartida, información y otros menos.
+
+Entonces como que también entra ahí la parte personal que no siempre es como predecible. Vale, tenemos una la última por aquí por el slack que es conocéis usáis superboy.es y aquí añado si usáis o conocéis algunas webs más que puedan hacer esto, que estén haciendo también este trabajo en los que podamos fijarnos o ver cómo hacen y poder aprovechar eso.
+
+El de Super Bowl yo no conocía, pero es verdad que quien lee todos los días el BOE, la codirectora, Eva Belmonte que tiene una una parte de cobertura del BOE diario donde hace artículos del BOE. Entonces normalmente todo lo que tenga que ver con el BOE. Como ella se lo lea a diario tampoco, o sea como que no es necesario que hagan un seguimiento, ya lo hace ya no lo pasa igual y ella lo que hace es leer el BOE, pero con esa mirada también de explicar las cosas bien y que tiene interés.
+
+Realmente no en el buey. Todos los días hay un montón de cosas que no tienen como chicha y que tampoco interesante para la ciudadanía en general y otras cosas que sí que son importantes conocer y esos terminan siendo un artículo que se publica civil. Voy a continuar con preguntas hasta que me digáis Álex que está el catering.
+
+Dale un par más vale. Cuando esté el catering y así no, no estamos esperando. Vale la siguiente es qué tal funciona el buscador del listado de todas las solicitudes que se han hecho? Muestra todas las solicitudes de una lo tienes todo? Paginado se puede buscar por palabras clave? Entiendo que hay buscador Steward.
+
+Le pregunto, entiendo que el buscador es de live peibol o? El del portal de transparencia. No, no hay palabras clave, no hay nada en el buscador. Solo tienes que conoces el número de expediente eso en que te sale, eso es lo que tienes que ver y lo vas buscando uno por uno.
+
+De hecho ha habido como el cambio cuando veáis cuando entréis. No entendemos muy bien un cambio que han hecho dentro de la sede y es que te pone preguntas. Y en otra parte te ponen carpeta ciudadana. Qué significa carpeta ciudadana? Para nosotros vamos a ni idea. La cuestión es que nosotros todo el histórico de resolución es decidio, está en carpeta ciudadana y no en preguntas hechas.
+
+Nuestra idea es que probablemente sean todas las anteriores a que hicieran ese cambio de la web de la sede electrónica que le han metido en carpeta ciudadana y las nuevas las más recientes las han puesto en preguntas recientes, pero no hay ningún tipo de buscador. Vale, la última que tengo sin ninguna más es tienen necesidades relacionadas a capacitar o hacer un borde de colaboradores nuevos de manera más ágil.
+
+Abrimos otro otro melón pero que no puede ser interesante si tenéis esa necesidad. El problema cuando hemos hecho intentado hacer colaboraciones que les muestro de forma puntuales es que somos poquísimos, o sea como que el día a día nos come bastante a todos y meter a una persona externa de carne y también os lo podéis comentar de primera mano, pero al final somos cuatro periodistas.
+
+Una de ellas es por ellos fuera. Y son tres la parte de desarrollo y uno de el codirector. Entonces como somos muy poquitas personas meter una persona bien es como. Trabajo que tenemos que tener como muy calculado un controlado. Entonces tenemos hacemos colaboraciones pero super puntuales.
+
+Perdón si como para aclarar un poco yo hice esa pregunta última que sí habría otro melón, pero en realidad se me ocurrió preguntar cuando decías específicamente o sea le respondías la pregunta. No me acuerdo el que te preguntaba sobre el plastillado de las solicitudes, me imagino que.
+
+Perdón, me imagino que debe haber muchos escenarios en donde quizás colaboradores nuevos dentro de sibio gente nueva que no tiene el recorrido que tienen ustedes. Ya no tenga claro cómo hacer las solicitudes. Cómo responder? Dónde buscar digo? Debe haber mucha información que ustedes tienen que sería interesante. Por ahí ver si tiene la necesidad de volcarla en algún lado como para que una persona nueva que aleatoriamente venga a colaborar.
+
+Ustedes le ganó andá y le detecta el guía o fíjate hacerte este vídeo o digo como un campus decívio que sería como esto otro melón, pero por ahí sería interesante pensar. Lo hicimos hace muy poquito justo con cómo solicitar información y cómo hacer reclamaciones tenéis si os interesa tenéis un curso de carboncilla.
+
+Tú sabes cinco o cinco email siete emails donde semanalmente te manda sirio. Te mando un email. Paso a paso cómo solicitar información y cómo reclamado y como todos los tips que tenemos. Nosotros de nuestro conocimiento de años está volcado todo en ese curso de totalmente gratuito. Obviamente por email que tenéis en la web del PIB en algún sitio justo lo opuesto y ahí intentamos recopilar de manera sencilla.
+
+Toda la experiencia que tenían los periodistas a la hora de que no es tanto plantilla ni nada, pero sí, como tú, con maneras de un pelín, todo lo intentamos buscar ahí para ayudar a cualquier persona a no experta, no incluso no periodista a intentar hacer suspiritos en estos sin sufrir demasiado.
+
+Pues creo que cerramos pero tenemos ya el catering. Si no está, tiene que estar allá? Muchísimas gracias, María y es fuertísimo
