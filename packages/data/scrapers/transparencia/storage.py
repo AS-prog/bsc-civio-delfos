@@ -78,6 +78,7 @@ class TransparenciaStorage:
 
     def save_page_detail_parquet(self) -> Optional[Path]:
         sections_rows = []
+        accordion_rows = []
         links_rows = []
 
         for p in self._pages:
@@ -87,6 +88,15 @@ class TransparenciaStorage:
                         "url": p.url,
                         "heading": s.heading,
                         "text": s.text,
+                    }
+                )
+            for ord_, item in enumerate(p.accordion_items, start=1):
+                accordion_rows.append(
+                    {
+                        "url": p.url,
+                        "ord": ord_,
+                        "title": item.title,
+                        "content": item.content,
                     }
                 )
             for l in p.external_links:
@@ -105,6 +115,15 @@ class TransparenciaStorage:
             path = self.warehouse_dir / "transparencia_sections.parquet"
             pl.DataFrame(sections_rows).write_parquet(str(path))
             logger.info("exported %d sections to %s", len(sections_rows), path)
+
+        if accordion_rows:
+            path = self.warehouse_dir / "transparencia_accordion.parquet"
+            pl.DataFrame(accordion_rows).write_parquet(str(path))
+            logger.info(
+                "exported %d accordion items to %s",
+                len(accordion_rows),
+                path,
+            )
 
         if links_rows:
             path = self.warehouse_dir / "transparencia_links.parquet"
