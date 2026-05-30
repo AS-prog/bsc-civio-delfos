@@ -1,4 +1,4 @@
-ºº# Plan de enfoque — Buscador ciudadano de contratación pública (Equipo Delfos · OPP-1a)
+ººœ@# Plan de enfoque — Buscador ciudadano de contratación pública (Equipo Delfos · OPP-1a)
 
 > Plan de **estrategia/abordaje**, no de implementación. Sin código todavía: define QUÉ construimos, CÓMO lo afrontamos en un día y en qué orden.
 
