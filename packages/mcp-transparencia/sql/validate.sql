@@ -13,6 +13,8 @@ SELECT 'pages' AS relation, count(*) AS rows FROM transparencia.pages
 UNION ALL
 SELECT 'sections', count(*) FROM transparencia.sections
 UNION ALL
+SELECT 'accordion', count(*) FROM transparencia.accordion
+UNION ALL
 SELECT 'links', count(*) FROM transparencia.links
 UNION ALL
 SELECT 'resource_types', count(*) FROM transparencia.resource_types
@@ -28,6 +30,10 @@ WHERE url IS NULL OR url = ''
 UNION ALL
 SELECT 'sections.page_url', count(*)
 FROM transparencia.sections
+WHERE page_url IS NULL OR page_url = ''
+UNION ALL
+SELECT 'accordion.page_url', count(*)
+FROM transparencia.accordion
 WHERE page_url IS NULL OR page_url = ''
 UNION ALL
 SELECT 'links.source_page_url', count(*)
@@ -46,6 +52,11 @@ FROM transparencia.sections s
 LEFT JOIN transparencia.pages p ON p.url = s.page_url
 WHERE p.url IS NULL
 UNION ALL
+SELECT 'orphan accordion', count(*)
+FROM transparencia.accordion a
+LEFT JOIN transparencia.pages p ON p.url = a.page_url
+WHERE p.url IS NULL
+UNION ALL
 SELECT 'orphan links', count(*)
 FROM transparencia.links l
 LEFT JOIN transparencia.pages p ON p.url = l.source_page_url
@@ -55,6 +66,11 @@ WHERE p.url IS NULL;
 \echo '5. Duplicated ord per page: expected 0 rows'
 SELECT 'sections' AS relation, page_url AS url, ord, count(*) AS rows
 FROM transparencia.sections
+GROUP BY page_url, ord
+HAVING count(*) > 1
+UNION ALL
+SELECT 'accordion', page_url, ord, count(*)
+FROM transparencia.accordion
 GROUP BY page_url, ord
 HAVING count(*) > 1
 UNION ALL
@@ -168,6 +184,11 @@ SELECT 'empty sections', count(*)
 FROM transparencia.sections
 WHERE coalesce(heading, '') = ''
   AND coalesce(text, '') = ''
+  AND coalesce(content, '') = ''
+UNION ALL
+SELECT 'empty accordion', count(*)
+FROM transparencia.accordion
+WHERE coalesce(title, '') = ''
   AND coalesce(content, '') = ''
 UNION ALL
 SELECT 'links without anchor_text', count(*)

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "transparencia": {
+      "type": "local",
+      "enabled": true,
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "packages/mcp-transparencia",
+        "python",
+        "packages/mcp-transparencia/mcp_server.py"
+      ],
+      "env": {
+        "POSTGRES_HOST": "localhost",
+        "POSTGRES_PORT": "5432",
+        "POSTGRES_DB": "civio",
+        "POSTGRES_USER": "civio"
+      }
+    }
+  }
+}

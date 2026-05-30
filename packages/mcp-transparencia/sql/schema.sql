@@ -39,6 +39,19 @@ COMMENT ON TABLE transparencia.sections IS 'Bloques de contenido textual extraid
 COMMENT ON COLUMN transparencia.sections.ord IS 'Orden estable calculado por pagina durante la carga ETL.';
 COMMENT ON COLUMN transparencia.sections.content IS 'Contenido ampliado si el scraper lo proporciona; puede incluir texto antes separado en acordeones.';
 
+CREATE TABLE IF NOT EXISTS transparencia.accordion (
+    id bigserial PRIMARY KEY,
+    page_url text NOT NULL REFERENCES transparencia.pages(url) ON DELETE CASCADE,
+    ord integer NOT NULL,
+    title text,
+    content text,
+    UNIQUE (page_url, ord)
+);
+
+COMMENT ON TABLE transparencia.accordion IS 'Acordeones server-rendered extraidos de cada pagina del Portal de Transparencia.';
+COMMENT ON COLUMN transparencia.accordion.ord IS 'Orden estable del item de acordeon dentro de la pagina.';
+COMMENT ON COLUMN transparencia.accordion.content IS 'Texto expandido del panel del acordeon.';
+
 CREATE TABLE IF NOT EXISTS transparencia.resource_types (
     id bigserial PRIMARY KEY,
     code text NOT NULL UNIQUE,
@@ -123,6 +136,7 @@ ON CONFLICT (name) DO UPDATE SET
 CREATE INDEX IF NOT EXISTS idx_pages_materia_slug ON transparencia.pages(materia_slug);
 CREATE INDEX IF NOT EXISTS idx_pages_search_tsv ON transparencia.pages USING gin(search_tsv);
 CREATE INDEX IF NOT EXISTS idx_sections_page_ord ON transparencia.sections(page_url, ord);
+CREATE INDEX IF NOT EXISTS idx_accordion_page_ord ON transparencia.accordion(page_url, ord);
 CREATE INDEX IF NOT EXISTS idx_links_source_ord ON transparencia.links(source_page_url, ord);
 CREATE INDEX IF NOT EXISTS idx_links_target_host ON transparencia.links(target_host);
 CREATE INDEX IF NOT EXISTS idx_links_resource_type ON transparencia.links(resource_type_id);
