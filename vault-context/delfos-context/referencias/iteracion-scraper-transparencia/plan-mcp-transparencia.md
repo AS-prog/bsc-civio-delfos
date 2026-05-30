@@ -29,6 +29,54 @@ Reutilizar el patrón de conexión `psycopg` de
 `packages/data/tests/smoke/test_connection.py` y las deps ya presentes
 (`psycopg[binary]`, `typer`); añadir `mcp>=1.2`.
 
+## Build vs. buy: `postgres-mcp` (Postgres MCP Pro)
+
+Existe un MCP **genérico** para Postgres ya hecho —
+[`postgres-mcp`](https://pypi.org/project/postgres-mcp/) (Postgres MCP Pro, de Crystal DBA,
+licencia abierta)— que conviene evaluar antes de escribir tooling propio. Expone **9 tools**
+genéricas sobre cualquier base Postgres:
+
+| Tool | Para qué |
+|---|---|
+| `list_schemas` | enumera esquemas |
+| `list_objects` | tablas, vistas, secuencias, extensiones de un esquema |
+| `get_object_details` | columnas, constraints, índices de un objeto |
+| `execute_sql` | ejecuta SQL (read-only en modo restringido) |
+| `explain_query` | planes de ejecución, con índices hipotéticos vía `hypopg` |
+| `get_top_queries` | consultas más lentas vía `pg_stat_statements` |
+| `analyze_workload_indexes` | recomienda índices a partir del workload |
+| `analyze_query_indexes` | recomienda índices para hasta 10 consultas dadas |
+| `analyze_db_health` | chequeos de salud (índices, cache, vacuum, conexiones, replicación) |
+
+Características relevantes para nosotros:
+- **Modo de acceso** `--access-mode=restricted`: transacciones **read-only** parseando el SQL
+  con `pglast` (rechaza `COMMIT`/`ROLLBACK` para que no se eluda). Encaja con que nuestro
+  corpus es de **solo lectura**.
+- **Transportes**: `stdio` (default) y `sse`/HTTP (`--transport=sse`, p.ej. `:8000`).
+- **Instalación**: `pipx install postgres-mcp`, `uvx postgres-mcp`, o `docker pull
+  crystaldba/postgres-mcp`. Conexión por `DATABASE_URI` (URI estándar de Postgres).
+- **Extensiones**: para tuning/health pide `pg_stat_statements` y `hypopg` (superuser).
+- **Probado** en Postgres 15–17; clientes Claude Desktop, Cursor, Windsurf, Goose.
+
+**Decisión recomendada — híbrido, NO reemplazo.** `postgres-mcp` y nuestro MCP resuelven cosas
+distintas y son complementarios:
+
+- `postgres-mcp` da acceso **SQL crudo** sobre el esquema. Es excelente para **exploración
+  durante el desarrollo**, validar el ETL, mirar planes y revisar salud de la base — sin
+  escribir una línea. Pero expone tablas tal cual: un agente que llame `execute_sql` no sabe
+  que `materia_slug` no es un organismo emisor, ni que "subvención" aquí es un enlace.
+- Nuestro MCP existe **justo por eso**: tools **semánticas y honestas** (`get_page`,
+  `list_organisms`, `get_links_by_category`) cuyos docstrings encuadran el dato y evitan que
+  el agente alucine montos/años que el corpus no tiene. Esa curaduría es el valor del corpus,
+  y un servidor SQL genérico no la puede dar.
+
+Por tanto: usar `postgres-mcp` en **modo restringido** como herramienta de exploración/QA del
+equipo (y opción de SQL ad-hoc para usuarios avanzados), y mantener `mcp-transparencia` como la
+**superficie curada de cara al agente** en producción. Adoptar de su diseño dos ideas: (1)
+ofrecer un `--access-mode` read-only por defecto, y (2) si más adelante hace falta, su tool
+`explain_query`/health como inspiración para diagnósticos. No re-implementar index-tuning:
+si se necesita, se usa `postgres-mcp` directo.
+
 ## Fases (incrementales, cada una con verificación)
 
 ### Fase 2 — Capa SQL del MCP
@@ -71,6 +119,29 @@ Archivos: `packages/mcp-transparencia/.mcp.json.example`, README.
   PageData completo, y `list_organisms()` devuelve el resumen.
 - HTTP en :8000 (puerto ya expuesto): opcional, vía **servicio `mcp` nuevo en compose**
   (no reusar `data` para no romper su smoke test). Diferido a v2.
+- **Opcional — registrar también `postgres-mcp` (exploración/QA, read-only).** Junto a
+  nuestro server, en el mismo `.mcp.json`:
+
+  ```json
+  {
+    "mcpServers": {
+      "transparencia": {
+        "command": "python",
+        "args": ["packages/mcp-transparencia/mcp_server.py"],
+        "env": { "POSTGRES_HOST": "localhost", "POSTGRES_DB": "civio" }
+      },
+      "postgres-civio": {
+        "command": "uvx",
+        "args": ["postgres-mcp", "--access-mode=restricted"],
+        "env": { "DATABASE_URI": "postgresql://civio:***@localhost:5432/civio" }
+      }
+    }
+  }
+  ```
+
+  `transparencia` = superficie curada de cara al agente; `postgres-civio` = SQL crudo
+  read-only para exploración. Para SSE: `... --transport=sse` y el cliente apunta a
+  `http://localhost:8000/sse`.
 
 ## Archivos críticos
 - A reutilizar: `packages/data/tests/smoke/test_connection.py` (patrón psycopg).
@@ -83,6 +154,9 @@ Archivos: `packages/mcp-transparencia/.mcp.json.example`, README.
   en docstrings. (Confirmar si preferís renombrar la tool a `list_materias()`.)
 - Si la base no habilitó `unaccent`/`pg_trgm`, `search_pages` usa solo `tsvector`
   (sin fuzzy/acento-insensible).
+- Si se adopta `postgres-mcp` para tuning/health, requiere `pg_stat_statements` + `hypopg`
+  (superuser). Para el caso read-only de exploración no hacen falta. Mismo riesgo de
+  privilegios `CREATE EXTENSION` que ya marca el [plan de base de datos](plan-base-datos-transparencia.md).
 
 ## Verification (de este plan)
 1. Fase 2-3: `pytest packages/mcp-transparencia/tests/` verde.
