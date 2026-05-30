@@ -1,0 +1,7 @@
+O para que estoy para para? Ahí te empieza a hablar en cordobés. Me han corrigiendo entonces qué vamos a hacer? Vamos a levantar un modelo de datos. Ya lo tenemos envasado en el Jason l que tenemos. Limpiamos el modelo de datos y lo dejamos de la mejor manera con comentarios en columnas comentarios en tablas para que luego lo pueda consumir un mcp.
+
+El mcp debe ser en Python. Ese mcp debe tener dos partes la parte de SQL y la parte de las reglas en martons para que lo pueda entender bien. Y smcp debería poderse conectar con cualquier agente que lo pueda leer. Levantar clientes servidor al lado y lado y ejecutar contra la base de datos de podcast.
+
+Básicamente sería eso alguna idea más? Ahora queremos dividir esto en dos tareas para así poder dividirnos la carga. Y a la hora de dividir las dos tareas, queremos antes de empezar a implementarlas pushear hacer. Push a engram para luego en cada ordenador hacer un import y así dividirnos las tareas y cuando tengamos implementada.
+
+Cada pedazo de la solución de nuevo hacer push a engran. Y terminar conectando las dos tareas. Gracias a engram!
