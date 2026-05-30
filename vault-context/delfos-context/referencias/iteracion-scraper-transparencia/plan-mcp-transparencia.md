@@ -108,6 +108,36 @@ Archivos: `packages/mcp-transparencia/marts/{rules,aggregations,enrichments}.py`
 
 - `list_organisms` conserva el nombre del doc por compatibilidad, pero el docstring aclara
   que devuelve **materias** (categorías temáticas), no entidades emisoras.
+
+#### Resources (capa complementaria, opcional)
+
+Las **tools** (arriba) son la superficie primaria — model-driven, soportada por todos los
+clientes. Sobre ellas se puede sumar **resources** MCP: documentos *read-only* direccionables
+por URI que el usuario/cliente adjunta al contexto (no los "ejecuta" el modelo). Para un corpus
+de solo lectura encajan natural; son una **capa de presentación fina sobre `queries.py`** (Fase
+2), sin duplicar lógica:
+
+| Resource (URI) | Tipo | Devuelve |
+|---|---|---|
+| `transparencia://pages` | estático | catálogo `{url, title, materia}` de todas las páginas |
+| `transparencia://page/{slug}` | plantilla | página completa renderizada (markdown) |
+| `transparencia://materia/{slug}` | plantilla | páginas agrupadas por materia |
+
+```python
+@mcp.resource("transparencia://pages")
+def pages_catalog() -> str:
+    return render_catalog(queries.list_all_pages())          # reusa la capa SQL
+
+@mcp.resource("transparencia://page/{slug}", mime_type="text/markdown")
+def page_resource(slug: str) -> str:                          # {slug} de la URI → argumento
+    return render_markdown(queries.fetch_page_by_slug(slug))
+```
+
+> **Caveat de soporte**: el soporte de resources es **desparejo entre clientes** (es justo la
+> razón por la que `postgres-mcp` eligió tools en vez de resources). Tratarlos como **suma**,
+> no como reemplazo: nunca mover funcionalidad de una tool a un resource. Diferible a v2 si el
+> cliente objetivo (Claude Code) no los aprovecha.
+
 - **Verificación**: `mcp dev mcp_server.py` (MCP Inspector) o `tests/test_tools.py`.
 
 ### Fase 4 — Integración con agente
