@@ -10,7 +10,7 @@ Pásale solo estos datos:
 TU_IP_VPS = 91.134.240.217
 SERVER  = http://TU_IP_VPS:18080
 PROJECT = mi-proyecto
-TOKEN   = ENGRAM_CLOUD_TOKEN = b3be760d0dd38c9af65d44ecd52b4fed71463e295b90806b4dbd5809693beb2b
+TOKEN   = ENGRAM_CLOUD_TOKEN = <token-entregado-por-canal-seguro>
 ```
 ### Paso 1: comprobar que tiene Engram instalado
 
