@@ -5,7 +5,7 @@ Fase 1 del corpus de Publicidad Activa: schema Postgres y ETL desde Parquet.
 El ETL lee por defecto el warehouse externo:
 
 ```text
-C:\Users\marin\Documents\hackathon\data 2\data\warehouse
+C:\Users\marin\Documents\hackathon\data 3\data\warehouse
 ```
 
 Los Parquet no se copian al repositorio.
@@ -30,11 +30,12 @@ El schema se crea en `transparencia` y carga:
 
 - `transparencia.pages`
 - `transparencia.sections`
+- `transparencia.accordion`
 - `transparencia.links`
 - `transparencia.resource_types`
 - `transparencia.link_patterns`
 
-`accordion` no es obligatorio en esta fase. Se conserva `accordion_count` en `pages` y el texto indexable sale de `sections.text` y `sections.content`.
+`accordion` se carga desde `transparencia_accordion.parquet` cuando existe. Si falta, el ETL mantiene compatibilidad y carga 0 acordeones. `search_tsv` combina pagina, secciones y acordeones.
 
 ## Validacion
 

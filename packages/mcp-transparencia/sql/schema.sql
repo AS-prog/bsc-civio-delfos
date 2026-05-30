@@ -20,9 +20,20 @@ CREATE TABLE IF NOT EXISTS transparencia.pages (
 
 COMMENT ON TABLE transparencia.pages IS 'Paginas rastreadas del Portal de Transparencia en Publicidad Activa.';
 COMMENT ON COLUMN transparencia.pages.url IS 'URL canonica usada como identificador estable de la pagina.';
+COMMENT ON COLUMN transparencia.pages.canonical IS 'URL canonica declarada por la propia pagina, si existe.';
+COMMENT ON COLUMN transparencia.pages.status_code IS 'Codigo HTTP observado durante el rastreo.';
 COMMENT ON COLUMN transparencia.pages.breadcrumb IS 'Ruta de navegacion normalizada como array nativo.';
+COMMENT ON COLUMN transparencia.pages.title IS 'Titulo principal extraido de la pagina.';
+COMMENT ON COLUMN transparencia.pages.updated_at IS 'Fecha de actualizacion publicada por el portal, si se pudo parsear.';
+COMMENT ON COLUMN transparencia.pages.section_count IS 'Numero de secciones informado por el scraper para la pagina.';
+COMMENT ON COLUMN transparencia.pages.accordion_count IS 'Numero de acordeones informado por el scraper para la pagina.';
+COMMENT ON COLUMN transparencia.pages.external_link_count IS 'Numero de enlaces externos informado por el scraper para la pagina.';
+COMMENT ON COLUMN transparencia.pages.internal_link_count IS 'Numero de enlaces internos informado por el scraper para la pagina.';
+COMMENT ON COLUMN transparencia.pages.crawled_at IS 'Fecha y hora en que el scraper proceso la pagina.';
+COMMENT ON COLUMN transparencia.pages.materia_raw IS 'Valor original del campo materias en el Parquet, si viene informado.';
 COMMENT ON COLUMN transparencia.pages.materia_slug IS 'Categoria tematica derivada del path o del campo materias; no representa una entidad emisora.';
-COMMENT ON COLUMN transparencia.pages.search_tsv IS 'Indice de busqueda textual en castellano construido desde pagina y secciones.';
+COMMENT ON COLUMN transparencia.pages.materia_label IS 'Etiqueta legible de la materia, derivada de materia_raw o del slug.';
+COMMENT ON COLUMN transparencia.pages.search_tsv IS 'Indice de busqueda textual en castellano construido desde pagina, secciones y acordeones.';
 
 CREATE TABLE IF NOT EXISTS transparencia.sections (
     id bigserial PRIMARY KEY,
@@ -36,8 +47,31 @@ CREATE TABLE IF NOT EXISTS transparencia.sections (
 );
 
 COMMENT ON TABLE transparencia.sections IS 'Bloques de contenido textual extraidos de cada pagina.';
+COMMENT ON COLUMN transparencia.sections.id IS 'Identificador surrogate de la seccion cargada.';
+COMMENT ON COLUMN transparencia.sections.page_url IS 'URL de la pagina fuente a la que pertenece la seccion.';
 COMMENT ON COLUMN transparencia.sections.ord IS 'Orden estable calculado por pagina durante la carga ETL.';
+COMMENT ON COLUMN transparencia.sections.heading IS 'Encabezado de la seccion, si existe.';
+COMMENT ON COLUMN transparencia.sections.text IS 'Texto principal de la seccion extraido por el scraper.';
 COMMENT ON COLUMN transparencia.sections.content IS 'Contenido ampliado si el scraper lo proporciona; puede incluir texto antes separado en acordeones.';
+COMMENT ON COLUMN transparencia.sections.materia_raw IS 'Valor original del campo materias replicado por el scraper.';
+
+CREATE TABLE IF NOT EXISTS transparencia.accordion (
+    id bigserial PRIMARY KEY,
+    page_url text NOT NULL REFERENCES transparencia.pages(url) ON DELETE CASCADE,
+    ord integer NOT NULL,
+    title text,
+    content text,
+    materia_raw text,
+    UNIQUE (page_url, ord)
+);
+
+COMMENT ON TABLE transparencia.accordion IS 'Items de acordeon desplegable extraidos de cada pagina.';
+COMMENT ON COLUMN transparencia.accordion.id IS 'Identificador surrogate del item de acordeon cargado.';
+COMMENT ON COLUMN transparencia.accordion.page_url IS 'URL de la pagina fuente a la que pertenece el acordeon.';
+COMMENT ON COLUMN transparencia.accordion.ord IS 'Orden estable del acordeon dentro de la pagina.';
+COMMENT ON COLUMN transparencia.accordion.title IS 'Titulo visible del item de acordeon.';
+COMMENT ON COLUMN transparencia.accordion.content IS 'Contenido textual dentro del panel desplegable del acordeon.';
+COMMENT ON COLUMN transparencia.accordion.materia_raw IS 'Valor original del campo materias replicado por el scraper.';
 
 CREATE TABLE IF NOT EXISTS transparencia.resource_types (
     id bigserial PRIMARY KEY,
@@ -47,6 +81,10 @@ CREATE TABLE IF NOT EXISTS transparencia.resource_types (
 );
 
 COMMENT ON TABLE transparencia.resource_types IS 'Tipos entendibles de recurso enlazado para UI y marts.';
+COMMENT ON COLUMN transparencia.resource_types.id IS 'Identificador surrogate del tipo de recurso.';
+COMMENT ON COLUMN transparencia.resource_types.code IS 'Codigo estable usado por ETL, vistas y futuras tools MCP.';
+COMMENT ON COLUMN transparencia.resource_types.label IS 'Etiqueta legible para mostrar el tipo de recurso.';
+COMMENT ON COLUMN transparencia.resource_types.description IS 'Descripcion funcional del tipo de recurso.';
 
 CREATE TABLE IF NOT EXISTS transparencia.link_patterns (
     id bigserial PRIMARY KEY,
@@ -60,8 +98,14 @@ CREATE TABLE IF NOT EXISTS transparencia.link_patterns (
 );
 
 COMMENT ON TABLE transparencia.link_patterns IS 'Reglas editables de clasificacion de enlaces por host y path.';
+COMMENT ON COLUMN transparencia.link_patterns.id IS 'Identificador surrogate de la regla de clasificacion.';
+COMMENT ON COLUMN transparencia.link_patterns.name IS 'Nombre unico y legible de la regla.';
 COMMENT ON COLUMN transparencia.link_patterns.host_match IS 'Expresion regular aplicada a target_host. NULL equivale a cualquier host.';
 COMMENT ON COLUMN transparencia.link_patterns.path_regex IS 'Expresion regular aplicada a target_path o target_url. NULL equivale a cualquier ruta.';
+COMMENT ON COLUMN transparencia.link_patterns.resource_type_code IS 'Codigo de resource_types asignado cuando la regla coincide.';
+COMMENT ON COLUMN transparencia.link_patterns.category IS 'Categoria analitica de mayor nivel usada por vistas y marts.';
+COMMENT ON COLUMN transparencia.link_patterns.priority IS 'Prioridad descendente para resolver multiples reglas coincidentes.';
+COMMENT ON COLUMN transparencia.link_patterns.enabled IS 'Permite desactivar una regla sin borrarla.';
 
 CREATE TABLE IF NOT EXISTS transparencia.links (
     id bigserial PRIMARY KEY,
@@ -82,7 +126,18 @@ CREATE TABLE IF NOT EXISTS transparencia.links (
 );
 
 COMMENT ON TABLE transparencia.links IS 'Hipervinculos normalizados encontrados en las paginas rastreadas.';
+COMMENT ON COLUMN transparencia.links.id IS 'Identificador surrogate del hipervinculo cargado.';
+COMMENT ON COLUMN transparencia.links.source_page_url IS 'URL de la pagina donde se encontro el enlace.';
+COMMENT ON COLUMN transparencia.links.ord IS 'Orden estable del enlace dentro de la pagina fuente.';
+COMMENT ON COLUMN transparencia.links.target_url IS 'URL destino normalizada y resuelta contra la pagina fuente.';
+COMMENT ON COLUMN transparencia.links.target_host IS 'Host en minusculas extraido de target_url.';
+COMMENT ON COLUMN transparencia.links.target_path IS 'Path extraido de target_url, usado para clasificacion.';
+COMMENT ON COLUMN transparencia.links.anchor_text IS 'Texto de ancla visible del enlace.';
+COMMENT ON COLUMN transparencia.links.file_extension IS 'Extension de archivo detectada en el path del destino, si existe.';
 COMMENT ON COLUMN transparencia.links.scope IS 'Ambito derivado del enlace: internal, external, download o noise.';
+COMMENT ON COLUMN transparencia.links.is_download IS 'Flag derivado para enlaces a documentos descargables.';
+COMMENT ON COLUMN transparencia.links.is_noise IS 'Flag derivado para enlaces sin valor analitico, como anclas o javascript.';
+COMMENT ON COLUMN transparencia.links.materia_raw IS 'Valor original del campo materias replicado por el scraper.';
 COMMENT ON COLUMN transparencia.links.pattern_id IS 'Regla de mayor prioridad que clasifico el enlace.';
 COMMENT ON COLUMN transparencia.links.resource_type_id IS 'Tipo funcional asignado al enlace.';
 
@@ -123,6 +178,7 @@ ON CONFLICT (name) DO UPDATE SET
 CREATE INDEX IF NOT EXISTS idx_pages_materia_slug ON transparencia.pages(materia_slug);
 CREATE INDEX IF NOT EXISTS idx_pages_search_tsv ON transparencia.pages USING gin(search_tsv);
 CREATE INDEX IF NOT EXISTS idx_sections_page_ord ON transparencia.sections(page_url, ord);
+CREATE INDEX IF NOT EXISTS idx_accordion_page_ord ON transparencia.accordion(page_url, ord);
 CREATE INDEX IF NOT EXISTS idx_links_source_ord ON transparencia.links(source_page_url, ord);
 CREATE INDEX IF NOT EXISTS idx_links_target_host ON transparencia.links(target_host);
 CREATE INDEX IF NOT EXISTS idx_links_resource_type ON transparencia.links(resource_type_id);
@@ -169,6 +225,7 @@ LEFT JOIN transparencia.v_link_categories vc ON vc.id = l.id
 GROUP BY p.materia_slug, p.materia_label;
 
 COMMENT ON VIEW transparencia.v_organisms IS 'Resumen por materia tematica del portal. El nombre se conserva por compatibilidad; no son organismos emisores.';
+COMMENT ON VIEW transparencia.v_link_categories IS 'Enlaces enriquecidos con pagina fuente, regla de clasificacion y tipo de recurso.';
 
 CREATE OR REPLACE VIEW transparencia.v_search_pages AS
 SELECT
@@ -181,3 +238,5 @@ SELECT
     crawled_at,
     search_tsv
 FROM transparencia.pages;
+
+COMMENT ON VIEW transparencia.v_search_pages IS 'Vista ligera de paginas con el vector de busqueda textual ya calculado.';
