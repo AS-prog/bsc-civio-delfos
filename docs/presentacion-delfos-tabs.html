@@ -1,0 +1,1321 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Delfos — Transparencia pública, consultable</title>
+  <script>
+    // Aplica la preferencia de tema antes del render para evitar flash.
+    try {
+      var t = localStorage.getItem('html-effectiveness-theme');
+      if (t === 'v2') document.documentElement.classList.add('theme-v2');
+    } catch (e) {}
+  </script>
+  <style>/* Copyright 2026 Anthropic PBC · SPDX-License-Identifier: Apache-2.0 */
+/* ============================================================
+   tokens.css — design tokens
+   Cambia los valores de este archivo para reescribir la
+   identidad visual de toda la librería en un solo sitio.
+   ============================================================ */
+
+:root {
+  /* ── Color · superficie y texto ─────────────────────────── */
+  --ivory:    #FAF9F5;
+  --paper:    #FFFFFF;
+  --slate:    #141413;
+
+  /* ── Color · acentos ─────────────────────────────────────── */
+  --clay:     #D97757;
+  --clay-d:   #B85C3E;
+  --oat:      #E3DACC;
+  --olive:    #788C5D;
+  --rust:     #B04A3F;
+
+  /* ── Color · escala de grises ────────────────────────────── */
+  --gray-100: #F0EEE6;
+  --gray-200: #E6E3DA;
+  --gray-300: #D1CFC5;
+  --gray-500: #87867F;
+  --gray-700: #3D3D3A;
+
+  /* ── Tipografía ──────────────────────────────────────────── */
+  --serif: ui-serif, Georgia, "Times New Roman", Times, serif;
+  --sans:  system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono:  ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+
+  /* ── Tamaños de fuente ──────────────────────────────────── */
+  --fs-xs:   11px;
+  --fs-sm:   12px;
+  --fs-md:   14px;
+  --fs-base: 15px;
+  --fs-lg:   17px;
+  --fs-xl:   22px;
+  --fs-2xl:  30px;
+  --fs-3xl:  38px;
+  --fs-hero: clamp(38px, 5.4vw, 62px);
+
+  /* ── Radius ─────────────────────────────────────────────── */
+  --r-sm:    4px;
+  --r-md:    8px;
+  --r-lg:    12px;
+  --r-xl:    14px;
+  --r-pill:  999px;
+
+  /* ── Bordes ─────────────────────────────────────────────── */
+  --border: 1.5px solid var(--gray-300);
+
+  /* ── Sombras ────────────────────────────────────────────── */
+  --shadow-1: 0 1px 2px rgba(20, 20, 19, 0.04), 0 1px 3px rgba(20, 20, 19, 0.06);
+  --shadow-2: 0 10px 30px rgba(20, 20, 19, 0.10);
+  --shadow-3: 0 12px 32px rgba(20, 20, 19, 0.10);
+
+  /* ── Spacing (escala 4) ─────────────────────────────────── */
+  --s-1:  4px;
+  --s-2:  8px;
+  --s-3:  12px;
+  --s-4:  16px;
+  --s-5:  20px;
+  --s-6:  24px;
+  --s-7:  32px;
+  --s-8:  40px;
+  --s-9:  56px;
+  --s-10: 80px;
+
+  /* ── Anchos máximos de contenedor ───────────────────────── */
+  --container-sm: 760px;
+  --container-md: 1080px;
+  --container-lg: 1120px;
+  --container-xl: 1360px;
+}
+
+/* ============================================================
+   Tema alternativo · v2 "Cobalt Press"
+   Activación: añadir la clase .theme-v2 al elemento <html>.
+   Paleta fría editorial, sans grotesca para display,
+   esquinas casi rectas y hairlines de 1px.
+   ============================================================ */
+:root.theme-v2 {
+  /* Superficie y texto */
+  --ivory:    #F2F1EC;
+  --paper:    #FFFFFF;
+  --slate:    #0E1726;
+
+  /* Acentos */
+  --clay:     #2748C8;
+  --clay-d:   #1A33A0;
+  --oat:      #DDE3F2;
+  --olive:    #2E8B6B;
+  --rust:     #C8392B;
+
+  /* Acentos extra exclusivos de v2 (opt-in) */
+  --citrine:  #D4B73A;
+  --plum:     #6B3C8A;
+
+  /* Escala de grises (sesgo frío) */
+  --gray-100: #ECEBE5;
+  --gray-200: #DCDBD3;
+  --gray-300: #C2C2BD;
+  --gray-500: #74787F;
+  --gray-700: #2C313A;
+
+  /* Tipografía: display ahora es sans grotesca; serif solo decorativa */
+  --serif: "Iowan Old Style", "Charter", Georgia, "Times New Roman", serif;
+  --sans:  Helvetica, "Helvetica Neue", Arial, system-ui, sans-serif;
+  --mono:  ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+  --display: var(--sans);
+
+  /* Tamaños de fuente */
+  --fs-2xl:  32px;
+  --fs-3xl:  42px;
+  --fs-hero: clamp(42px, 6.2vw, 78px);
+
+  /* Radius más cuadrado */
+  --r-sm:    2px;
+  --r-md:    4px;
+  --r-lg:    6px;
+  --r-xl:    8px;
+
+  /* Borde hairline 1px */
+  --border: 1px solid var(--gray-300);
+
+  /* Sombras suaves con sesgo azul */
+  --shadow-1: 0 1px 0 rgba(14, 23, 38, 0.05), 0 1px 2px rgba(14, 23, 38, 0.06);
+  --shadow-2: 0 14px 28px rgba(14, 23, 38, 0.12);
+  --shadow-3: 0 18px 40px rgba(14, 23, 38, 0.14);
+}
+/* Copyright 2026 Anthropic PBC · SPDX-License-Identifier: Apache-2.0 */
+/* ============================================================
+   base.css — reset + tipografía base
+   Requiere tokens.css. Aplica estilos a los elementos HTML
+   nativos sin clases.
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--ivory);
+  color: var(--slate);
+  font-family: var(--sans);
+  font-size: var(--fs-base);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Headings ──────────────────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: var(--serif);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--slate);
+  margin: 0 0 var(--s-2);
+}
+
+h1 {
+  font-size: var(--fs-hero);
+  line-height: 1.06;
+  letter-spacing: -0.018em;
+}
+h2 { font-size: var(--fs-xl); line-height: 1.2; }
+h3 { font-size: var(--fs-lg); line-height: 1.3; }
+h4 { font-size: var(--fs-md); line-height: 1.4; }
+
+h1 em { font-style: italic; color: var(--clay); }
+
+/* ── Texto ────────────────────────────────────────────────── */
+p {
+  margin: 0 0 var(--s-3);
+  max-width: 70ch;
+}
+
+a {
+  color: var(--clay);
+  text-decoration-color: var(--oat);
+  text-underline-offset: 3px;
+}
+a:hover { text-decoration-color: var(--clay); }
+
+/* ── Código ───────────────────────────────────────────────── */
+code, kbd, samp, pre {
+  font-family: var(--mono);
+  font-size: 13px;
+}
+
+code {
+  background: var(--gray-100);
+  padding: 1.5px 5px;
+  border-radius: var(--r-sm);
+}
+
+pre {
+  margin: 0;
+  padding: var(--s-4) var(--s-5);
+  background: var(--paper);
+  border: var(--border);
+  border-radius: var(--r-md);
+  overflow-x: auto;
+  line-height: 1.6;
+}
+pre code {
+  background: transparent;
+  padding: 0;
+}
+
+/* ── Separadores ──────────────────────────────────────────── */
+hr {
+  border: none;
+  border-top: 1px solid var(--gray-300);
+  margin: var(--s-6) 0;
+}
+
+/* ── Listas ───────────────────────────────────────────────── */
+ul, ol { margin: 0 0 var(--s-3); padding-left: var(--s-5); }
+li { margin-bottom: var(--s-1); }
+
+/* ============================================================
+   Tema alternativo · v2 "Cobalt Press" — overrides para base
+   Solo aplica si <html class="theme-v2">.
+   ============================================================ */
+.theme-v2 {
+  body {
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  h1 {
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    font-weight: 800;
+  }
+  h2 { line-height: 1.18; letter-spacing: -0.018em; }
+  h3 { line-height: 1.28; }
+  h4 {
+    font-size: var(--fs-xs);
+    line-height: 1.4;
+    font-family: var(--mono);
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+  }
+
+  /* La itálica del h1 es la única licencia "editorial" para la serif */
+  h1 em {
+    font-family: var(--serif);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  p { max-width: 68ch; }
+
+  a {
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--clay);
+    text-underline-offset: 4px;
+  }
+  a:hover { text-decoration-color: var(--slate); color: var(--slate); }
+
+  /* Blockquote decorativo en serif (no existe en v1) */
+  blockquote {
+    margin: var(--s-5) 0;
+    padding-left: var(--s-5);
+    border-left: 2px solid var(--clay);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: var(--fs-xl);
+    line-height: 1.35;
+    color: var(--slate);
+  }
+
+  ul li::marker { color: var(--clay); }
+}
+/* Copyright 2026 Anthropic PBC · SPDX-License-Identifier: Apache-2.0 */
+/* ============================================================
+   components.css — clases de componentes reutilizables
+   Requiere tokens.css y (recomendado) base.css.
+   ============================================================ */
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.wrap   { max-width: var(--container-lg); margin: 0 auto; padding: 0 var(--s-7); }
+.page   { max-width: var(--container-sm); margin: 0 auto; }
+.page--md { max-width: var(--container-md); margin: 0 auto; }
+.page--lg { max-width: var(--container-lg); margin: 0 auto; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(316px, 1fr));
+  gap: var(--s-5);
+}
+
+.split-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-5);
+}
+.split-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-5);
+}
+@media (max-width: 880px) {
+  .split-2, .split-3 { grid-template-columns: 1fr; }
+}
+
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--ivory);
+  border-bottom: var(--border);
+  padding: var(--s-3) var(--s-5);
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+}
+
+/* ============================================================
+   TIPOGRAFÍA UTILITARIA
+   ============================================================ */
+.eyebrow {
+  font-family: var(--mono);
+  font-size: var(--fs-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-bottom: var(--s-3);
+}
+.eyebrow--accent {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+}
+.eyebrow--accent::before {
+  content: "";
+  width: 24px;
+  height: 1.5px;
+  background: var(--clay);
+}
+
+.label {
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gray-500);
+}
+
+.mono { font-family: var(--mono); }
+.muted { color: var(--gray-500); }
+
+/* ── TL;DR box ───────────────────────────────────────────── */
+.tldr {
+  background: var(--paper);
+  border: var(--border);
+  border-left: 3px solid var(--clay);
+  border-radius: var(--r-md);
+  padding: var(--s-4) var(--s-5);
+  margin: 0 0 var(--s-3);
+}
+.tldr--dark {
+  background: var(--slate);
+  color: var(--ivory);
+  border: none;
+  border-radius: var(--r-lg);
+  padding: var(--s-5) var(--s-6);
+}
+.tldr--dark .tldr-label { color: var(--oat); }
+.tldr-label {
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gray-500);
+  margin-bottom: var(--s-2);
+}
+
+/* ============================================================
+   ETIQUETAS INLINE
+   ============================================================ */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-1);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  background: var(--gray-100);
+  border: var(--border);
+  color: var(--gray-700);
+  padding: 5px 10px;
+  border-radius: var(--r-md);
+  white-space: nowrap;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--s-1);
+  font-family: var(--sans);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  border-radius: var(--r-pill);
+  padding: 5px 12px;
+  line-height: 1;
+  background: var(--gray-100);
+  color: var(--gray-700);
+  border: var(--border);
+}
+.pill--clay     { background: var(--clay);  color: var(--paper); border: none; letter-spacing: 0.03em; }
+.pill--olive    { background: var(--olive); color: var(--paper); border: none; }
+.pill--slate    { background: var(--slate); color: var(--ivory); border: none; }
+.pill--ghost    { background: transparent; }
+
+.tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--ivory);
+  border: var(--border);
+  border-radius: 6px;
+  padding: 2px 7px;
+  color: var(--gray-500);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  padding: 3px 8px;
+  border-radius: var(--r-sm);
+  background: var(--gray-100);
+  color: var(--gray-700);
+}
+.badge--success { background: rgba(120, 140, 93, 0.15); color: var(--olive); }
+.badge--warn    { background: rgba(217, 119, 87, 0.15); color: var(--clay-d); }
+.badge--info    { background: rgba(20, 20, 19, 0.08);   color: var(--gray-700); }
+
+/* ============================================================
+   TARJETAS
+   ============================================================ */
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  border: var(--border);
+  border-radius: var(--r-xl);
+  padding: var(--s-5);
+  transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
+}
+.card--link {
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  padding: 0;
+}
+.card--link:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-2);
+  border-color: var(--slate);
+}
+.card--flat     { box-shadow: none; }
+.card--outlined { background: transparent; }
+.card--elevated { box-shadow: var(--shadow-1); }
+.card--accent   { border-left: 4px solid var(--clay); }
+
+.card__head {
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-bottom: var(--s-2);
+}
+.card__title {
+  font-family: var(--serif);
+  font-size: var(--fs-lg);
+  margin: 0 0 var(--s-2);
+  color: var(--slate);
+}
+.card__body { color: var(--gray-700); font-size: var(--fs-md); }
+.card__footer {
+  margin-top: var(--s-4);
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--gray-300);
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  color: var(--gray-500);
+}
+
+/* ============================================================
+   STAT CARDS · SUMMARY BAND
+   ============================================================ */
+.summary-band {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s-3);
+}
+@media (max-width: 720px) {
+  .summary-band { grid-template-columns: repeat(2, 1fr); }
+}
+
+.stat-card {
+  background: var(--paper);
+  border: var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--s-5) 22px 18px;
+}
+.stat-card--warn { border-left: 4px solid var(--clay); padding-left: 19px; }
+.stat-card--ok   { border-left: 4px solid var(--olive); padding-left: 19px; }
+
+.stat-num {
+  font-family: var(--serif);
+  font-size: 44px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--slate);
+  margin-bottom: var(--s-2);
+}
+.stat-label {
+  font-family: var(--sans);
+  font-size: var(--fs-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--gray-500);
+}
+.stat-delta {
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  margin-top: 6px;
+  color: var(--gray-500);
+}
+.stat-delta--up   { color: var(--olive); }
+.stat-delta--down { color: var(--rust); }
+
+/* ============================================================
+   TABLAS
+   ============================================================ */
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--paper);
+  border: var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.table thead th {
+  text-align: left;
+  font-family: var(--sans);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gray-500);
+  background: var(--gray-100);
+  padding: var(--s-3) var(--s-4);
+  border-bottom: 1px solid var(--gray-300);
+}
+.table tbody td {
+  padding: 13px var(--s-4);
+  border-bottom: 1px solid var(--gray-100);
+  font-size: var(--fs-md);
+  color: var(--gray-700);
+  vertical-align: top;
+}
+.table tbody tr:last-child td { border-bottom: none; }
+.table--mono tbody td { font-family: var(--mono); font-size: 13px; }
+
+/* ============================================================
+   BOTONES
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-family: var(--sans);
+  font-size: var(--fs-md);
+  font-weight: 500;
+  padding: 8px 14px;
+  border: var(--border);
+  border-radius: var(--r-md);
+  background: var(--paper);
+  color: var(--slate);
+  cursor: pointer;
+  transition: border-color 120ms, background 120ms, color 120ms;
+  text-decoration: none;
+}
+.btn:hover { border-color: var(--slate); }
+.btn--primary {
+  background: var(--clay);
+  color: var(--paper);
+  border-color: var(--clay);
+}
+.btn--primary:hover { background: var(--clay-d); border-color: var(--clay-d); }
+.btn--ghost { background: transparent; }
+.btn--sm { padding: 5px 10px; font-size: var(--fs-sm); }
+
+/* ============================================================
+   TOGGLE SWITCH (form control)
+   ============================================================ */
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 22px;
+  flex: none;
+}
+.toggle input {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.toggle .track {
+  position: absolute;
+  inset: 0;
+  background: var(--gray-300);
+  border-radius: var(--r-pill);
+  transition: background 160ms ease;
+}
+.toggle .thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  background: var(--paper);
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(20, 20, 19, 0.2);
+  transition: left 160ms ease;
+}
+.toggle input:checked ~ .track { background: var(--olive); }
+.toggle input:checked ~ .thumb { left: 19px; }
+
+/* ============================================================
+   PROGRESS BAR
+   ============================================================ */
+.progress {
+  width: 100%;
+  height: 8px;
+  background: var(--gray-100);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+}
+.progress__fill {
+  height: 100%;
+  background: var(--clay);
+  border-radius: var(--r-pill);
+  transition: width 200ms ease;
+}
+.progress__fill--ok { background: var(--olive); }
+
+/* ============================================================
+   TIMELINE
+   ============================================================ */
+.timeline {
+  position: relative;
+  padding: var(--s-1) 0 var(--s-1) var(--s-4);
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: var(--s-4);
+  top: var(--s-2);
+  bottom: var(--s-2);
+  width: 2px;
+  background: var(--gray-300);
+}
+.timeline__entry {
+  position: relative;
+  padding: 0 0 22px 28px;
+}
+.timeline__entry:last-child { padding-bottom: 0; }
+.timeline__dot {
+  position: absolute;
+  left: -5px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--gray-500);
+  border: 2px solid var(--ivory);
+  box-sizing: content-box;
+}
+.timeline__dot--impact    { background: var(--clay); }
+.timeline__dot--mitigated { background: var(--olive); }
+.timeline__time {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: var(--fs-sm);
+  color: var(--gray-500);
+  margin-right: var(--s-2);
+}
+.timeline__title {
+  font-weight: 600;
+  color: var(--slate);
+}
+
+/* ============================================================
+   CALLOUTS
+   ============================================================ */
+.callout {
+  border: var(--border);
+  border-left: 3px solid var(--gray-500);
+  background: var(--paper);
+  border-radius: var(--r-md);
+  padding: var(--s-3) var(--s-4);
+  margin: var(--s-3) 0;
+  font-size: var(--fs-md);
+  color: var(--gray-700);
+}
+.callout--warning { border-left-color: var(--clay); background: #FBF3EE; }
+.callout--info    { border-left-color: var(--olive); background: rgba(120, 140, 93, 0.08); }
+.callout--note    { border-left-color: var(--gray-500); }
+.callout__title {
+  display: block;
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: var(--s-1);
+  color: var(--slate);
+}
+
+/* ============================================================
+   AVATAR
+   ============================================================ */
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--oat);
+  color: var(--slate);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.avatar--lg { width: 44px; height: 44px; font-size: 14px; }
+.avatar--clay  { background: var(--clay);  color: var(--paper); }
+.avatar--olive { background: var(--olive); color: var(--paper); }
+.avatar--slate { background: var(--slate); color: var(--ivory); }
+
+/* ============================================================
+   KEYBOARD KEY
+   ============================================================ */
+.kbd {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  background: var(--paper);
+  border: 1px solid var(--gray-300);
+  border-bottom-width: 2px;
+  border-radius: var(--r-sm);
+  padding: 1px 6px;
+  color: var(--gray-700);
+}
+
+/* ============================================================
+   SVG UTILITIES (shorthand de thumbnails de index.html)
+   ============================================================ */
+.svg-st { stroke: var(--gray-500); fill: none; stroke-width: 2.5; }
+.svg-fl { fill: var(--gray-300); }
+.svg-cl { fill: var(--clay); }
+.svg-ol { fill: var(--olive); }
+.svg-ln { stroke: var(--gray-500); stroke-width: 2.5; fill: none; }
+.svg-lc { stroke: var(--clay); stroke-width: 2.5; fill: none; }
+.svg-oa { fill: var(--oat); stroke: var(--gray-500); stroke-width: 2.5; }
+.svg-wh { fill: var(--paper); stroke: var(--gray-500); stroke-width: 2.5; }
+.svg-sl { fill: var(--slate); }
+.svg-da { stroke-dasharray: 4 4; }
+
+/* ============================================================
+   Tema alternativo · v2 "Cobalt Press" — overrides para components
+   Solo aplica si <html class="theme-v2">.
+   Usa CSS nesting nativo: cada selector queda anidado bajo .theme-v2.
+   ============================================================ */
+.theme-v2 {
+  /* ── Reset de conflictos border-left → border-top de v2 ─── */
+  .tldr,
+  .card--accent {
+    border-left: 0;
+  }
+  .stat-card--warn,
+  .stat-card--ok {
+    border-left: 0;
+    padding-left: 22px;
+  }
+
+  /* ── LAYOUT ──────────────────────────────────────────────── */
+  .toolbar {
+    background: color-mix(in srgb, var(--ivory) 88%, transparent);
+    backdrop-filter: blur(8px);
+  }
+
+  /* ── TIPOGRAFÍA UTILITARIA ───────────────────────────────── */
+  .eyebrow { letter-spacing: 0.14em; }
+  .eyebrow--accent { color: var(--clay); }
+  .eyebrow--accent::before { width: 32px; height: 1px; }
+  .label { letter-spacing: 0.1em; }
+
+  /* ── TL;DR ───────────────────────────────────────────────── */
+  .tldr {
+    border-top: 2px solid var(--clay);
+    border-radius: 0 0 var(--r-md) var(--r-md);
+  }
+  .tldr--dark { border-radius: var(--r-md); }
+  .tldr-label { letter-spacing: 0.14em; }
+
+  /* ── CHIP / PILL / TAG / BADGE ───────────────────────────── */
+  .chip {
+    background: var(--paper);
+    padding: 4px 9px;
+    border-radius: var(--r-sm);
+  }
+  .pill {
+    border-radius: var(--r-sm);
+    padding: 4px 10px;
+    line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .pill--clay  { border-color: var(--clay); }
+  .pill--olive { border-color: var(--olive); }
+  .pill--slate { border-color: var(--slate); }
+
+  .tag {
+    background: transparent;
+    border: 1px solid var(--gray-300);
+    border-radius: var(--r-sm);
+    padding: 2px 7px;
+    letter-spacing: 0.12em;
+  }
+
+  .badge {
+    padding: 2px 7px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .badge--success { background: rgba(46, 139, 107, 0.14); color: var(--olive); }
+  .badge--warn    { background: rgba(200, 57, 43, 0.12);  color: var(--rust); }
+  .badge--info    { background: rgba(39, 72, 200, 0.10);  color: var(--clay); }
+
+  /* ── CARD ────────────────────────────────────────────────── */
+  .card { border-radius: var(--r-md); }
+  .card--link:hover {
+    transform: translateY(-2px);
+    border-color: var(--slate);
+  }
+  .card--accent { border-top: 3px solid var(--clay); }
+  .card__head { letter-spacing: 0.14em; }
+  .card__title {
+    font-family: var(--display);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .card__footer { border-top: 1px solid var(--gray-200); }
+
+  /* ── STAT CARDS ──────────────────────────────────────────── */
+  .stat-card { border-radius: var(--r-md); }
+  .stat-card--warn { border-top: 3px solid var(--clay); }
+  .stat-card--ok   { border-top: 3px solid var(--olive); }
+  .stat-num {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 48px;
+    letter-spacing: -0.035em;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-label {
+    font-family: var(--mono);
+    letter-spacing: 0.12em;
+  }
+
+  /* ── TABLAS ──────────────────────────────────────────────── */
+  .table { border-radius: var(--r-md); }
+  .table thead th {
+    font-family: var(--mono);
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    background: transparent;
+  }
+  .table tbody tr:hover td { background: var(--gray-100); }
+
+  /* ── BOTONES ─────────────────────────────────────────────── */
+  .btn {
+    font-weight: 600;
+    border-radius: var(--r-sm);
+    letter-spacing: 0.01em;
+    transition: border-color 120ms, background 120ms, color 120ms, transform 80ms;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn--ghost { border-color: transparent; }
+  .btn--ghost:hover { border-color: var(--gray-300); }
+  .btn--sm { padding: 4px 9px; }
+
+  /* ── TOGGLE ──────────────────────────────────────────────── */
+  .toggle .thumb { box-shadow: 0 1px 2px rgba(14, 23, 38, 0.2); }
+  .toggle input:checked ~ .track { background: var(--clay); }
+
+  /* ── PROGRESS ────────────────────────────────────────────── */
+  .progress {
+    height: 6px;
+    border-radius: 0;
+  }
+  .progress__fill { border-radius: 0; }
+
+  /* ── TIMELINE (puntos como rombos) ───────────────────────── */
+  .timeline::before { width: 1px; }
+  .timeline__dot {
+    left: -4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 0;
+    transform: rotate(45deg);
+  }
+  .timeline__time { letter-spacing: 0.04em; }
+  .timeline__title { font-weight: 700; }
+
+  /* ── CALLOUTS ────────────────────────────────────────────── */
+  .callout { border-radius: 0 var(--r-md) var(--r-md) 0; }
+  .callout--warning { border-left-color: var(--rust);  background: rgba(200, 57, 43, 0.05); }
+  .callout--info    { border-left-color: var(--clay);  background: rgba(39, 72, 200, 0.05); }
+  .callout--note    { border-left-color: var(--olive); background: rgba(46, 139, 107, 0.05); }
+  .callout__title { letter-spacing: 0.14em; }
+
+  /* ── AVATAR (cuadrados, no círculos) ─────────────────────── */
+  .avatar {
+    border-radius: var(--r-sm);
+    background: var(--oat);
+    color: var(--clay);
+  }
+  .avatar--clay  { color: var(--paper); }
+  .avatar--olive { color: var(--paper); }
+  .avatar--slate { color: var(--ivory); }
+
+  /* ── SVG UTILITIES (strokes más finos) ───────────────────── */
+  .svg-st, .svg-ln, .svg-lc, .svg-oa, .svg-wh { stroke-width: 2; }
+  .svg-da { stroke-dasharray: 3 3; }
+}
+</style>
+  <style>
+    body { padding: var(--s-9) var(--s-6) var(--s-10); }
+    .md-body > :first-child { margin-top: 0; }
+    .md-body img { max-width: 100%; height: auto; }
+    .md-body blockquote { border-left: 3px solid var(--gray-300); padding: var(--s-2) var(--s-4); margin: var(--s-4) 0; color: var(--gray-700); font-style: italic; }
+    .md-body pre { background: var(--gray-100); border: var(--border); border-radius: var(--r-md); padding: var(--s-4) var(--s-5); overflow-x: auto; font-size: 13px; line-height: 1.55; }
+    .md-body pre code { background: transparent; border: 0; padding: 0; font-size: inherit; }
+    .md-body .callout + .callout { margin-top: var(--s-3); }
+
+    /* Switch flotante de tema */
+    .theme-switch {
+      position: fixed;
+      top: var(--s-4);
+      right: var(--s-4);
+      z-index: 100;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s-2);
+      background: var(--paper);
+      border: var(--border);
+      border-radius: var(--r-pill);
+      padding: 6px 10px 6px 12px;
+      font-family: var(--mono);
+      font-size: var(--fs-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gray-500);
+      box-shadow: var(--shadow-1);
+      cursor: pointer;
+      user-select: none;
+    }
+    .theme-switch__label { line-height: 1; }
+    .theme-switch__toggle {
+      position: relative;
+      width: 30px;
+      height: 16px;
+      background: var(--gray-300);
+      border-radius: var(--r-pill);
+      transition: background 160ms ease;
+    }
+    .theme-switch__toggle::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 12px;
+      height: 12px;
+      background: var(--paper);
+      border-radius: 50%;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+      transition: left 160ms ease;
+    }
+    html.theme-v2 .theme-switch__toggle { background: var(--clay); }
+    html.theme-v2 .theme-switch__toggle::after { left: 16px; }
+  </style>
+<style>
+/* Ajustes de presentación — más jerarquía tipográfica y aire entre secciones */
+.md-body { line-height: 1.62; }
+.md-body h1 { margin-bottom: 24px; }
+.md-body h2 { font-size: 31px; line-height: 1.18; margin-top: 66px; margin-bottom: 18px; }
+.md-body h3:not(.card__title) { font-size: 21px; margin-top: 40px; margin-bottom: 12px; }
+.md-body > p, .md-body > ul, .md-body > ol { margin-bottom: 18px; }
+.summary-band { margin: 38px 0 8px; }
+figure.card { padding-top: 24px; padding-bottom: 24px; margin: 34px 0; }
+/* Navegación por apartados (tabs) */
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 40px; padding: 10px 0 16px; border-bottom: 1.5px solid var(--gray-300); position: sticky; top: 0; background: var(--ivory); z-index: 5; }
+.tab { font-family: var(--sans); font-size: 14px; font-weight: 600; color: var(--gray-500); background: transparent; border: 1.5px solid var(--gray-300); border-radius: 999px; padding: 9px 18px; cursor: pointer; transition: color .15s, background .15s, border-color .15s; }
+.tab:hover { color: var(--slate); border-color: var(--gray-500); }
+.tab.is-active { color: var(--paper); background: var(--clay); border-color: var(--clay); }
+.tab-panel { display: none; }
+.tab-panel.is-active { display: block; animation: tabfade .25s ease; }
+.tab-panel > h2:first-child { margin-top: 8px; }
+@keyframes tabfade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+  <button type="button" class="theme-switch" aria-label="Cambiar tema" onclick="(function(){var c=document.documentElement.classList;c.toggle('theme-v2');try{localStorage.setItem('html-effectiveness-theme',c.contains('theme-v2')?'v2':'v1');}catch(e){}})()">
+    <span class="theme-switch__label">Tema v2</span>
+    <span class="theme-switch__toggle" aria-hidden="true"></span>
+  </button>
+  <div class="page--lg">
+    
+    <main class="md-body">
+<div class="eyebrow eyebrow--accent">CIVIO · SHIP FOR GOOD 2026</div>
+<h1 id="transparencia-publica-consultable">Transparencia pública, consultable</h1>
+<p>Equipo <span class="chip">Delfos</span> · Reto <span class="chip">Civio</span> · 42 Barcelona <span class="chip">29–30 may 2026</span> · Licencia <span class="pill pill--slate">MIT</span></p>
+<div class="tldr">
+<div class="tldr-label">TL;DR</div>
+<p>El Portal de Transparencia estatal es un laberinto de enlaces: opaco para el periodista y para el ciudadano. Delfos lo convierte en un <strong>corpus estructurado y consultable por agentes de IA</strong> — del HTML público a una base de datos honesta, vía scraper → Postgres → servidor MCP. Cero generación de texto: solo extracción, limpieza y consulta. Cae limpio dentro de la política de IA de Civio.</p>
+</div>
+<div class="summary-band">
+<div class="stat-card">
+<div class="stat-num">1.167</div>
+<div class="stat-label">PÁGINAS DEL CORPUS</div>
+</div>
+<div class="stat-card">
+<div class="stat-num">13.267</div>
+<div class="stat-label">ENLACES EXTERNOS</div>
+</div>
+<div class="stat-card">
+<div class="stat-num">6</div>
+<div class="stat-label">TOOLS MCP</div>
+<div class="stat-delta">read-only</div>
+</div>
+<div class="stat-card stat-card--ok">
+<div class="stat-num">1</div>
+<div class="stat-label">BASE CONSULTABLE</div>
+<div class="stat-delta">Postgres · civio</div>
+</div>
+</div>
+<nav class="tabs" role="tablist" aria-label="Apartados">
+  <button class="tab is-active" type="button" data-target="panel-porque">Por qué</button>
+  <button class="tab" type="button" data-target="panel-que">Qué construimos</button>
+  <button class="tab" type="button" data-target="panel-como">Cómo está hecho</button>
+  <button class="tab" type="button" data-target="panel-estado">Estado</button>
+</nav>
+<section class="tab-panel is-active" id="panel-porque">
+<h2 id="por-que-el-problema">Por qué — el problema</h2>
+<p>Civio es una fundación independiente que combate la opacidad institucional con <strong>periodismo de datos, ingeniería y litigio</strong>. La Ley 19/2013 obliga a la administración a publicar contratos, subvenciones, retribuciones y organigramas. El problema no es que falten: es que <strong>están, pero inaccesibles</strong>.</p>
+<div class="card card--accent">
+<div class="card__head">LA CRÍTICA CENTRAL</div>
+<div class="card__body">
+<p>El Portal de Transparencia es un <strong>agregador de enlaces</strong>: &quot;de cada 5 links, 4 te mandan a otra página&quot;. No se puede saber qué información existe antes de buscarla, y el vocabulario técnico deja fuera al ciudadano común. El <strong>doble combo</strong> que pide Civio: que la solución sirva a la vez a sus periodistas y a quien ni sabe que el portal existe.</p>
+</div>
+</div>
+<h3 id="la-restriccion-innegociable-la-politica-de-ia-de-civio">La restricción innegociable: la política de IA de Civio</h3>
+<p>Condiciona todo. Es pública y no negociable. Cualquier solución tiene que caer del lado permitido.</p>
+<div class="split-2">
+<div class="card">
+<h3 class="card__title">❌ Vetado</h3>
+<div class="card__body">
+<ul><li>Generar texto periodístico</li><li>Redactar alegaciones o recursos</li><li>IA como <strong>fuente</strong> de información</li><li>Crear imágenes o ilustraciones</li></ul>
+</div>
+</div>
+<div class="card">
+<h3 class="card__title">✅ Permitido</h3>
+<div class="card__body">
+<ul><li>Conversión y limpieza de datos</li><li>Transcripción en local</li><li>Asistencia a programación</li><li>Consultas sobre bases de datos propias</li></ul>
+</div>
+</div>
+</div>
+<div class="callout callout--info">
+<span class="callout__title">Nuestra decisión</span>
+<p>Atacamos el lado de datos de <strong>OPP-1a</strong>: hacer explotable el corpus de Publicidad Activa. Es público, scrapeable y de solo lectura — extracción + limpieza + consulta, <strong>cero generación</strong>. Y deja un activo reutilizable sobre el que Civio puede construir.</p>
+</div>
+</section>
+<section class="tab-panel" id="panel-que">
+<h2 id="que-construimos">Qué construimos</h2>
+<p>Un pipeline de datos que va del HTML público a una base consultable por agentes: <strong>scraper → base de datos → servidor MCP.</strong></p>
+<figure class="card" style="margin:24px 0;overflow-x:auto">
+  <div class="eyebrow eyebrow--accent">PIPELINE DE DATOS · DEL HTML PÚBLICO AL AGENTE</div>
+  <svg viewBox="0 0 1180 185" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pipeline: Portal de Transparencia, Scraper, Parquet y JSONL, Postgres, MCP, Agente IA" style="width:100%;min-width:880px;height:auto;display:block;margin-top:10px">
+    <defs>
+      <marker id="ph" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0 0L10 5L0 10z" style="fill:var(--gray-500)"/>
+      </marker>
+    </defs>
+    <line x1="185" y1="87" x2="213" y2="87" style="stroke:var(--gray-500);stroke-width:1.5" marker-end="url(#ph)"/>
+    <line x1="380" y1="87" x2="408" y2="87" style="stroke:var(--gray-500);stroke-width:1.5" marker-end="url(#ph)"/>
+    <line x1="575" y1="87" x2="603" y2="87" style="stroke:var(--clay);stroke-width:1.5" marker-end="url(#ph)"/>
+    <line x1="770" y1="87" x2="798" y2="87" style="stroke:var(--gray-500);stroke-width:1.5" marker-end="url(#ph)"/>
+    <line x1="965" y1="87" x2="993" y2="87" style="stroke:var(--gray-500);stroke-width:1.5" marker-end="url(#ph)"/>
+    <text x="590" y="78" text-anchor="middle" style="fill:var(--clay);font-family:var(--mono);font-size:10px">ETL</text>
+    <rect x="20" y="40" width="165" height="95" rx="13" style="fill:var(--oat);stroke:var(--gray-300);stroke-width:1.5"/>
+    <rect x="34" y="54" width="32" height="18" rx="5" style="fill:var(--paper)"/>
+    <text x="50" y="67" text-anchor="middle" style="fill:var(--slate);font-family:var(--mono);font-size:10.5px;font-weight:700">01</text>
+    <text x="102" y="103" text-anchor="middle" style="fill:var(--slate);font-family:var(--sans);font-size:15px;font-weight:600">Portal Transparencia</text>
+    <text x="102" y="160" text-anchor="middle" style="fill:var(--gray-500);font-family:var(--mono);font-size:11px">publicidad-activa</text>
+    <rect x="215" y="40" width="165" height="95" rx="13" style="fill:var(--paper);stroke:var(--slate);stroke-width:1.5"/>
+    <rect x="229" y="54" width="32" height="18" rx="5" style="fill:var(--oat)"/>
+    <text x="245" y="67" text-anchor="middle" style="fill:var(--slate);font-family:var(--mono);font-size:10.5px;font-weight:700">02</text>
+    <text x="297" y="103" text-anchor="middle" style="fill:var(--slate);font-family:var(--sans);font-size:15px;font-weight:600">Scraper</text>
+    <text x="297" y="160" text-anchor="middle" style="fill:var(--gray-500);font-family:var(--mono);font-size:11px">BFS · httpx · selectolax</text>
+    <rect x="410" y="40" width="165" height="95" rx="13" style="fill:var(--paper);stroke:var(--slate);stroke-width:1.5"/>
+    <rect x="424" y="54" width="32" height="18" rx="5" style="fill:var(--oat)"/>
+    <text x="440" y="67" text-anchor="middle" style="fill:var(--slate);font-family:var(--mono);font-size:10.5px;font-weight:700">03</text>
+    <text x="492" y="103" text-anchor="middle" style="fill:var(--slate);font-family:var(--sans);font-size:15px;font-weight:600">Parquet + JSONL</text>
+    <text x="492" y="160" text-anchor="middle" style="fill:var(--gray-500);font-family:var(--mono);font-size:11px">warehouse</text>
+    <rect x="605" y="40" width="165" height="95" rx="13" style="fill:var(--paper);stroke:var(--slate);stroke-width:1.5"/>
+    <rect x="619" y="54" width="32" height="18" rx="5" style="fill:var(--oat)"/>
+    <text x="635" y="67" text-anchor="middle" style="fill:var(--slate);font-family:var(--mono);font-size:10.5px;font-weight:700">04</text>
+    <text x="687" y="103" text-anchor="middle" style="fill:var(--slate);font-family:var(--sans);font-size:15px;font-weight:600">Postgres · civio</text>
+    <text x="687" y="160" text-anchor="middle" style="fill:var(--gray-500);font-family:var(--mono);font-size:11px">esquema transparencia</text>
+    <rect x="800" y="40" width="165" height="95" rx="13" style="fill:var(--paper);stroke:var(--clay);stroke-width:2.5"/>
+    <rect x="814" y="54" width="32" height="18" rx="5" style="fill:var(--clay)"/>
+    <text x="830" y="67" text-anchor="middle" style="fill:var(--paper);font-family:var(--mono);font-size:10.5px;font-weight:700">05</text>
+    <text x="882" y="103" text-anchor="middle" style="fill:var(--slate);font-family:var(--sans);font-size:15px;font-weight:600">Servidor MCP</text>
+    <text x="882" y="160" text-anchor="middle" style="fill:var(--gray-500);font-family:var(--mono);font-size:11px">6 tools · read-only</text>
+    <rect x="995" y="40" width="165" height="95" rx="13" style="fill:var(--paper);stroke:var(--slate);stroke-width:1.5"/>
+    <rect x="1009" y="54" width="32" height="18" rx="5" style="fill:var(--oat)"/>
+    <text x="1025" y="67" text-anchor="middle" style="fill:var(--slate);font-family:var(--mono);font-size:10.5px;font-weight:700">06</text>
+    <text x="1077" y="103" text-anchor="middle" style="fill:var(--slate);font-family:var(--sans);font-size:15px;font-weight:600">Agente IA</text>
+    <text x="1077" y="160" text-anchor="middle" style="fill:var(--gray-500);font-family:var(--mono);font-size:11px">Claude · OpenCode</text>
+  </svg>
+</figure>
+<div class="grid">
+<div class="card">
+<div class="card__head">CAPA 1</div>
+<h3 class="card__title">Scraper</h3>
+<div class="card__body">
+<p>Recorre por BFS la Publicidad Activa <strong>sin navegador headless</strong> (HTTP + parser CSS). Respetuoso: 1 req/s, cache local para reprocesar sin volver a la red. Exporta a Parquet + JSONL.</p>
+</div>
+</div>
+<div class="card">
+<div class="card__head">CAPA 2</div>
+<h3 class="card__title">Base de datos</h3>
+<div class="card__body">
+<p>Schema Postgres en el esquema <code>transparencia</code>, tipos estrictos, búsqueda full-text en castellano y vistas que clasifican enlaces. ETL idempotente (<code>TRUNCATE</code> + <code>COPY</code>).</p>
+</div>
+</div>
+<div class="card">
+<div class="card__head">CAPA 3</div>
+<h3 class="card__title">Servidor MCP</h3>
+<div class="card__body">
+<p>Superficie <strong>curada y read-only</strong> consumible por cualquier agente (Claude Code, OpenCode). Docstrings que encuadran el dato y evitan que el agente alucine.</p>
+</div>
+</div>
+</div>
+<h3 id="las-6-tools-del-mcp">Las 6 tools del MCP</h3>
+<table class="table">
+<thead><tr><th>Tool</th><th>Devuelve</th></tr></thead>
+<tbody>
+<tr><td><code>execute_sql(query, limit)</code></td><td>SQL read-only (<code>SELECT</code>/<code>WITH</code>/<code>EXPLAIN</code>) en transacción restringida</td></tr>
+<tr><td><code>get_page(url)</code></td><td>Página completa: metadata, breadcrumb, secciones, acordeones, enlaces</td></tr>
+<tr><td><code>search_pages(query, limit)</code></td><td>Búsqueda full-text en castellano por relevancia</td></tr>
+<tr><td><code>list_organisms()</code></td><td>Resumen por materia</td></tr>
+<tr><td><code>get_external_links(domain, limit)</code></td><td>Enlaces salientes filtrados por host</td></tr>
+<tr><td><code>get_links_by_category(category, materia_slug, limit)</code></td><td>Enlaces por categoría curada</td></tr>
+</tbody>
+</table>
+<h3 id="el-valor-diferencial-honestidad-del-dato">El valor diferencial: honestidad del dato</h3>
+<div class="callout callout--warning">
+<span class="callout__title">Dos verdades que el MCP hace explícitas</span>
+<p><strong>&quot;Organismo&quot; ≠ entidad emisora.</strong> En este corpus es la <em>materia</em> (categoría temática del path). El <strong>89% es <code>organizacion-empleo</code></strong> — hay un sesgo de cobertura fuerte, y el MCP no lo esconde.</p>
+<p><strong>&quot;Subvención&quot; ≠ monto.</strong> Aquí es un <em>enlace</em> a <code>pap.hacienda</code>. No hay importes ni años en los datos; el MCP no los inventa.</p>
+</div>
+<p><strong>Sesgo de cobertura del corpus</strong> — <code>organizacion-empleo</code> domina:</p>
+<p><code>organizacion-empleo</code> · 1.043 de 1.167 páginas</p>
+<div class="progress"><div class="progress__fill" style="width:89%"></div></div>
+<p>El resto de materias apenas tocadas (económico-presupuestaria 40, altos cargos 26, trámites 25, normativa 19, planificación 11).</p>
+<h3 id="a-donde-apuntan-los-13267-enlaces">A dónde apuntan los 13.267 enlaces</h3>
+<p>El activo con mayor valor periodístico es el <strong>grafo de enlaces</strong>: órgano público → subvenciones (<code>pap.hacienda</code>) y normativa (<code>boe.es</code>). Está completo y limpio, explotable <strong>hoy</strong>.</p>
+<figure class="card" style="margin:24px 0;overflow-x:auto">
+  <div class="eyebrow eyebrow--accent">ENLACES EXTERNOS POR DESTINO · 13.267 TOTAL</div>
+  <svg viewBox="0 0 1000 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Distribución de enlaces externos por destino" style="width:100%;min-width:600px;height:auto;display:block;margin-top:12px">
+    <!-- Navegación interna 6197 -->
+    <text x="245" y="46" text-anchor="end" style="fill:var(--slate);font-family:var(--mono);font-size:13px">Navegación interna</text>
+    <rect x="260" y="20" width="640" height="40" rx="6" style="fill:var(--gray-300)"/>
+    <text x="912" y="46" style="fill:var(--gray-700);font-family:var(--mono);font-size:13px">6.197</text>
+    <!-- Subvenciones 4271 -->
+    <text x="245" y="108" text-anchor="end" style="fill:var(--slate);font-family:var(--mono);font-size:13px">Subvenciones · pap.hacienda</text>
+    <rect x="260" y="82" width="441" height="40" rx="6" style="fill:var(--clay)"/>
+    <text x="713" y="108" style="fill:var(--gray-700);font-family:var(--mono);font-size:13px">4.271</text>
+    <!-- Buscador sede 1167 -->
+    <text x="245" y="170" text-anchor="end" style="fill:var(--slate);font-family:var(--mono);font-size:13px">Buscador de la sede</text>
+    <rect x="260" y="144" width="121" height="40" rx="6" style="fill:var(--gray-300)"/>
+    <text x="393" y="170" style="fill:var(--gray-700);font-family:var(--mono);font-size:13px">1.167</text>
+    <!-- Normativa BOE 1107 -->
+    <text x="245" y="232" text-anchor="end" style="fill:var(--slate);font-family:var(--mono);font-size:13px">Normativa · BOE</text>
+    <rect x="260" y="206" width="114" height="40" rx="6" style="fill:var(--olive)"/>
+    <text x="386" y="232" style="fill:var(--gray-700);font-family:var(--mono);font-size:13px">1.107</text>
+    <!-- Otros 525 -->
+    <text x="245" y="294" text-anchor="end" style="fill:var(--slate);font-family:var(--mono);font-size:13px">Otros</text>
+    <rect x="260" y="268" width="54" height="40" rx="6" style="fill:var(--gray-300)"/>
+    <text x="326" y="294" style="fill:var(--gray-700);font-family:var(--mono);font-size:13px">525</text>
+  </svg>
+  <p style="margin:14px 0 0;font-size:13px;color:var(--gray-500)"><span style="color:var(--clay)">■</span> Subvenciones y <span style="color:var(--olive)">■</span> normativa son el grafo explotable hoy — el ángulo anti-opacidad de Civio.</p>
+</figure>
+</section>
+<section class="tab-panel" id="panel-como">
+<h2 id="como-esta-hecho">Cómo está hecho</h2>
+<p>Monorepo con dos paquetes Python hermanos sobre Docker (Postgres + contenedor <code>data</code>).</p>
+<div class="grid">
+<div class="card">
+<h3 class="card__title">Scraper — packages/data</h3>
+<div class="card__body">
+<p>Pipeline <code>discover (BFS) → fetch (cache) → parse → store</code>. <code>httpx</code> + <code>selectolax</code>, retry con <code>tenacity</code>, persistencia dual JSONL + Parquet (Polars).</p>
+</div>
+</div>
+<div class="card">
+<h3 class="card__title">BD + ETL — packages/mcp-transparencia</h3>
+<div class="card__body">
+<p><code>schema.sql</code> (esquema <code>transparencia</code>, <code>tsvector</code> español, vistas de clasificación) + <code>load_parquet.py</code> (psycopg, <code>COPY</code> idempotente). Re-parse desde cache HTML, cero red.</p>
+</div>
+</div>
+<div class="card">
+<h3 class="card__title">Servidor MCP</h3>
+<div class="card__body">
+<p><code>mcp_server.py</code> con FastMCP, transporte stdio. Dos capas: SQL parametrizado + marts (reglas de negocio).</p>
+</div>
+</div>
+</div>
+<h3 id="decisiones-tecnicas-y-su-porque">Decisiones técnicas y su porqué</h3>
+<table class="table">
+<thead><tr><th>Decisión</th><th>Por qué</th></tr></thead>
+<tbody>
+<tr><td>Sin navegador headless</td><td>El portal sirve navegación y contenido en HTML estático; Playwright sería sobreingeniería</td></tr>
+<tr><td>Rate limit 1 req/s</td><td><code>robots.txt</code> sin Crawl-delay; cortesía con un servidor público</td></tr>
+<tr><td>Cache local SHA256</td><td>Permite reprocesar el parser sin volver a la red</td></tr>
+<tr><td>Output dual JSONL + Parquet</td><td>JSONL para depurar; Parquet para análisis con Polars/DuckDB</td></tr>
+<tr><td>MCP curado vs SQL genérico</td><td>Híbrido: <code>postgres-mcp</code> para exploración/QA, MCP propio como superficie honesta en producción</td></tr>
+</tbody>
+</table>
+<p><strong>Stack:</strong> <span class="tag">Python 3.12</span> <span class="tag">httpx</span> <span class="tag">selectolax</span> <span class="tag">tenacity</span> <span class="tag">typer</span> <span class="tag">polars</span> <span class="tag">duckdb</span> <span class="tag">psycopg</span> <span class="tag">mcp / FastMCP</span> <span class="tag">Postgres</span> <span class="tag">Docker</span> <span class="tag">uv</span></p>
+</section>
+<section class="tab-panel" id="panel-estado">
+<h2 id="estado-y-proximo-paso">Estado y próximo paso</h2>
+<div class="split-2">
+<div class="card">
+<h3 class="card__title">Hecho</h3>
+<div class="card__body">
+<p>Scraper + corpus completo · schema + ETL a Postgres · MCP con 6 tools read-only · registrado en <code>opencode.json</code> y <code>.mcp.json</code>.</p>
+</div>
+</div>
+<div class="card card--accent">
+<h3 class="card__title">Oportunidad inmediata</h3>
+<div class="card__body">
+<p>Construir el <strong>grafo de enlaces</strong> subvenciones + normativa. Máximo valor periodístico, cero deuda previa: el ángulo anti-opacidad de Civio servido en bandeja.</p>
+</div>
+</div>
+</div>
+</section>
+    </main>
+  </div>
+<script>
+(function () {
+  var tabs = document.querySelectorAll('.tab');
+  var panels = document.querySelectorAll('.tab-panel');
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () {
+      tabs.forEach(function (x) { x.classList.remove('is-active'); });
+      panels.forEach(function (p) { p.classList.remove('is-active'); });
+      t.classList.add('is-active');
+      var el = document.getElementById(t.dataset.target);
+      if (el) el.classList.add('is-active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+})();
+</script>
+</body>
+</html>

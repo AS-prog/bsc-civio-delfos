@@ -1,0 +1,1311 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flujo SDD Ejecutado — docker-python-postgres-env</title>
+  <script>
+    // Aplica la preferencia de tema antes del render para evitar flash.
+    try {
+      var t = localStorage.getItem('html-effectiveness-theme');
+      if (t === 'v2') document.documentElement.classList.add('theme-v2');
+    } catch (e) {}
+  </script>
+  <style>/* Copyright 2026 Anthropic PBC · SPDX-License-Identifier: Apache-2.0 */
+/* ============================================================
+   tokens.css — design tokens
+   Cambia los valores de este archivo para reescribir la
+   identidad visual de toda la librería en un solo sitio.
+   ============================================================ */
+
+:root {
+  /* ── Color · superficie y texto ─────────────────────────── */
+  --ivory:    #FAF9F5;
+  --paper:    #FFFFFF;
+  --slate:    #141413;
+
+  /* ── Color · acentos ─────────────────────────────────────── */
+  --clay:     #D97757;
+  --clay-d:   #B85C3E;
+  --oat:      #E3DACC;
+  --olive:    #788C5D;
+  --rust:     #B04A3F;
+
+  /* ── Color · escala de grises ────────────────────────────── */
+  --gray-100: #F0EEE6;
+  --gray-200: #E6E3DA;
+  --gray-300: #D1CFC5;
+  --gray-500: #87867F;
+  --gray-700: #3D3D3A;
+
+  /* ── Tipografía ──────────────────────────────────────────── */
+  --serif: ui-serif, Georgia, "Times New Roman", Times, serif;
+  --sans:  system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono:  ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+
+  /* ── Tamaños de fuente ──────────────────────────────────── */
+  --fs-xs:   11px;
+  --fs-sm:   12px;
+  --fs-md:   14px;
+  --fs-base: 15px;
+  --fs-lg:   17px;
+  --fs-xl:   22px;
+  --fs-2xl:  30px;
+  --fs-3xl:  38px;
+  --fs-hero: clamp(38px, 5.4vw, 62px);
+
+  /* ── Radius ─────────────────────────────────────────────── */
+  --r-sm:    4px;
+  --r-md:    8px;
+  --r-lg:    12px;
+  --r-xl:    14px;
+  --r-pill:  999px;
+
+  /* ── Bordes ─────────────────────────────────────────────── */
+  --border: 1.5px solid var(--gray-300);
+
+  /* ── Sombras ────────────────────────────────────────────── */
+  --shadow-1: 0 1px 2px rgba(20, 20, 19, 0.04), 0 1px 3px rgba(20, 20, 19, 0.06);
+  --shadow-2: 0 10px 30px rgba(20, 20, 19, 0.10);
+  --shadow-3: 0 12px 32px rgba(20, 20, 19, 0.10);
+
+  /* ── Spacing (escala 4) ─────────────────────────────────── */
+  --s-1:  4px;
+  --s-2:  8px;
+  --s-3:  12px;
+  --s-4:  16px;
+  --s-5:  20px;
+  --s-6:  24px;
+  --s-7:  32px;
+  --s-8:  40px;
+  --s-9:  56px;
+  --s-10: 80px;
+
+  /* ── Anchos máximos de contenedor ───────────────────────── */
+  --container-sm: 760px;
+  --container-md: 1080px;
+  --container-lg: 1120px;
+  --container-xl: 1360px;
+}
+
+/* ============================================================
+   Tema alternativo · v2 "Cobalt Press"
+   Activación: añadir la clase .theme-v2 al elemento <html>.
+   Paleta fría editorial, sans grotesca para display,
+   esquinas casi rectas y hairlines de 1px.
+   ============================================================ */
+:root.theme-v2 {
+  /* Superficie y texto */
+  --ivory:    #F2F1EC;
+  --paper:    #FFFFFF;
+  --slate:    #0E1726;
+
+  /* Acentos */
+  --clay:     #2748C8;
+  --clay-d:   #1A33A0;
+  --oat:      #DDE3F2;
+  --olive:    #2E8B6B;
+  --rust:     #C8392B;
+
+  /* Acentos extra exclusivos de v2 (opt-in) */
+  --citrine:  #D4B73A;
+  --plum:     #6B3C8A;
+
+  /* Escala de grises (sesgo frío) */
+  --gray-100: #ECEBE5;
+  --gray-200: #DCDBD3;
+  --gray-300: #C2C2BD;
+  --gray-500: #74787F;
+  --gray-700: #2C313A;
+
+  /* Tipografía: display ahora es sans grotesca; serif solo decorativa */
+  --serif: "Iowan Old Style", "Charter", Georgia, "Times New Roman", serif;
+  --sans:  Helvetica, "Helvetica Neue", Arial, system-ui, sans-serif;
+  --mono:  ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+  --display: var(--sans);
+
+  /* Tamaños de fuente */
+  --fs-2xl:  32px;
+  --fs-3xl:  42px;
+  --fs-hero: clamp(42px, 6.2vw, 78px);
+
+  /* Radius más cuadrado */
+  --r-sm:    2px;
+  --r-md:    4px;
+  --r-lg:    6px;
+  --r-xl:    8px;
+
+  /* Borde hairline 1px */
+  --border: 1px solid var(--gray-300);
+
+  /* Sombras suaves con sesgo azul */
+  --shadow-1: 0 1px 0 rgba(14, 23, 38, 0.05), 0 1px 2px rgba(14, 23, 38, 0.06);
+  --shadow-2: 0 14px 28px rgba(14, 23, 38, 0.12);
+  --shadow-3: 0 18px 40px rgba(14, 23, 38, 0.14);
+}
+/* Copyright 2026 Anthropic PBC · SPDX-License-Identifier: Apache-2.0 */
+/* ============================================================
+   base.css — reset + tipografía base
+   Requiere tokens.css. Aplica estilos a los elementos HTML
+   nativos sin clases.
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--ivory);
+  color: var(--slate);
+  font-family: var(--sans);
+  font-size: var(--fs-base);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Headings ──────────────────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: var(--serif);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--slate);
+  margin: 0 0 var(--s-2);
+}
+
+h1 {
+  font-size: var(--fs-hero);
+  line-height: 1.06;
+  letter-spacing: -0.018em;
+}
+h2 { font-size: var(--fs-xl); line-height: 1.2; }
+h3 { font-size: var(--fs-lg); line-height: 1.3; }
+h4 { font-size: var(--fs-md); line-height: 1.4; }
+
+h1 em { font-style: italic; color: var(--clay); }
+
+/* ── Texto ────────────────────────────────────────────────── */
+p {
+  margin: 0 0 var(--s-3);
+  max-width: 70ch;
+}
+
+a {
+  color: var(--clay);
+  text-decoration-color: var(--oat);
+  text-underline-offset: 3px;
+}
+a:hover { text-decoration-color: var(--clay); }
+
+/* ── Código ───────────────────────────────────────────────── */
+code, kbd, samp, pre {
+  font-family: var(--mono);
+  font-size: 13px;
+}
+
+code {
+  background: var(--gray-100);
+  padding: 1.5px 5px;
+  border-radius: var(--r-sm);
+}
+
+pre {
+  margin: 0;
+  padding: var(--s-4) var(--s-5);
+  background: var(--paper);
+  border: var(--border);
+  border-radius: var(--r-md);
+  overflow-x: auto;
+  line-height: 1.6;
+}
+pre code {
+  background: transparent;
+  padding: 0;
+}
+
+/* ── Separadores ──────────────────────────────────────────── */
+hr {
+  border: none;
+  border-top: 1px solid var(--gray-300);
+  margin: var(--s-6) 0;
+}
+
+/* ── Listas ───────────────────────────────────────────────── */
+ul, ol { margin: 0 0 var(--s-3); padding-left: var(--s-5); }
+li { margin-bottom: var(--s-1); }
+
+/* ============================================================
+   Tema alternativo · v2 "Cobalt Press" — overrides para base
+   Solo aplica si <html class="theme-v2">.
+   ============================================================ */
+.theme-v2 {
+  body {
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  h1 {
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    font-weight: 800;
+  }
+  h2 { line-height: 1.18; letter-spacing: -0.018em; }
+  h3 { line-height: 1.28; }
+  h4 {
+    font-size: var(--fs-xs);
+    line-height: 1.4;
+    font-family: var(--mono);
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+  }
+
+  /* La itálica del h1 es la única licencia "editorial" para la serif */
+  h1 em {
+    font-family: var(--serif);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  p { max-width: 68ch; }
+
+  a {
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--clay);
+    text-underline-offset: 4px;
+  }
+  a:hover { text-decoration-color: var(--slate); color: var(--slate); }
+
+  /* Blockquote decorativo en serif (no existe en v1) */
+  blockquote {
+    margin: var(--s-5) 0;
+    padding-left: var(--s-5);
+    border-left: 2px solid var(--clay);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: var(--fs-xl);
+    line-height: 1.35;
+    color: var(--slate);
+  }
+
+  ul li::marker { color: var(--clay); }
+}
+/* Copyright 2026 Anthropic PBC · SPDX-License-Identifier: Apache-2.0 */
+/* ============================================================
+   components.css — clases de componentes reutilizables
+   Requiere tokens.css y (recomendado) base.css.
+   ============================================================ */
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.wrap   { max-width: var(--container-lg); margin: 0 auto; padding: 0 var(--s-7); }
+.page   { max-width: var(--container-sm); margin: 0 auto; }
+.page--md { max-width: var(--container-md); margin: 0 auto; }
+.page--lg { max-width: var(--container-lg); margin: 0 auto; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(316px, 1fr));
+  gap: var(--s-5);
+}
+
+.split-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-5);
+}
+.split-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-5);
+}
+@media (max-width: 880px) {
+  .split-2, .split-3 { grid-template-columns: 1fr; }
+}
+
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--ivory);
+  border-bottom: var(--border);
+  padding: var(--s-3) var(--s-5);
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+}
+
+/* ============================================================
+   TIPOGRAFÍA UTILITARIA
+   ============================================================ */
+.eyebrow {
+  font-family: var(--mono);
+  font-size: var(--fs-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-bottom: var(--s-3);
+}
+.eyebrow--accent {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+}
+.eyebrow--accent::before {
+  content: "";
+  width: 24px;
+  height: 1.5px;
+  background: var(--clay);
+}
+
+.label {
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gray-500);
+}
+
+.mono { font-family: var(--mono); }
+.muted { color: var(--gray-500); }
+
+/* ── TL;DR box ───────────────────────────────────────────── */
+.tldr {
+  background: var(--paper);
+  border: var(--border);
+  border-left: 3px solid var(--clay);
+  border-radius: var(--r-md);
+  padding: var(--s-4) var(--s-5);
+  margin: 0 0 var(--s-3);
+}
+.tldr--dark {
+  background: var(--slate);
+  color: var(--ivory);
+  border: none;
+  border-radius: var(--r-lg);
+  padding: var(--s-5) var(--s-6);
+}
+.tldr--dark .tldr-label { color: var(--oat); }
+.tldr-label {
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gray-500);
+  margin-bottom: var(--s-2);
+}
+
+/* ============================================================
+   ETIQUETAS INLINE
+   ============================================================ */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-1);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  background: var(--gray-100);
+  border: var(--border);
+  color: var(--gray-700);
+  padding: 5px 10px;
+  border-radius: var(--r-md);
+  white-space: nowrap;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--s-1);
+  font-family: var(--sans);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  border-radius: var(--r-pill);
+  padding: 5px 12px;
+  line-height: 1;
+  background: var(--gray-100);
+  color: var(--gray-700);
+  border: var(--border);
+}
+.pill--clay     { background: var(--clay);  color: var(--paper); border: none; letter-spacing: 0.03em; }
+.pill--olive    { background: var(--olive); color: var(--paper); border: none; }
+.pill--slate    { background: var(--slate); color: var(--ivory); border: none; }
+.pill--ghost    { background: transparent; }
+
+.tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--ivory);
+  border: var(--border);
+  border-radius: 6px;
+  padding: 2px 7px;
+  color: var(--gray-500);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  padding: 3px 8px;
+  border-radius: var(--r-sm);
+  background: var(--gray-100);
+  color: var(--gray-700);
+}
+.badge--success { background: rgba(120, 140, 93, 0.15); color: var(--olive); }
+.badge--warn    { background: rgba(217, 119, 87, 0.15); color: var(--clay-d); }
+.badge--info    { background: rgba(20, 20, 19, 0.08);   color: var(--gray-700); }
+
+/* ============================================================
+   TARJETAS
+   ============================================================ */
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  border: var(--border);
+  border-radius: var(--r-xl);
+  padding: var(--s-5);
+  transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
+}
+.card--link {
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  padding: 0;
+}
+.card--link:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-2);
+  border-color: var(--slate);
+}
+.card--flat     { box-shadow: none; }
+.card--outlined { background: transparent; }
+.card--elevated { box-shadow: var(--shadow-1); }
+.card--accent   { border-left: 4px solid var(--clay); }
+
+.card__head {
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-bottom: var(--s-2);
+}
+.card__title {
+  font-family: var(--serif);
+  font-size: var(--fs-lg);
+  margin: 0 0 var(--s-2);
+  color: var(--slate);
+}
+.card__body { color: var(--gray-700); font-size: var(--fs-md); }
+.card__footer {
+  margin-top: var(--s-4);
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--gray-300);
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  color: var(--gray-500);
+}
+
+/* ============================================================
+   STAT CARDS · SUMMARY BAND
+   ============================================================ */
+.summary-band {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s-3);
+}
+@media (max-width: 720px) {
+  .summary-band { grid-template-columns: repeat(2, 1fr); }
+}
+
+.stat-card {
+  background: var(--paper);
+  border: var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--s-5) 22px 18px;
+}
+.stat-card--warn { border-left: 4px solid var(--clay); padding-left: 19px; }
+.stat-card--ok   { border-left: 4px solid var(--olive); padding-left: 19px; }
+
+.stat-num {
+  font-family: var(--serif);
+  font-size: 44px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--slate);
+  margin-bottom: var(--s-2);
+}
+.stat-label {
+  font-family: var(--sans);
+  font-size: var(--fs-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--gray-500);
+}
+.stat-delta {
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  margin-top: 6px;
+  color: var(--gray-500);
+}
+.stat-delta--up   { color: var(--olive); }
+.stat-delta--down { color: var(--rust); }
+
+/* ============================================================
+   TABLAS
+   ============================================================ */
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--paper);
+  border: var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.table thead th {
+  text-align: left;
+  font-family: var(--sans);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gray-500);
+  background: var(--gray-100);
+  padding: var(--s-3) var(--s-4);
+  border-bottom: 1px solid var(--gray-300);
+}
+.table tbody td {
+  padding: 13px var(--s-4);
+  border-bottom: 1px solid var(--gray-100);
+  font-size: var(--fs-md);
+  color: var(--gray-700);
+  vertical-align: top;
+}
+.table tbody tr:last-child td { border-bottom: none; }
+.table--mono tbody td { font-family: var(--mono); font-size: 13px; }
+
+/* ============================================================
+   BOTONES
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-family: var(--sans);
+  font-size: var(--fs-md);
+  font-weight: 500;
+  padding: 8px 14px;
+  border: var(--border);
+  border-radius: var(--r-md);
+  background: var(--paper);
+  color: var(--slate);
+  cursor: pointer;
+  transition: border-color 120ms, background 120ms, color 120ms;
+  text-decoration: none;
+}
+.btn:hover { border-color: var(--slate); }
+.btn--primary {
+  background: var(--clay);
+  color: var(--paper);
+  border-color: var(--clay);
+}
+.btn--primary:hover { background: var(--clay-d); border-color: var(--clay-d); }
+.btn--ghost { background: transparent; }
+.btn--sm { padding: 5px 10px; font-size: var(--fs-sm); }
+
+/* ============================================================
+   TOGGLE SWITCH (form control)
+   ============================================================ */
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 22px;
+  flex: none;
+}
+.toggle input {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.toggle .track {
+  position: absolute;
+  inset: 0;
+  background: var(--gray-300);
+  border-radius: var(--r-pill);
+  transition: background 160ms ease;
+}
+.toggle .thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  background: var(--paper);
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(20, 20, 19, 0.2);
+  transition: left 160ms ease;
+}
+.toggle input:checked ~ .track { background: var(--olive); }
+.toggle input:checked ~ .thumb { left: 19px; }
+
+/* ============================================================
+   PROGRESS BAR
+   ============================================================ */
+.progress {
+  width: 100%;
+  height: 8px;
+  background: var(--gray-100);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+}
+.progress__fill {
+  height: 100%;
+  background: var(--clay);
+  border-radius: var(--r-pill);
+  transition: width 200ms ease;
+}
+.progress__fill--ok { background: var(--olive); }
+
+/* ============================================================
+   TIMELINE
+   ============================================================ */
+.timeline {
+  position: relative;
+  padding: var(--s-1) 0 var(--s-1) var(--s-4);
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: var(--s-4);
+  top: var(--s-2);
+  bottom: var(--s-2);
+  width: 2px;
+  background: var(--gray-300);
+}
+.timeline__entry {
+  position: relative;
+  padding: 0 0 22px 28px;
+}
+.timeline__entry:last-child { padding-bottom: 0; }
+.timeline__dot {
+  position: absolute;
+  left: -5px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--gray-500);
+  border: 2px solid var(--ivory);
+  box-sizing: content-box;
+}
+.timeline__dot--impact    { background: var(--clay); }
+.timeline__dot--mitigated { background: var(--olive); }
+.timeline__time {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: var(--fs-sm);
+  color: var(--gray-500);
+  margin-right: var(--s-2);
+}
+.timeline__title {
+  font-weight: 600;
+  color: var(--slate);
+}
+
+/* ============================================================
+   CALLOUTS
+   ============================================================ */
+.callout {
+  border: var(--border);
+  border-left: 3px solid var(--gray-500);
+  background: var(--paper);
+  border-radius: var(--r-md);
+  padding: var(--s-3) var(--s-4);
+  margin: var(--s-3) 0;
+  font-size: var(--fs-md);
+  color: var(--gray-700);
+}
+.callout--warning { border-left-color: var(--clay); background: #FBF3EE; }
+.callout--info    { border-left-color: var(--olive); background: rgba(120, 140, 93, 0.08); }
+.callout--note    { border-left-color: var(--gray-500); }
+.callout__title {
+  display: block;
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: var(--s-1);
+  color: var(--slate);
+}
+
+/* ============================================================
+   AVATAR
+   ============================================================ */
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--oat);
+  color: var(--slate);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.avatar--lg { width: 44px; height: 44px; font-size: 14px; }
+.avatar--clay  { background: var(--clay);  color: var(--paper); }
+.avatar--olive { background: var(--olive); color: var(--paper); }
+.avatar--slate { background: var(--slate); color: var(--ivory); }
+
+/* ============================================================
+   KEYBOARD KEY
+   ============================================================ */
+.kbd {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  background: var(--paper);
+  border: 1px solid var(--gray-300);
+  border-bottom-width: 2px;
+  border-radius: var(--r-sm);
+  padding: 1px 6px;
+  color: var(--gray-700);
+}
+
+/* ============================================================
+   SVG UTILITIES (shorthand de thumbnails de index.html)
+   ============================================================ */
+.svg-st { stroke: var(--gray-500); fill: none; stroke-width: 2.5; }
+.svg-fl { fill: var(--gray-300); }
+.svg-cl { fill: var(--clay); }
+.svg-ol { fill: var(--olive); }
+.svg-ln { stroke: var(--gray-500); stroke-width: 2.5; fill: none; }
+.svg-lc { stroke: var(--clay); stroke-width: 2.5; fill: none; }
+.svg-oa { fill: var(--oat); stroke: var(--gray-500); stroke-width: 2.5; }
+.svg-wh { fill: var(--paper); stroke: var(--gray-500); stroke-width: 2.5; }
+.svg-sl { fill: var(--slate); }
+.svg-da { stroke-dasharray: 4 4; }
+
+/* ============================================================
+   Tema alternativo · v2 "Cobalt Press" — overrides para components
+   Solo aplica si <html class="theme-v2">.
+   Usa CSS nesting nativo: cada selector queda anidado bajo .theme-v2.
+   ============================================================ */
+.theme-v2 {
+  /* ── Reset de conflictos border-left → border-top de v2 ─── */
+  .tldr,
+  .card--accent {
+    border-left: 0;
+  }
+  .stat-card--warn,
+  .stat-card--ok {
+    border-left: 0;
+    padding-left: 22px;
+  }
+
+  /* ── LAYOUT ──────────────────────────────────────────────── */
+  .toolbar {
+    background: color-mix(in srgb, var(--ivory) 88%, transparent);
+    backdrop-filter: blur(8px);
+  }
+
+  /* ── TIPOGRAFÍA UTILITARIA ───────────────────────────────── */
+  .eyebrow { letter-spacing: 0.14em; }
+  .eyebrow--accent { color: var(--clay); }
+  .eyebrow--accent::before { width: 32px; height: 1px; }
+  .label { letter-spacing: 0.1em; }
+
+  /* ── TL;DR ───────────────────────────────────────────────── */
+  .tldr {
+    border-top: 2px solid var(--clay);
+    border-radius: 0 0 var(--r-md) var(--r-md);
+  }
+  .tldr--dark { border-radius: var(--r-md); }
+  .tldr-label { letter-spacing: 0.14em; }
+
+  /* ── CHIP / PILL / TAG / BADGE ───────────────────────────── */
+  .chip {
+    background: var(--paper);
+    padding: 4px 9px;
+    border-radius: var(--r-sm);
+  }
+  .pill {
+    border-radius: var(--r-sm);
+    padding: 4px 10px;
+    line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .pill--clay  { border-color: var(--clay); }
+  .pill--olive { border-color: var(--olive); }
+  .pill--slate { border-color: var(--slate); }
+
+  .tag {
+    background: transparent;
+    border: 1px solid var(--gray-300);
+    border-radius: var(--r-sm);
+    padding: 2px 7px;
+    letter-spacing: 0.12em;
+  }
+
+  .badge {
+    padding: 2px 7px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .badge--success { background: rgba(46, 139, 107, 0.14); color: var(--olive); }
+  .badge--warn    { background: rgba(200, 57, 43, 0.12);  color: var(--rust); }
+  .badge--info    { background: rgba(39, 72, 200, 0.10);  color: var(--clay); }
+
+  /* ── CARD ────────────────────────────────────────────────── */
+  .card { border-radius: var(--r-md); }
+  .card--link:hover {
+    transform: translateY(-2px);
+    border-color: var(--slate);
+  }
+  .card--accent { border-top: 3px solid var(--clay); }
+  .card__head { letter-spacing: 0.14em; }
+  .card__title {
+    font-family: var(--display);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .card__footer { border-top: 1px solid var(--gray-200); }
+
+  /* ── STAT CARDS ──────────────────────────────────────────── */
+  .stat-card { border-radius: var(--r-md); }
+  .stat-card--warn { border-top: 3px solid var(--clay); }
+  .stat-card--ok   { border-top: 3px solid var(--olive); }
+  .stat-num {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 48px;
+    letter-spacing: -0.035em;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-label {
+    font-family: var(--mono);
+    letter-spacing: 0.12em;
+  }
+
+  /* ── TABLAS ──────────────────────────────────────────────── */
+  .table { border-radius: var(--r-md); }
+  .table thead th {
+    font-family: var(--mono);
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    background: transparent;
+  }
+  .table tbody tr:hover td { background: var(--gray-100); }
+
+  /* ── BOTONES ─────────────────────────────────────────────── */
+  .btn {
+    font-weight: 600;
+    border-radius: var(--r-sm);
+    letter-spacing: 0.01em;
+    transition: border-color 120ms, background 120ms, color 120ms, transform 80ms;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn--ghost { border-color: transparent; }
+  .btn--ghost:hover { border-color: var(--gray-300); }
+  .btn--sm { padding: 4px 9px; }
+
+  /* ── TOGGLE ──────────────────────────────────────────────── */
+  .toggle .thumb { box-shadow: 0 1px 2px rgba(14, 23, 38, 0.2); }
+  .toggle input:checked ~ .track { background: var(--clay); }
+
+  /* ── PROGRESS ────────────────────────────────────────────── */
+  .progress {
+    height: 6px;
+    border-radius: 0;
+  }
+  .progress__fill { border-radius: 0; }
+
+  /* ── TIMELINE (puntos como rombos) ───────────────────────── */
+  .timeline::before { width: 1px; }
+  .timeline__dot {
+    left: -4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 0;
+    transform: rotate(45deg);
+  }
+  .timeline__time { letter-spacing: 0.04em; }
+  .timeline__title { font-weight: 700; }
+
+  /* ── CALLOUTS ────────────────────────────────────────────── */
+  .callout { border-radius: 0 var(--r-md) var(--r-md) 0; }
+  .callout--warning { border-left-color: var(--rust);  background: rgba(200, 57, 43, 0.05); }
+  .callout--info    { border-left-color: var(--clay);  background: rgba(39, 72, 200, 0.05); }
+  .callout--note    { border-left-color: var(--olive); background: rgba(46, 139, 107, 0.05); }
+  .callout__title { letter-spacing: 0.14em; }
+
+  /* ── AVATAR (cuadrados, no círculos) ─────────────────────── */
+  .avatar {
+    border-radius: var(--r-sm);
+    background: var(--oat);
+    color: var(--clay);
+  }
+  .avatar--clay  { color: var(--paper); }
+  .avatar--olive { color: var(--paper); }
+  .avatar--slate { color: var(--ivory); }
+
+  /* ── SVG UTILITIES (strokes más finos) ───────────────────── */
+  .svg-st, .svg-ln, .svg-lc, .svg-oa, .svg-wh { stroke-width: 2; }
+  .svg-da { stroke-dasharray: 3 3; }
+}
+</style>
+  <style>
+    body { padding: var(--s-9) var(--s-6) var(--s-10); }
+    .md-body > :first-child { margin-top: 0; }
+    .md-body img { max-width: 100%; height: auto; }
+    .md-body blockquote { border-left: 3px solid var(--gray-300); padding: var(--s-2) var(--s-4); margin: var(--s-4) 0; color: var(--gray-700); font-style: italic; }
+    .md-body pre { background: var(--gray-100); border: var(--border); border-radius: var(--r-md); padding: var(--s-4) var(--s-5); overflow-x: auto; font-size: 13px; line-height: 1.55; }
+    .md-body pre code { background: transparent; border: 0; padding: 0; font-size: inherit; }
+    .md-body .callout + .callout { margin-top: var(--s-3); }
+
+    /* Switch flotante de tema */
+    .theme-switch {
+      position: fixed;
+      top: var(--s-4);
+      right: var(--s-4);
+      z-index: 100;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s-2);
+      background: var(--paper);
+      border: var(--border);
+      border-radius: var(--r-pill);
+      padding: 6px 10px 6px 12px;
+      font-family: var(--mono);
+      font-size: var(--fs-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gray-500);
+      box-shadow: var(--shadow-1);
+      cursor: pointer;
+      user-select: none;
+    }
+    .theme-switch__label { line-height: 1; }
+    .theme-switch__toggle {
+      position: relative;
+      width: 30px;
+      height: 16px;
+      background: var(--gray-300);
+      border-radius: var(--r-pill);
+      transition: background 160ms ease;
+    }
+    .theme-switch__toggle::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 12px;
+      height: 12px;
+      background: var(--paper);
+      border-radius: 50%;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+      transition: left 160ms ease;
+    }
+    html.theme-v2 .theme-switch__toggle { background: var(--clay); }
+    html.theme-v2 .theme-switch__toggle::after { left: 16px; }
+  </style>
+</head>
+<body>
+  <button type="button" class="theme-switch" aria-label="Cambiar tema" onclick="(function(){var c=document.documentElement.classList;c.toggle('theme-v2');try{localStorage.setItem('html-effectiveness-theme',c.contains('theme-v2')?'v2':'v1');}catch(e){}})()">
+    <span class="theme-switch__label">Tema v2</span>
+    <span class="theme-switch__toggle" aria-hidden="true"></span>
+  </button>
+  <div class="page--lg">
+    
+    <main class="md-body">
+<div class="eyebrow eyebrow--accent">SPEC-DRIVEN DEVELOPMENT · RETROSPECTIVA</div>
+<h1 id="flujo-sdd-ejecutado">Flujo SDD Ejecutado</h1>
+<p>Branch <span class="chip">feat/docker-python-postgres-env</span> · Fecha <span class="chip">2026-05-27</span> · Estado <span class="pill pill--olive">PASS WITH WARNINGS</span></p>
+<div class="tldr">
+<div class="tldr-label">TL;DR</div>
+<p>Recorrido paso a paso del cambio <code>docker-python-postgres-env</code>: por qué cada fase se delega a su agente especializado, qué produce y cómo encajan los artefactos OpenSpec en el ciclo completo. Veredicto final <strong>PASS WITH WARNINGS</strong> — 4 bugs reales detectados y corregidos antes de archivar.</p>
+</div>
+<div class="summary-band">
+<div class="stat-card">
+<div class="stat-num">10</div>
+<div class="stat-label">FASES SDD</div>
+<div class="stat-delta">init → archive</div>
+</div>
+<div class="stat-card">
+<div class="stat-num">7</div>
+<div class="stat-label">ARCHIVOS CREADOS</div>
+</div>
+<div class="stat-card">
+<div class="stat-num">13</div>
+<div class="stat-label">COMMITS</div>
+<div class="stat-delta">work units</div>
+</div>
+<div class="stat-card stat-card--ok">
+<div class="stat-num">PASS</div>
+<div class="stat-label">VEREDICTO</div>
+<div class="stat-delta">with warnings</div>
+</div>
+</div>
+<h2 id="pipeline-del-ciclo">Pipeline del ciclo</h2>
+<p>Siete fases principales en secuencia; bajo <code>sdd-new</code> se ramifican cinco sub-fases, cada una con su agente dedicado y su artefacto.</p>
+<div class="timeline">
+<div class="timeline__entry"><span class="timeline__dot timeline__dot--mitigated"></span>
+<div><span class="timeline__time">00</span><span class="timeline__title">Session Preflight</span></div>
+<p>El orchestrator fija los guardrails de toda la sesión: ritmo, artefactos, política de PRs y umbral de revisión.</p>
+</div>
+<div class="timeline__entry"><span class="timeline__dot timeline__dot--mitigated"></span>
+<div><span class="timeline__time">01</span><span class="timeline__title">sdd-init</span></div>
+<p>Detecta el stack real, las convenciones y el backend de persistencia. Decide <code>strict_tdd</code> una sola vez.</p>
+</div>
+<div class="timeline__entry"><span class="timeline__dot timeline__dot--impact"></span>
+<div><span class="timeline__time">02</span><span class="timeline__title">sdd-new</span></div>
+<p>Cinco sub-fases encadenadas: <strong>explore → propose → spec → design → tasks</strong>. Cada una produce su artefacto (<code>exploration.md</code>, <code>proposal.md</code>, <code>spec.md</code>, <code>design.md</code>, <code>tasks.md</code>).</p>
+</div>
+<div class="timeline__entry"><span class="timeline__dot timeline__dot--mitigated"></span>
+<div><span class="timeline__time">03</span><span class="timeline__title">Git — rama y commits</span></div>
+<p>Estado de git, inline en el orchestrator: <code>git switch</code>, <code>add</code>, <code>commit</code> por work unit.</p>
+</div>
+<div class="timeline__entry"><span class="timeline__dot timeline__dot--mitigated"></span>
+<div><span class="timeline__time">04</span><span class="timeline__title">sdd-apply</span></div>
+<p>Implementa los 7 archivos a partir de tasks + proposal + spec + design.</p>
+</div>
+<div class="timeline__entry"><span class="timeline__dot timeline__dot--mitigated"></span>
+<div><span class="timeline__time">05</span><span class="timeline__title">sdd-verify</span></div>
+<p>Puerta de calidad: ejecuta pruebas reales contra el runtime. Encuentra y corrige 4 bugs.</p>
+</div>
+<div class="timeline__entry"><span class="timeline__dot timeline__dot--mitigated"></span>
+<div><span class="timeline__time">06</span><span class="timeline__title">sdd-archive</span></div>
+<p>Promueve el spec a fuente de verdad y mueve el cambio al archivo. Cierra el ciclo.</p>
+</div>
+</div>
+<h2 id="0-session-preflight">0 · Session Preflight</h2>
+<div class="card card--accent">
+<div class="card__head">¿POR QUÉ EL ORCHESTRATOR HACE ESTO?</div>
+<div class="card__body">
+<p>Toda la sesión SDD necesita guardrails consistentes. El orchestrator pregunta estas 4 opciones al inicio para que cada sub-agente herede las mismas reglas sin repetir la configuración. Si no se fijan antes de arrancar, cada fase podría operar con supuestos distintos.</p>
+</div>
+</div>
+<table class="table">
+<thead><tr><th>Opción</th><th>Elección</th></tr></thead>
+<tbody>
+<tr><td>Ritmo</td><td>Interactivo <span class="chip">A1</span></td></tr>
+<tr><td>Artefactos</td><td>OpenSpec <span class="chip">B1</span></td></tr>
+<tr><td>PRs</td><td>Preguntar siempre <span class="chip">C1</span></td></tr>
+<tr><td>Revisión</td><td>400 líneas <span class="chip">D1</span></td></tr>
+</tbody>
+</table>
+<h2 id="1-sdd-init">1 · sdd-init</h2>
+<div class="card card--accent">
+<div class="card__head">¿POR QUÉ ESTE AGENTE?</div>
+<div class="card__body">
+<p>Antes de cualquier cambio necesitamos saber qué estamos pisando. <code>sdd-init</code> está especializado en detectar el stack real del proyecto, las convenciones, las herramientas de testing y en configurar el backend de persistencia (OpenSpec). El orchestrator delega porque leer 4+ archivos de configuración inflaría su contexto sin necesidad. El skill registry y <code>strict_tdd</code> se deciden una vez y quedan para toda la sesión.</p>
+</div>
+</div>
+<ul><li>Detectó el proyecto como vault de documentación Obsidian</li><li>Stack: Markdown, JSON Canvas, sin código de aplicación</li><li><code>strict_tdd: false</code></li><li>Creó <code>openspec/config.yaml</code> y <code>.atl/skill-registry.md</code></li></ul>
+<h2 id="2-sdd-new-docker-python-postgres-env">2 · sdd-new docker-python-postgres-env</h2>
+<p>Cinco sub-fases encadenadas: exploración, propuesta, especificación, diseño y desglose en tareas.</p>
+<h3 id="2a-sdd-explore">2a · sdd-explore</h3>
+<div class="card card--accent">
+<div class="card__head">¿POR QUÉ ESTE AGENTE?</div>
+<div class="card__body">
+<p>Proponer un cambio sin entender lo que existe es ciego. <code>sdd-explore</code> investiga codebases sin modificarlos: busca archivos, lee estructuras, detecta patrones y documentación existente. El orchestrator <strong>no</strong> lo hace inline porque leer 4+ archivos para entender el contexto lo inflaría innecesariamente. Produce <code>exploration.md</code>, que consumen las fases siguientes.</p>
+</div>
+</div>
+<ul><li>Investigó qué existe en el repo (Docker, Python, apps)</li><li>Descubrió <code>entorno-dockerizado.md</code> existente</li><li>Recomendó scope mínimo en <code>packages/data/</code></li><li>Forecast: ~120–220 líneas · Artefacto: <code>exploration.md</code></li></ul>
+<h3 id="2b-sdd-propose">2b · sdd-propose</h3>
+<div class="card card--accent">
+<div class="card__head">¿POR QUÉ ESTE AGENTE?</div>
+<div class="card__body">
+<p>Una vez que sabemos qué existe, necesitamos un artefacto formal que defina QUÉ se va a hacer y QUÉ NO. <code>sdd-propose</code> crea propuestas con alcance, enfoque, riesgos y plan de rollback. Hacerlo inline mezclaría la coordinación con la definición del cambio.</p>
+</div>
+</div>
+<ul><li>Alcance exacto: 7 archivos, Python + PostgreSQL</li><li>Excluyó: frontend, Jupyter, API, CI/CD, Makefile</li><li>Imágenes: <code>python:3.12-slim</code> + <code>postgres:16</code></li><li>Forecast: ~128–197 líneas · riesgo <span class="pill pill--olive">Low</span> · Artefacto: <code>proposal.md</code></li></ul>
+<h3 id="2c-sdd-spec">2c · sdd-spec</h3>
+<div class="card card--accent">
+<div class="card__head">¿POR QUÉ ESTE AGENTE?</div>
+<div class="card__body">
+<p>Antes de diseñar o implementar, necesitamos requisitos precisos y escenarios testables. <code>sdd-spec</code> escribe delta specs con formato Given/When/Then y palabras clave RFC 2119 (MUST, SHOULD, MAY). Mezclarlo con otras fases dejaría escenarios pobres o incompletos.</p>
+</div>
+</div>
+<ul><li>6 requisitos funcionales con 11 escenarios Given/When/Then</li><li>Artefacto: <code>specs/docker-runtime-env/spec.md</code></li></ul>
+<h3 id="2d-sdd-design">2d · sdd-design</h3>
+<div class="card card--accent">
+<div class="card__head">¿POR QUÉ ESTE AGENTE?</div>
+<div class="card__body">
+<p>Con los requisitos claros, alguien tiene que decidir cómo se construye la solución: qué imágenes, cómo se conectan los servicios, cómo se manejan los secretos, cómo se persisten los datos. <code>sdd-design</code> documenta decisiones con tablas de alternativas y diagramas de secuencia.</p>
+</div>
+</div>
+<ul><li>7 decisiones de arquitectura documentadas en tablas</li><li>Diseño de red, volúmenes, env vars</li><li>Artefacto: <code>design.md</code></li></ul>
+<h3 id="2e-sdd-tasks">2e · sdd-tasks</h3>
+<div class="card card--accent">
+<div class="card__head">¿POR QUÉ ESTE AGENTE?</div>
+<div class="card__body">
+<p>Antes de implementar necesitamos un plan de batalla: tareas concretas, ordenadas por dependencia, con estimación de líneas y decisión sobre PRs encadenados. <code>sdd-tasks</code> desglosa propuesta + spec + design en un plan cohesivo.</p>
+</div>
+</div>
+<ul><li>4 fases, 12 tareas</li><li>3 work units (Foundation → Core → Docs)</li><li>Forecast: ~130–200 líneas · riesgo <span class="pill pill--olive">Low</span></li><li>Chained PRs: no recomendado · Artefacto: <code>tasks.md</code></li></ul>
+<h2 id="3-git-rama-y-commits">3 · Git — rama y commits</h2>
+<div class="card card--accent">
+<div class="card__head">¿POR QUÉ INLINE?</div>
+<div class="card__body">
+<p>La creación de ramas y commits es estado de git, no trabajo de análisis. El orchestrator ejecuta <code>git switch</code>, <code>git add</code> y <code>git commit</code> sin inflar su contexto porque son comandos mecánicos y acotados. La skill <code>work-unit-commits</code> se cargó para guiar cómo dividir los cambios.</p>
+</div>
+</div>
+<ul><li>Rama: <code>feat/docker-python-postgres-env</code></li><li>Commits independientes por work unit (7 commits)</li><li><code>PLAN-CONFIG-AGENTES.md</code> excluido del cambio por ser ajeno</li></ul>
+<h2 id="4-sdd-apply">4 · sdd-apply</h2>
+<div class="card card--accent">
+<div class="card__head">¿POR QUÉ ESTE AGENTE?</div>
+<div class="card__body">
+<p>Escribir código en múltiples archivos con lógica nueva es el caso arquetípico de delegación. <code>sdd-apply</code> lee tasks, proposal, spec y design, y produce los archivos reales. El orchestrator <strong>nunca</strong> implementa inline porque escribir código nuevo en 7 archivos inflaría su contexto y perdería la visión de coordinación.</p>
+</div>
+</div>
+<table class="table">
+<thead><tr><th>Archivo</th><th>Descripción</th></tr></thead>
+<tbody>
+<tr><td><code>.gitignore</code></td><td>Ignora <code>.env</code>, <code>data/</code>, caches Python</td></tr>
+<tr><td><code>.env.example</code></td><td>Template con placeholders</td></tr>
+<tr><td><code>docker-compose.yml</code></td><td>2 servicios (postgres + data)</td></tr>
+<tr><td><code>packages/data/Dockerfile</code></td><td>Multi-stage con <code>python:3.12-slim</code></td></tr>
+<tr><td><code>packages/data/pyproject.toml</code></td><td>hatchling, psycopg, polars, duckdb</td></tr>
+<tr><td><code>packages/data/tests/smoke/test_connection.py</code></td><td>Smoke test básico</td></tr>
+<tr><td><code>README.md</code></td><td>Quick-start y scope boundary</td></tr>
+</tbody>
+</table>
+<div class="callout callout--warning">
+<span class="callout__title">Verificación parcial</span>
+<p><code>docker compose config</code> ✅ — Docker no estaba disponible en ese momento; la validación completa quedó para <code>sdd-verify</code>.</p>
+</div>
+<h2 id="5-sdd-verify">5 · sdd-verify</h2>
+<div class="card card--accent">
+<div class="card__head">¿POR QUÉ ESTE AGENTE?</div>
+<div class="card__body">
+<p>Implementar y verificar son dos preocupaciones distintas. <code>sdd-verify</code> es la puerta de calidad: lee proposal, spec, design y tasks, y ejecuta pruebas reales contra el código implementado. Si el orchestrator verificara inline, mezclaría coordinación con validación, y errores como los 4 bugs descubiertos podrían pasarse por alto.</p>
+</div>
+</div>
+<ul><li>Docker disponible ✅</li><li>Comandos ejecutados: <code>config</code>, <code>up -d</code>, smoke test, <code>git check-ignore</code></li><li>Postgres healthy, <code>data</code> corre smoke test y sale</li></ul>
+<p><strong>Bugs reales encontrados y corregidos durante verify:</strong></p>
+<table class="table">
+<thead><tr><th>Bug</th><th>Estado</th><th>Fix</th></tr></thead>
+<tbody>
+<tr><td><code>^3.12</code> no es PEP 508 válido</td><td><span class="badge badge--success">Corregido</span></td><td>→ <code>&gt;=3.12</code></td></tr>
+<tr><td>pytest no instalado en contenedor</td><td><span class="badge badge--success">Corregido</span></td><td>→ <code>[project.optional-dependencies] test</code> + <code>&quot;.[test]&quot;</code></td></tr>
+<tr><td><code>conn.is_closed</code> no existe en psycopg v3</td><td><span class="badge badge--success">Corregido</span></td><td>→ <code>cursor.execute(&quot;SELECT 1&quot;)</code></td></tr>
+<tr><td>hatchling no encuentra directorios</td><td><span class="badge badge--success">Corregido</span></td><td>→ <code>[tool.hatch.build.targets.wheel] packages = [&quot;.&quot;]</code></td></tr>
+</tbody>
+</table>
+<div class="callout callout--info">
+<span class="callout__title">Veredicto: PASS WITH WARNINGS</span>
+<p>Implementación validada contra spec, con bugs reales detectados y corregidos antes de archivar.</p>
+</div>
+<h2 id="6-sdd-archive">6 · sdd-archive</h2>
+<div class="card card--accent">
+<div class="card__head">¿POR QUÉ ESTE AGENTE?</div>
+<div class="card__body">
+<p>Cerrar un ciclo requiere cuidado: hay que sincronizar los delta specs con la fuente de verdad, mover la carpeta del cambio al archivo y verificar que nada se pierda. <code>sdd-archive</code> finaliza cambios SDD sin destruir artefactos de auditoría.</p>
+</div>
+</div>
+<ul><li>Spec promovido a source of truth: <code>openspec/specs/docker-runtime-env/spec.md</code></li><li>Cambio movido a: <code>openspec/changes/archive/2026-05-27-docker-python-postgres-env/</code></li><li>Ciclo SDD cerrado</li></ul>
+<h2 id="configuracion-de-modelos">Configuración de modelos</h2>
+<p>Asignación en <code>~/.config/opencode/opencode.json</code>.</p>
+<h3 id="modelos-base">Modelos base</h3>
+<table class="table">
+<thead><tr><th>Variable</th><th>Modelo</th></tr></thead>
+<tbody>
+<tr><td><code>model</code> (default)</td><td><code>opencode-go/deepseek-v4-flash</code></td></tr>
+<tr><td><code>small_model</code></td><td><code>nan/gemma4</code></td></tr>
+</tbody>
+</table>
+<h3 id="asignacion-por-agente">Asignación por agente</h3>
+<table class="table">
+<thead><tr><th>Agente</th><th>Rol</th><th>Modelo</th><th>reasoning_effort</th></tr></thead>
+<tbody>
+<tr><td><code>gentle-orchestrator</code></td><td>Coordina todo el flujo SDD</td><td><code>openai/gpt-5.5</code></td><td><span class="pill pill--clay">high</span></td></tr>
+<tr><td><code>sdd-init</code></td><td>Bootstrap SDD</td><td><code>openai/gpt-5.5</code></td><td>medium</td></tr>
+<tr><td><code>sdd-explore</code></td><td>Investiga codebase</td><td><code>openai/gpt-5.5</code></td><td>medium</td></tr>
+<tr><td><code>sdd-propose</code></td><td>Crea propuestas</td><td><code>nan/qwen3.6</code></td><td>—</td></tr>
+<tr><td><code>sdd-spec</code></td><td>Escribe specs</td><td><code>bailian-coding-plan/glm-5</code></td><td>thinking nativo</td></tr>
+<tr><td><code>sdd-design</code></td><td>Diseño técnico</td><td><code>nan/qwen3.6</code></td><td>—</td></tr>
+<tr><td><code>sdd-tasks</code></td><td>Desglose en tareas</td><td><code>nan/qwen3.6</code></td><td>—</td></tr>
+<tr><td><code>sdd-apply</code></td><td>Implementa código</td><td><code>nan/qwen3.6</code></td><td>—</td></tr>
+<tr><td><code>sdd-verify</code></td><td>Valida contra specs</td><td><code>nan/qwen3.6</code></td><td>—</td></tr>
+<tr><td><code>sdd-archive</code></td><td>Archiva cambios</td><td><code>small_model</code> (<code>nan/gemma4</code>)</td><td>—</td></tr>
+<tr><td><code>sdd-onboard</code></td><td>Guía al usuario</td><td><code>nan/qwen3.6</code></td><td>—</td></tr>
+<tr><td><code>general</code> (built-in)</td><td>Chat por defecto</td><td>usa <code>model</code> global</td><td>—</td></tr>
+</tbody>
+</table>
+<h2 id="resumen-de-commits">Resumen de commits</h2>
+<pre><code>9ed431b docs: archivar cambio Docker Python PostgreSQL
+e108b57 fix: corregir verificación Docker Python PostgreSQL
+d911e08 docs: actualizar progreso de tareas Docker
+58ab322 docs: agregar README con quick-start y límite de alcance
+e72ba5a feat: crear scaffold packages/data con pyproject, Dockerfile y smoke test
+c172edf feat: agregar docker-compose.yml con servicios postgres y data
+5dad6ae feat: agregar plantilla .env.example para PostgreSQL local
+00a585f chore: agregar entradas de .gitignore para env local y caches
+d386270 docs: planificar tareas del entorno Docker
+3009722 docs: diseñar entorno Docker Python PostgreSQL
+d8883bc docs: proponer entorno Docker Python PostgreSQL
+eb6a1ed docs: inicializar contexto SDD del proyecto
+17eb283 chore: ignorar cachés y secretos locales</code></pre>
+<h2 id="artefactos-openspec-generados">Artefactos OpenSpec generados</h2>
+<pre><code>openspec/
+├── config.yaml
+├── specs/
+│   └── docker-runtime-env/
+│       └── spec.md
+└── changes/
+    └── archive/
+        └── 2026-05-27-docker-python-postgres-env/
+            ├── archive-report.md
+            ├── design.md
+            ├── exploration.md
+            ├── proposal.md
+            ├── specs/
+            │   └── docker-runtime-env/
+            │       └── spec.md
+            ├── tasks.md
+            └── verify-report.md</code></pre>
+<h2 id="roles-en-el-flujo">Roles en el flujo</h2>
+<p>Resumen consolidado: por qué cada agente recibe su tarea.</p>
+<table class="table">
+<thead><tr><th>Agente</th><th>¿Por qué se le asigna esta tarea?</th></tr></thead>
+<tbody>
+<tr><td><code>gentle-orchestrator</code></td><td>Coordina fases y delega toda ejecución. Nunca hace análisis o implementación inline. Solo opera directamente sobre comandos mecánicos (git, state) o lecturas de 1-3 archivos para decidir.</td></tr>
+<tr><td><code>sdd-init</code></td><td>Detecta stack, convenciones y herramientas. Se delega porque leer 4+ archivos de configuración infla el contexto del orchestrator innecesariamente.</td></tr>
+<tr><td><code>sdd-explore</code></td><td>Investiga el codebase sin modificarlo. Entender un ecosistema requiere leer múltiples archivos.</td></tr>
+<tr><td><code>sdd-propose</code></td><td>Define alcance, enfoque y riesgos. Escribir una propuesta con análisis es trabajo complejo que necesita su propio contexto.</td></tr>
+<tr><td><code>sdd-spec</code></td><td>Escribe requisitos y escenarios Given/When/Then. La especificación requiere atención exclusiva.</td></tr>
+<tr><td><code>sdd-design</code></td><td>Diseña arquitectura y documenta decisiones técnicas. Preocupación separada que se beneficia de su propio contexto.</td></tr>
+<tr><td><code>sdd-tasks</code></td><td>Desglosa propuesta + spec + design en tareas. Requiere leer todos los artefactos anteriores y producir un plan cohesivo.</td></tr>
+<tr><td><code>sdd-apply</code></td><td>Implementa el código a partir de las tareas. Escribir código nuevo en múltiples archivos es el caso arquetípico de delegación.</td></tr>
+<tr><td><code>sdd-verify</code></td><td>Ejecuta pruebas reales contra spec y runtime. Ejecutar herramientas externas y analizar resultados requiere un contexto limpio.</td></tr>
+<tr><td><code>sdd-archive</code></td><td>Sincroniza specs con la fuente de verdad y mueve el cambio al archivo. Operaciones mecánicas que requieren cuidado para no perder artefactos.</td></tr>
+</tbody>
+</table>
+    </main>
+  </div>
+</body>
+</html>
