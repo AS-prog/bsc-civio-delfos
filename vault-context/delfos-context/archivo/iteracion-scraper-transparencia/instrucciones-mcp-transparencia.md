@@ -26,7 +26,7 @@ Construir un **MCP en Python** que exponga el corpus de Publicidad Activa (`tran
 
 | Capa | Responsabilidad |
 |---|---|
-| **SQL** | Consultas directas a la base de datos (`podcast`) donde está persistido el corpus |
+| **SQL** | Consultas directas a la base de datos (`civio`) donde está persistido el corpus |
 | **Marts** | Reglas de negocio, transformaciones y vistas analíticas (equivalente a `dbt marts`) |
 
 El MCP debe ser **agnóstico al agente cliente** — cualquier agente (Claude Code, OpenCode, Cursor, etc.) debe poder conectarse y consultar.
@@ -55,7 +55,7 @@ mcp-transparencia/
 ├── mcp_server.py              ← Entry point del servidor MCP
 ├── sql/
 │   ├── __init__.py
-│   ├── connection.py          ← Conexión a DB (podcast)
+│   ├── connection.py          ← Conexión a DB (`civio`)
 │   ├── queries.py             ← Consultas SQL parametrizadas
 │   └── models.py              ← Tipos/esquemas derivados del modelo limpio
 ├── marts/
@@ -69,7 +69,7 @@ mcp-transparencia/
 
 ### Capa SQL (`sql/`)
 
-- `connection.py`: maneja la conexión a la base de datos `podcast` (configurable por variable de entorno).
+- `connection.py`: maneja la conexión a la base de datos `civio` (configurable por variable de entorno).
 - `queries.py`: consultas SQL crudas pero parametrizadas. Cada función devuelve datos listos para consumir.
 - `models.py`: dataclasses `pydantic` o `dataclass` que reflejan el esquema limpio.
 
@@ -85,12 +85,12 @@ Expone **tools** (herramientas) que los agentes pueden invocar:
 
 | Tool | Capa | Descripción |
 |---|---|---|
+| `execute_sql(query, limit=100)` | SQL | Ejecuta una consulta read-only (`SELECT`, `WITH`, `EXPLAIN`) contra Postgres |
 | `get_page(url)` | SQL | Devuelve el `PageData` completo de una URL |
 | `search_pages(query)` | SQL | Búsqueda textual en títulos y secciones |
 | `list_organisms()` | Mart | Lista organismos con su volumen de datos |
-| `get_subvenciones_by_year(year)` | Mart | Agregado anual de subvenciones |
+| `get_links_by_category(category, materia_slug=None)` | Mart | Lista enlaces por categoría curada (`subvenciones`, `normativa`, `documento`, etc.) |
 | `get_external_links(domain)` | SQL | Enlaces externos filtrados por dominio |
-| `enrich_with_boe(url)` | Mart | Cruza una página con sus enlaces BOE |
 
 ---
 
@@ -105,7 +105,7 @@ Dividimos en **2 tareas independientes** para trabajar en paralelo en distintas 
 | Paso | Descripción |
 |---|---|
 | A1 | Tomar el JSON actual de `models.py` y limpiarlo: comentarios, tipos, relaciones |
-| A2 | Crear `sql/connection.py` con conexión configurable a `podcast` |
+| A2 | Crear conexión configurable a `civio` |
 | A3 | Crear `sql/models.py` con las dataclasses limpias |
 | A4 | Crear `sql/queries.py` con las consultas fundamentales |
 | A5 | Testear contra la base de datos real |
@@ -163,12 +163,34 @@ Una vez ambas tareas están implementadas:
 
 1. Hacer `engram pull` en la máquina que integra.
 2. Verificar que `mcp_server.py` importa correctamente `sql/` y `marts/`.
-3. Probar todas las tools contra la base de datos `podcast`.
+3. Probar todas las tools contra la base de datos `civio`.
 4. Conectar desde un agente y ejecutar consultas de extremo a extremo.
 
 ### Criterio de éxito
 
 > Un agente externo (Claude Code, OpenCode) puede conectarse al MCP, ejecutar `get_page(url)` y recibir el `PageData` completo, y ejecutar `list_organisms()` para ver el resumen por organismo.
+
+### Estado actual
+
+El MCP queda habilitado en `opencode.json` como servidor local `transparencia`:
+
+```json
+{
+  "mcp": {
+    "transparencia": {
+      "type": "local",
+      "command": ["uv", "run", "--project", "packages/mcp-transparencia", "python", "packages/mcp-transparencia/mcp_server.py"]
+    }
+  }
+}
+```
+
+La base restaurada desde `data/warehouse/transparencia-transparencia-schema.dump` contiene:
+
+- `transparencia.pages`: 1167 filas
+- `transparencia.sections`: 1402 filas
+- `transparencia.accordion`: 320 filas
+- `transparencia.links`: 13267 filas
 
 ---
 
