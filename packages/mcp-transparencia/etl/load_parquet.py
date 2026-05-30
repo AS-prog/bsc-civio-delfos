@@ -20,10 +20,9 @@ import typer
 
 app = typer.Typer(no_args_is_help=True)
 
-DEFAULT_WAREHOUSE_DIR = Path(
-    r"C:\Users\marin\Documents\hackathon\data 2\data\warehouse"
-)
 ROOT_DIR = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+DEFAULT_WAREHOUSE_DIR = PROJECT_ROOT / "data" / "warehouse"
 SCHEMA_SQL = ROOT_DIR / "sql" / "schema.sql"
 DOWNLOAD_EXTENSIONS = {"pdf", "xls", "xlsx", "csv", "ods"}
 TRANSPARENCIA_HOST = "transparencia.gob.es"
@@ -39,7 +38,7 @@ def _connect() -> psycopg.Connection[Any]:
         port=int(_env("POSTGRES_PORT", "5432") or "5432"),
         dbname=_env("POSTGRES_DB", "civio"),
         user=_env("POSTGRES_USER", "civio"),
-        password=_env("POSTGRES_PASSWORD"),
+        password=_env("POSTGRES_PASSWORD", "change-me-locally"),
     )
 
 
@@ -289,6 +288,29 @@ def _load_sections(conn: psycopg.Connection[Any], df: pl.DataFrame) -> int:
     return len(rows)
 
 
+def _load_accordion(conn: psycopg.Connection[Any], df: pl.DataFrame) -> int:
+    rows: list[tuple[Any, ...]] = []
+    for row in df.iter_rows(named=True):
+        page_url = _text(row.get("url"))
+        if not page_url:
+            continue
+        rows.append(
+            (
+                page_url,
+                _int(row.get("ord")),
+                _text(row.get("title")),
+                _text(row.get("content")),
+            )
+        )
+    _copy_rows(
+        conn,
+        "transparencia.accordion",
+        ["page_url", "ord", "title", "content"],
+        rows,
+    )
+    return len(rows)
+
+
 def _load_links(conn: psycopg.Connection[Any], df: pl.DataFrame) -> int:
     rows: list[tuple[Any, ...]] = []
     ord_by_url: defaultdict[str, int] = defaultdict(int)
@@ -382,6 +404,11 @@ def _post_load(conn: psycopg.Connection[Any]) -> None:
                         SELECT string_agg(concat_ws(' ', s.heading, s.text, s.content), ' ')
                         FROM transparencia.sections s
                         WHERE s.page_url = p.url
+                    ),
+                    (
+                        SELECT string_agg(concat_ws(' ', a.title, a.content), ' ')
+                        FROM transparencia.accordion a
+                        WHERE a.page_url = p.url
                     )
                 )
             );
@@ -393,6 +420,7 @@ def _verify(conn: psycopg.Connection[Any]) -> None:
     queries = [
         ("pages", "SELECT count(*) FROM transparencia.pages"),
         ("sections", "SELECT count(*) FROM transparencia.sections"),
+        ("accordion", "SELECT count(*) FROM transparencia.accordion"),
         ("links", "SELECT count(*) FROM transparencia.links"),
     ]
     with conn.cursor() as cur:
@@ -450,10 +478,12 @@ def main(
 ) -> None:
     pages_path = warehouse_dir / "transparencia_pages.parquet"
     sections_path = warehouse_dir / "transparencia_sections.parquet"
+    accordion_path = warehouse_dir / "transparencia_accordion.parquet"
     links_path = warehouse_dir / "transparencia_links.parquet"
 
     pages = _read_parquet(pages_path)
     sections = _read_parquet(sections_path)
+    accordion = _read_parquet(accordion_path)
     links = _read_parquet(links_path)
 
     schema_sql = SCHEMA_SQL.read_text(encoding="utf-8")
@@ -467,6 +497,7 @@ def main(
                 """
                 TRUNCATE
                     transparencia.links,
+                    transparencia.accordion,
                     transparencia.sections,
                     transparencia.pages
                 RESTART IDENTITY CASCADE
@@ -475,11 +506,13 @@ def main(
 
         page_count = _load_pages(conn, pages)
         section_count = _load_sections(conn, sections)
+        accordion_count = _load_accordion(conn, accordion)
         link_count = _load_links(conn, links)
         _post_load(conn)
 
         typer.echo(
-            f"loaded {page_count} pages, {section_count} sections, {link_count} links "
+            f"loaded {page_count} pages, {section_count} sections, "
+            f"{accordion_count} accordion items, {link_count} links "
             f"from {warehouse_dir}"
         )
         if verify:

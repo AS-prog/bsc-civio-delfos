@@ -4,6 +4,7 @@ version = "0.1.0"
 description = "Postgres ETL and MCP tools for the Transparencia corpus"
 requires-python = ">=3.12"
 dependencies = [
+    "mcp>=1.2",
     "polars",
     "psycopg[binary]",
     "typer",

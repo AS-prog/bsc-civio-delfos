@@ -1,14 +1,40 @@
 # MCP Transparencia
 
-Fase 1 del corpus de Publicidad Activa: schema Postgres y ETL desde Parquet.
+Corpus de Publicidad Activa: schema Postgres, ETL desde Parquet y servidor MCP
+read-only para consultar la base desde agentes.
 
-El ETL lee por defecto el warehouse externo:
+## Servidor MCP
 
-```text
-C:\Users\marin\Documents\hackathon\data 2\data\warehouse
+El servidor vive en `mcp_server.py` y se registra para OpenCode en el
+`opencode.json` del proyecto con el nombre `transparencia`.
+
+Tools disponibles:
+
+- `execute_sql(query, limit=100)`: ejecuta una unica consulta `SELECT`, `WITH` o
+  `EXPLAIN` en una transaccion read-only.
+- `get_page(url)`: devuelve pagina, secciones, acordeones y enlaces
+  clasificados.
+- `search_pages(query, limit=20)`: busqueda full-text en castellano.
+- `list_organisms()`: resumen por materia; el nombre se conserva por
+  compatibilidad, no son organismos emisores.
+- `get_external_links(domain, limit=100)`: enlaces salientes filtrados por host.
+- `get_links_by_category(category, materia_slug=None, limit=100)`: enlaces por
+  categoria curada.
+
+Ejecucion directa para smoke test:
+
+```bash
+uv run --project packages/mcp-transparencia python mcp_server.py
 ```
 
-Los Parquet no se copian al repositorio.
+OpenCode carga MCP al arrancar. Despues de modificar `opencode.json` o
+`mcp_server.py`, reiniciar OpenCode para que el servidor aparezca en la sesion.
+
+El ETL lee por defecto el warehouse del repositorio:
+
+```text
+data/warehouse
+```
 
 ## Carga
 
@@ -30,11 +56,13 @@ El schema se crea en `transparencia` y carga:
 
 - `transparencia.pages`
 - `transparencia.sections`
+- `transparencia.accordion`
 - `transparencia.links`
 - `transparencia.resource_types`
 - `transparencia.link_patterns`
 
-`accordion` no es obligatorio en esta fase. Se conserva `accordion_count` en `pages` y el texto indexable sale de `sections.text` y `sections.content`.
+El dump versionado `data/warehouse/transparencia-transparencia-schema.dump`
+incluye `transparencia.accordion` con los acordeones extraidos desde cache HTML.
 
 ## Validacion
 
