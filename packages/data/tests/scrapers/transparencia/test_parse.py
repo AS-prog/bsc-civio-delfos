@@ -138,6 +138,51 @@ class TestSections:
         data = parser.parse("https://transparencia.gob.es/test", html)
         assert data.sections == []
 
+    def test_captures_body_text_in_aem_layout(self):
+        # Real AEM markup: the heading sits inside its own div.cmp-title
+        # wrapper and the body text lives in separate div.cmp-text containers
+        # that are NOT direct siblings of the heading.
+        html = """
+        <html><body><main>
+        <div class="vertical-menu navigation">
+            <div class="cmp-title"><div class="cmp-title__text">Publicidad Activa</div></div>
+        </div>
+        <div class="cmp-container">
+            <div class="cmp-title"><h2 class="cmp-title__text">Compatibilidad de empleados públicos</h2></div>
+        </div>
+        <div class="cmp-container">
+            <div class="cmp-text"><p>Fuente de los datos</p></div>
+        </div>
+        <div class="cmp-container">
+            <div class="cmp-text"><p>Periodicidad: Trimestral</p></div>
+        </div>
+        </main></body></html>
+        """
+        parser = TransparenciaParser()
+        data = parser.parse("https://transparencia.gob.es/test", html)
+        assert len(data.sections) == 1
+        section = data.sections[0]
+        assert section.heading == "Compatibilidad de empleados públicos"
+        assert "Fuente de los datos" in section.text
+        assert "Periodicidad: Trimestral" in section.text
+        # the side-menu title is a div (not a heading) → must not be a section
+        assert all(s.heading != "Publicidad Activa" for s in data.sections)
+
+    def test_assigns_text_to_correct_heading(self):
+        html = """
+        <html><body><main>
+        <div class="cmp-title"><h2 class="cmp-title__text">Funciones</h2></div>
+        <div class="cmp-text"><p>Texto de funciones</p></div>
+        <div class="cmp-title"><h2 class="cmp-title__text">Normativa</h2></div>
+        <div class="cmp-text"><p>Texto de normativa</p></div>
+        </main></body></html>
+        """
+        parser = TransparenciaParser()
+        data = parser.parse("https://transparencia.gob.es/test", html)
+        by_heading = {s.heading: s.text for s in data.sections}
+        assert by_heading["Funciones"] == "Texto de funciones"
+        assert by_heading["Normativa"] == "Texto de normativa"
+
 
 class TestAccordionItems:
 

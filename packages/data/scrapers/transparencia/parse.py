@@ -108,25 +108,35 @@ class TransparenciaParser:
         return None
 
     def _sections(self, tree: HTMLParser) -> list[PageSection]:
-        sections = []
-        for heading in tree.css("h2.cmp-title__text, h2"):
-            title = _text(heading)
-            if not title:
-                continue
-            sibling = heading.next
-            text_parts = []
-            while sibling:
-                if isinstance(sibling, Node) and sibling.tag in ("h2", "h3"):
-                    break
-                if isinstance(sibling, Node) and sibling.tag == "div":
-                    t = _text(sibling)
-                    if t:
-                        text_parts.append(t)
-                sibling = sibling.next
-            sections.append(
-                PageSection(heading=title, text="\n".join(text_parts))
-            )
-        return sections
+        # In the Transparencia AEM markup, a heading lives inside its own
+        # ``div.cmp-title`` wrapper and the body text lives in separate
+        # ``div.cmp-text`` containers further down the document — they are NOT
+        # direct siblings of the heading. So we walk headings and text blocks
+        # in document order and attach each text block to the last open heading.
+        scope = tree.css_first("main") or tree
+        headings: list[str] = []
+        buffers: list[list[str]] = []
+        current_parts: Optional[list[str]] = None
+        for node in scope.css(
+            "h2.cmp-title__text, h3.cmp-title__text, div.cmp-text"
+        ):
+            if node.tag in ("h2", "h3"):
+                title = _text(node)
+                if not title:
+                    continue
+                current_parts = []
+                headings.append(title)
+                buffers.append(current_parts)
+            else:  # div.cmp-text — body content
+                if current_parts is None:
+                    continue
+                text = _text(node)
+                if text:
+                    current_parts.append(text)
+        return [
+            PageSection(heading=heading, text="\n".join(parts))
+            for heading, parts in zip(headings, buffers)
+        ]
 
     def _accordion_items(self, tree: HTMLParser) -> list[AccordionItem]:
         items = []
