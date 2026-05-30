@@ -17,6 +17,17 @@ el plan, el resultado de las corridas y el diagnóstico posterior del corpus.
 | 2 | [informe-ejecucion-scraper-transparencia.md](informe-ejecucion-scraper-transparencia.md) | Resultado de las corridas y descripción de los artefactos generados | Referencia |
 | 3 | [pendientes-scraper-transparencia.md](pendientes-scraper-transparencia.md) | Backlog de fixes priorizados (P1–P6) detectados en la revisión | Diagnóstico |
 | 4 | [oportunidades-explotacion-corpus-transparencia.md](oportunidades-explotacion-corpus-transparencia.md) | Análisis del corpus y oportunidades de explotación (O1–O4) | Diagnóstico |
+| 5 | [instrucciones-mcp-transparencia.md](instrucciones-mcp-transparencia.md) | Especificación funcional del MCP (corpus → servidor consumible) | Especificación |
+
+## Plan de ejecución (corpus → MCP)
+
+El plan original [frolicking-riding-pascal.md](frolicking-riding-pascal.md) se dividió en dos
+planes encadenados por dependencia (la base debe estar lista antes del MCP):
+
+| Orden | Documento | Qué entrega |
+|---|---|---|
+| 1 | [plan-base-datos-transparencia.md](plan-base-datos-transparencia.md) | Limpieza del corpus + ETL Parquet → Postgres. Salida: base `civio` poblada y consultable (Fases 0–1) |
+| 2 | [plan-mcp-transparencia.md](plan-mcp-transparencia.md) | Capa SQL + marts + servidor MCP + integración con agente (Fases 2–4) |
 
 ## Estado de la iteración
 

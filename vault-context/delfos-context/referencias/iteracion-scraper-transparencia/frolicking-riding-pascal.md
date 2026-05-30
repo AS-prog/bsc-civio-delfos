@@ -1,5 +1,12 @@
 # Plan: MCP del Corpus de Transparencia (Publicidad Activa)
 
+> **Documento dividido.** Este plan se separó en dos planes encadenados por dependencia.
+> Usá esos como fuente de verdad; este queda como referencia histórica:
+> 1. [plan-base-datos-transparencia.md](plan-base-datos-transparencia.md) — base `civio`
+>    lista para consumo (Fases 0–1: limpieza del corpus + ETL Parquet → Postgres).
+> 2. [plan-mcp-transparencia.md](plan-mcp-transparencia.md) — servidor MCP (Fases 2–4:
+>    capa SQL + marts + server + integración con agente).
+
 ## Context
 
 El scraper de `transparencia.gob.es` ya extrajo un corpus de **1167 páginas** de Publicidad
