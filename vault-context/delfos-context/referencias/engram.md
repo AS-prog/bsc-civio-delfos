@@ -1,8 +1,11 @@
 # Guía rápida: conectarse a Engram Cloud
 
+> [!warning] Seguridad
+> No guardes tokens reales en esta nota. Usá `ENGRAM_CLOUD_TOKEN` como variable de entorno local.
+
 ---
 
-## 0. PARAMETROS CONEXION
+## 0. Parámetros de conexión
 
 Pásale solo estos datos:
 
@@ -10,8 +13,17 @@ Pásale solo estos datos:
 TU_IP_VPS = 91.134.240.217
 SERVER  = http://TU_IP_VPS:18080
 PROJECT = mi-proyecto
-TOKEN   = ENGRAM_CLOUD_TOKEN = b3be760d0dd38c9af65d44ecd52b4fed71463e295b90806b4dbd5809693beb2b
+TOKEN   = ENGRAM_CLOUD_TOKEN
 ```
+
+## Estado local del proyecto
+
+- Proyecto Engram Cloud objetivo: `mi-proyecto`
+- Proyecto Engram local detectado en este repo: `bsc-civio-delfos`
+- Memoria reciente registrada: extracción de acordeones del corpus de Transparencia.
+- Artefacto asociado: `data/warehouse/transparencia_accordion.parquet`
+- Última verificación local: scraper reparseado desde caché con `320` acordeones y tests del scraper en verde.
+
 ### Paso 1: comprobar que tiene Engram instalado
 
 ```powershell
@@ -43,6 +55,12 @@ $env:ENGRAM_CLOUD_TOKEN="TOKEN"
 ```
 
 Nota: esta variable dura solo mientras esa terminal de PowerShell esté abierta. Si abre otra terminal, tendrá que volver a ponerla.
+
+En macOS/Linux:
+
+```bash
+export ENGRAM_CLOUD_TOKEN="TOKEN"
+```
 
 ---
 
@@ -88,4 +106,16 @@ Si todo está bien, debería ver memorias como:
 ```text
 TEST CLOUD OVH 001
 Test OVH Jeremias
+```
+
+Para este proyecto, una búsqueda útil es:
+
+```powershell
+engram search "transparencia accordion"
+```
+
+O en español:
+
+```powershell
+engram search "acordeones transparencia"
 ```

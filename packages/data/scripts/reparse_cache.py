@@ -30,6 +30,9 @@ BASE_URL = "https://transparencia.gob.es"
 
 def main() -> None:
     parser = TransparenciaParser()
+    jsonl_path = RAW_DIR / "pages.jsonl"
+    if jsonl_path.exists():
+        jsonl_path.unlink()
     storage = TransparenciaStorage(raw_dir=RAW_DIR, warehouse_dir=WAREHOUSE_DIR)
 
     metas = sorted(CACHE_DIR.glob("*.json"))

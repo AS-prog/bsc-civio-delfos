@@ -44,6 +44,10 @@ def _text(node: Optional[Node]) -> str:
     return node.text(deep=True, separator=" ").strip()
 
 
+def _has_class(node: Node, class_name: str) -> bool:
+    return class_name in node.attributes.get("class", "").split()
+
+
 def _children_text(node: Node, selector: str) -> list[str]:
     return [
         _text(n)
@@ -113,21 +117,24 @@ class TransparenciaParser:
         # ``div.cmp-text`` containers further down the document — they are NOT
         # direct siblings of the heading. So we walk headings and text blocks
         # in document order and attach each text block to the last open heading.
-        scope = tree.css_first("main") or tree
+        scope = tree.css_first("main") or tree.body or tree.root
         headings: list[str] = []
         buffers: list[list[str]] = []
         current_parts: Optional[list[str]] = None
-        for node in scope.css(
-            "h2.cmp-title__text, h3.cmp-title__text, div.cmp-text"
-        ):
-            if node.tag in ("h2", "h3"):
+        for node in scope.traverse():
+            is_heading = (
+                node.tag in ("h2", "h3")
+                and _has_class(node, "cmp-title__text")
+            )
+            is_text = node.tag == "div" and _has_class(node, "cmp-text")
+            if is_heading:
                 title = _text(node)
                 if not title:
                     continue
                 current_parts = []
                 headings.append(title)
                 buffers.append(current_parts)
-            else:  # div.cmp-text — body content
+            elif is_text:  # div.cmp-text — body content
                 if current_parts is None:
                     continue
                 text = _text(node)
